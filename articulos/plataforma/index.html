@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QServus — Centro de Ayuda</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Mono:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── TOKENS — Apple Grayscale ────────────────────────────── */
+  :root {
+    --bg:         #f5f5f7;
+    --bg-2:       #ffffff;
+    --bg-3:       #f0f0f2;
+    --border:     #d2d2d7;
+    --border-2:   #e5e5ea;
+    --text:       #1d1d1f;
+    --text-2:     #6e6e73;
+    --text-3:     #aeaeb2;
+    --accent:     #1d1d1f;
+    --accent-dim: rgba(29,29,31,.06);
+    --accent-glow:rgba(29,29,31,.12);
+    --red:        #ff3b30;
+    --yellow:     #ff9500;
+    --blue:       #007aff;
+    --sidebar-w:  268px;
+    --topbar-h:   52px;
+    --radius:     12px;
+    --font:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono:       'DM Mono', 'SF Mono', monospace;
+  }
+
+  /* ── RESET ──────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { cursor: pointer; font-family: var(--font); border: none; background: none; }
+  input { font-family: var(--font); }
+  ul, ol { list-style: none; }
+
+  /* ── TOPBAR ─────────────────────────────────────────────── */
+  #topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: var(--topbar-h);
+    background: rgba(245,245,247,.88);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border-2);
+    display: flex; align-items: center; gap: 16px;
+    padding: 0 20px;
+  }
+  #menu-toggle {
+    display: none;
+    width: 36px; height: 36px;
+    align-items: center; justify-content: center;
+    border-radius: 8px; color: var(--text-2);
+    transition: background .15s, color .15s;
+  }
+  #menu-toggle:hover { background: var(--bg-3); color: var(--text); }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 17px; letter-spacing: -.4px;
+    color: var(--text); white-space: nowrap;
+  }
+  .logo-icon {
+    width: 30px; height: 30px; border-radius: 7px;
+    background: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: #fff;
+    flex-shrink: 0; letter-spacing: -.5px;
+  }
+  .logo span { color: var(--text-2); font-weight: 400; font-size: 15px; }
+  .topbar-divider { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+
+  /* Search */
+  #search-wrap {
+    flex: 1; max-width: 480px;
+    position: relative;
+  }
+  #search-icon {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    color: var(--text-3); pointer-events: none;
+  }
+  #search-input {
+    width: 100%; height: 34px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 0 12px 0 34px;
+    font-size: 13.5px;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+  }
+  #search-input::placeholder { color: var(--text-3); }
+  #search-input:focus {
+    border-color: var(--text-3);
+    background: var(--bg-2);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+  #search-clear {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    color: var(--text-3); display: none; padding: 2px;
+    border-radius: 4px; font-size: 14px; line-height: 1;
+  }
+  #search-clear:hover { color: var(--text); background: var(--bg-2); }
+
+  /* Search results dropdown */
+  #search-results {
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+    display: none; z-index: 300;
+    max-height: 380px; overflow-y: auto;
+  }
+  #search-results.visible { display: block; }
+  .sr-section { padding: 6px 0; border-bottom: 1px solid var(--border-2); }
+  .sr-section:last-child { border-bottom: none; }
+  .sr-label { padding: 6px 14px 4px; font-size: 10.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); }
+  .sr-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 14px; cursor: pointer;
+    transition: background .1s;
+  }
+  .sr-item:hover, .sr-item.active { background: var(--bg-3); }
+  .sr-item-icon { color: var(--text-2); font-size: 13px; flex-shrink: 0; }
+  .sr-item-title { font-size: 13.5px; font-weight: 500; color: var(--text); }
+  .sr-item-crumb { font-size: 11.5px; color: var(--text-2); margin-top: 1px; }
+  .sr-item-mark { background: #ffe066; color: var(--text); border-radius: 2px; padding: 0 2px; }
+  .sr-empty { padding: 20px 14px; color: var(--text-2); font-size: 13.5px; text-align: center; }
+
+  /* Topbar right */
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .version-badge {
+    font-size: 11px; font-family: var(--mono);
+    background: var(--bg-3); color: var(--text-2);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 2px 10px;
+    letter-spacing: .3px;
+  }
+
+  /* ── LAYOUT ─────────────────────────────────────────────── */
+  #layout {
+    display: flex;
+    padding-top: var(--topbar-h);
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ────────────────────────────────────────────── */
+  #sidebar {
+    position: fixed; top: var(--topbar-h); left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--bg-2);
+    border-right: 1px solid var(--border-2);
+    overflow-y: auto; overflow-x: hidden;
+    z-index: 100;
+    transition: transform .25s cubic-bezier(.4,0,.2,1);
+    scrollbar-width: thin; scrollbar-color: var(--border-2) transparent;
+  }
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .sidebar-inner { padding: 16px 0 40px; }
+
+  /* Nav group */
+  .nav-group { margin-bottom: 2px; }
+  .nav-group-btn {
+    width: 100%; display: flex; align-items: center; gap: 9px;
+    padding: 8px 14px; color: var(--text-2);
+    font-size: 11.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .8px;
+    transition: color .15s; border-radius: 8px;
+  }
+  .nav-group-btn:hover { color: var(--text); background: var(--bg-3); }
+  .nav-group-icon { font-size: 14px; flex-shrink: 0; width: 18px; text-align: center; }
+  .nav-group-label { flex: 1; text-align: left; }
+  .nav-group-chevron {
+    font-size: 10px; color: var(--text-3);
+    transition: transform .2s;
+  }
+  .nav-group.open .nav-group-chevron { transform: rotate(90deg); }
+  .nav-group.open .nav-group-btn { color: var(--text); }
+
+  /* Nav items */
+  .nav-items {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .3s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-group.open .nav-items { max-height: 600px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 14px 6px 40px;
+    font-size: 13px; color: var(--text-2);
+    cursor: pointer; border-radius: 8px; margin: 1px 6px;
+    transition: color .12s, background .12s;
+    position: relative;
+  }
+  .nav-item:hover { color: var(--text); background: var(--bg-3); }
+  .nav-item.active {
+    color: var(--text); background: var(--bg-3);
+    font-weight: 500;
+  }
+  .nav-item.active::after {
+    content: ''; position: absolute; left: 18px; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 16px; border-radius: 2px;
+    background: var(--text);
+  }
+  .nav-item-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--border); flex-shrink: 0;
+    transition: background .12s;
+  }
+  .nav-item.active .nav-item-dot { background: var(--text); }
+
+  /* Nav badges */
+  .nav-badge {
+    margin-left: auto; font-size: 10px; font-weight: 600;
+    padding: 1px 6px; border-radius: 10px;
+  }
+  .nav-badge.new { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+  .nav-badge.updated { background: #fff8e1; color: #f57c00; border: 1px solid #ffe082; }
+  .nav-badge.wip { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
+  /* Sidebar footer */
+  .sidebar-footer {
+    position: sticky; bottom: 0;
+    background: var(--bg-2);
+    border-top: 1px solid var(--border-2);
+    padding: 10px 16px;
+    font-size: 11px; color: var(--text-3);
+    display: flex; align-items: center; gap: 6px;
+    letter-spacing: .2px;
+  }
+
+  /* ── MAIN CONTENT ───────────────────────────────────────── */
+  #main {
+    margin-left: var(--sidebar-w);
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column;
+  }
+
+  /* Content area */
+  #content-area {
+    flex: 1; padding: 48px 56px;
+    max-width: 900px;
+  }
+
+  /* Welcome screen */
+  #welcome {
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 0;
+  }
+  .welcome-eyebrow {
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.2px; color: var(--text-3); margin-bottom: 14px;
+  }
+  .welcome-title {
+    font-size: 40px; font-weight: 700; line-height: 1.1;
+    letter-spacing: -1.5px; margin-bottom: 14px; color: var(--text);
+  }
+  .welcome-title em { color: var(--text-2); font-style: normal; font-weight: 300; }
+  .welcome-desc {
+    font-size: 16px; color: var(--text-2); line-height: 1.65;
+    max-width: 520px; margin-bottom: 40px; font-weight: 400;
+  }
+
+  /* Quick start cards */
+  .qs-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 12px; width: 100%; margin-bottom: 44px;
+  }
+  .qs-card {
+    background: var(--bg-2); border: 1px solid var(--border-2);
+    border-radius: var(--radius); padding: 18px;
+    cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .2s;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .qs-card:hover {
+    border-color: var(--border);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  }
+  .qs-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: var(--bg-3); border: 1px solid var(--border-2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+  }
+  .qs-card-title { font-size: 13px; font-weight: 600; color: var(--text); letter-spacing: -.2px; }
+  .qs-card-desc { font-size: 11.5px; color: var(--text-2); line-height: 1.5; }
+
+  /* Section divider */
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--text-3);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-2);
+  }
+
+  /* Article view */
+  #article { display: none; }
+  .article-breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12.5px; color: var(--text-3); margin-bottom: 24px;
+  }
+  .article-breadcrumb span { color: var(--text-2); cursor: pointer; }
+  .article-breadcrumb span:hover { color: var(--text); }
+  .article-breadcrumb .sep { color: var(--text-3); }
+  .article-meta {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+  }
+  .article-tag {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .7px; padding: 3px 10px; border-radius: 20px;
+  }
+  .article-tag.new { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+  .article-tag.updated { background: #fff8e1; color: #f57c00; border: 1px solid #ffe082; }
+  .article-updated { font-size: 12px; color: var(--text-3); }
+
+  /* Article typography */
+  .article-title {
+    font-size: 32px; font-weight: 700; letter-spacing: -1.2px;
+    line-height: 1.15; margin-bottom: 14px; color: var(--text);
+  }
+  .article-lead {
+    font-size: 17px; color: var(--text-2); line-height: 1.65;
+    margin-bottom: 32px; padding-bottom: 28px;
+    border-bottom: 1px solid var(--border-2);
+    font-weight: 400;
+  }
+  .article-body h2 {
+    font-size: 21px; font-weight: 600; letter-spacing: -.5px;
+    margin: 36px 0 12px; color: var(--text);
+  }
+  .article-body h3 {
+    font-size: 16px; font-weight: 600; letter-spacing: -.2px;
+    margin: 24px 0 8px; color: var(--text);
+  }
+  .article-body p { margin-bottom: 14px; color: var(--text-2); line-height: 1.75; }
+  .article-body ul, .article-body ol {
+    margin: 0 0 16px 20px; color: var(--text-2); line-height: 1.75;
+  }
+  .article-body ul { list-style: disc; }
+  .article-body ol { list-style: decimal; }
+  .article-body li { margin-bottom: 6px; }
+  .article-body strong { color: var(--text); font-weight: 600; }
+  .article-body code {
+    font-family: var(--mono); font-size: 12.5px;
+    background: var(--bg-3); border: 1px solid var(--border);
+    border-radius: 5px; padding: 1px 6px; color: var(--text);
+  }
+  .article-body pre {
+    background: var(--text); border: none;
+    border-radius: var(--radius); padding: 18px 20px;
+    overflow-x: auto; margin: 0 0 20px;
+  }
+  .article-body pre code {
+    background: none; border: none; padding: 0; font-size: 13px;
+    color: #f5f5f7; line-height: 1.6;
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-radius: var(--radius); padding: 14px 18px;
+    margin: 20px 0; display: flex; gap: 12px; align-items: flex-start;
+    font-size: 13.5px; line-height: 1.6;
+  }
+  .callout-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .callout.info { background: #f0f7ff; border: 1px solid #c9e2ff; color: #444; }
+  .callout.tip { background: #f2faf5; border: 1px solid #c3e6cb; color: #444; }
+  .callout.warning { background: #fffbf0; border: 1px solid #ffe08a; color: #444; }
+  .callout.danger { background: #fff5f5; border: 1px solid #ffc9c9; color: #444; }
+
+  /* Image containers */
+  .img-wrap {
+    margin: 24px 0; border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden;
+    background: var(--bg-3);
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  }
+  .img-wrap img { width: 100%; display: block; }
+  .img-caption {
+    padding: 8px 14px; font-size: 12px; color: var(--text-3);
+    border-top: 1px solid var(--border-2);
+    font-family: var(--mono);
+  }
+
+  /* Step list */
+  .steps { margin: 20px 0; counter-reset: step; }
+  .step {
+    display: flex; gap: 16px; margin-bottom: 20px;
+    counter-increment: step;
+  }
+  .step-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--text); color: #fff;
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 3px;
+  }
+  .step-body h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+  .step-body p { font-size: 13.5px; color: var(--text-2); margin: 0; }
+
+  /* Article nav */
+  .article-nav {
+    display: flex; gap: 12px; margin-top: 48px; padding-top: 24px;
+    border-top: 1px solid var(--border-2);
+  }
+  .article-nav-btn {
+    flex: 1; padding: 14px 18px;
+    background: var(--bg-2); border: 1px solid var(--border-2);
+    border-radius: var(--radius); cursor: pointer;
+    transition: border-color .2s, box-shadow .2s;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .article-nav-btn:hover {
+    border-color: var(--border);
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  }
+  .article-nav-btn.next { text-align: right; }
+  .article-nav-label { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: .7px; }
+  .article-nav-title { font-size: 13.5px; font-weight: 500; color: var(--text); }
+
+  /* ── AI CHAT ────────────────────────────────────────────── */
+  #chat-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 500;
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--text);
+    box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: #fff;
+    transition: transform .2s, box-shadow .2s;
+  }
+  #chat-fab:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 28px rgba(0,0,0,.28);
+  }
+  #chat-fab .pulse {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: var(--text); opacity: .15;
+    animation: pulse 2.5s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: .15; }
+    70% { transform: scale(1.6); opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  #chat-panel {
+    position: fixed; bottom: 84px; right: 24px; z-index: 499;
+    width: 348px; max-height: 500px;
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.15), 0 2px 8px rgba(0,0,0,.06);
+    display: none; flex-direction: column; overflow: hidden;
+    animation: slideUp .2s ease;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  #chat-panel.open { display: flex; }
+  .chat-header {
+    padding: 14px 16px; border-bottom: 1px solid var(--border-2);
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg-3);
+  }
+  .chat-header-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: #fff;
+  }
+  .chat-header-info { flex: 1; }
+  .chat-header-title { font-size: 13px; font-weight: 600; color: var(--text); }
+  .chat-header-sub { font-size: 11px; color: var(--text-3); }
+  #chat-close { color: var(--text-3); font-size: 16px; padding: 4px; border-radius: 6px; }
+  #chat-close:hover { color: var(--text); background: var(--border-2); }
+  #chat-messages {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    scrollbar-width: thin; scrollbar-color: var(--border-2) transparent;
+    background: var(--bg-2);
+  }
+  .msg {
+    max-width: 88%; padding: 10px 13px;
+    border-radius: 14px; font-size: 13.5px; line-height: 1.55;
+  }
+  .msg.bot {
+    background: var(--bg-3); color: var(--text-2);
+    border-bottom-left-radius: 4px; align-self: flex-start;
+    border: 1px solid var(--border-2);
+  }
+  .msg.user {
+    background: var(--text); color: #fff;
+    border-bottom-right-radius: 4px; align-self: flex-end;
+    font-weight: 500;
+  }
+  .msg.typing { opacity: .6; }
+  .typing-dots { display: flex; gap: 4px; align-items: center; }
+  .typing-dots span {
+    width: 6px; height: 6px; background: var(--text-3);
+    border-radius: 50%; animation: dot .8s ease-in-out infinite;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: .15s; }
+  .typing-dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes dot { 0%,80%,100%{transform:scale(.7)} 40%{transform:scale(1)} }
+
+  .chat-input-row {
+    padding: 10px 12px; border-top: 1px solid var(--border-2);
+    display: flex; gap: 8px; align-items: center;
+    background: var(--bg-3);
+  }
+  #chat-input {
+    flex: 1; background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text); padding: 8px 12px;
+    font-size: 13.5px; outline: none; resize: none;
+    transition: border-color .2s, box-shadow .2s;
+    height: 36px; line-height: 20px;
+  }
+  #chat-input::placeholder { color: var(--text-3); }
+  #chat-input:focus {
+    border-color: var(--text-3);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+  #chat-send {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: var(--text); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+    transition: transform .15s, opacity .15s;
+  }
+  #chat-send:hover { opacity: .8; transform: scale(1.05); }
+  #chat-send:disabled { opacity: .3; cursor: not-allowed; transform: none; }
+
+  /* ── EMPTY STATE / PLACEHOLDER ──────────────────────────── */
+  .placeholder-article {
+    background: var(--bg-3); border: 1px dashed var(--border);
+    border-radius: var(--radius); padding: 36px;
+    text-align: center; color: var(--text-3);
+    margin: 24px 0;
+  }
+  .placeholder-article .ph-icon { font-size: 28px; margin-bottom: 12px; opacity: .5; }
+  .placeholder-article p { font-size: 13.5px; line-height: 1.65; color: var(--text-2); }
+  .placeholder-article strong { color: var(--text); }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 860px) {
+    #menu-toggle { display: flex; }
+    #sidebar {
+      transform: translateX(-100%);
+      z-index: 150;
+    }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    #content-area { padding: 32px 24px; }
+    #sidebar-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.25);
+      z-index: 140; display: none;
+      backdrop-filter: blur(4px);
+    }
+    #sidebar-overlay.visible { display: block; }
+    .welcome-title { font-size: 28px; }
+    #chat-panel { right: 12px; left: 12px; width: auto; }
+    #chat-fab { bottom: 16px; right: 16px; }
+  }
+  @media (max-width: 520px) {
+    #content-area { padding: 24px 16px; }
+    .qs-grid { grid-template-columns: 1fr 1fr; }
+    .article-nav { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Overlay for mobile sidebar -->
+<div id="sidebar-overlay"></div>
+
+<!-- ── TOPBAR ─────────────────────────────────────────── -->
+<header id="topbar">
+  <button id="menu-toggle" aria-label="Abrir menú">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <rect y="2" width="18" height="2" rx="1" fill="currentColor"/>
+      <rect y="8" width="18" height="2" rx="1" fill="currentColor"/>
+      <rect y="14" width="18" height="2" rx="1" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <a href="#" class="logo" onclick="showWelcome()">
+    <div class="logo-icon">Q</div>
+    QServus <span>Docs</span>
+  </a>
+  <div class="topbar-divider"></div>
+
+  <div id="search-wrap">
+    <svg id="search-icon" width="14" height="14" viewBox="0 0 20 20" fill="none">
+      <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="2"/>
+      <path d="M14.5 14.5L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <input id="search-input" type="text" placeholder="Buscar en el manual... (/" aria-label="Buscar">
+    <button id="search-clear" aria-label="Limpiar búsqueda">✕</button>
+    <div id="search-results" role="listbox"></div>
+  </div>
+
+  <div class="topbar-right">
+    <span class="version-badge">v2.0</span>
+  </div>
+</header>
+
+<!-- ── SIDEBAR ────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Navegación principal">
+  <div class="sidebar-inner" id="nav-root"></div>
+  <div class="sidebar-footer">
+    <span>📄</span> QServus Docs · 2025
+  </div>
+</nav>
+
+<!-- ── MAIN ───────────────────────────────────────────── -->
+<div id="layout">
+  <main id="main">
+    <div id="content-area">
+
+      <!-- Welcome -->
+      <div id="welcome">
+        <div class="welcome-eyebrow">Centro de Ayuda</div>
+        <h1 class="welcome-title">¿En qué te podemos<br><em>ayudar hoy?</em></h1>
+        <p class="welcome-desc">
+          Explora el manual de QServus, busca por tema o pregúntale directamente
+          a nuestro asistente IA. Todo lo que necesitas para sacar el máximo de la plataforma.
+        </p>
+
+        <div class="section-label">Acceso rápido</div>
+        <div class="qs-grid" id="qs-grid"></div>
+
+        <div class="section-label">Explorar secciones</div>
+        <div class="qs-grid" id="sections-grid"></div>
+      </div>
+
+      <!-- Article -->
+      <div id="article">
+        <nav class="article-breadcrumb" id="breadcrumb"></nav>
+        <div class="article-meta" id="article-meta"></div>
+        <h1 class="article-title" id="article-title"></h1>
+        <p class="article-lead" id="article-lead"></p>
+        <div class="article-body" id="article-body"></div>
+        <nav class="article-nav" id="article-nav"></nav>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ── AI CHAT FAB ────────────────────────────────────── -->
+<button id="chat-fab" aria-label="Asistente IA">
+  <div class="pulse"></div>
+  🤖
+</button>
+
+<div id="chat-panel" role="dialog" aria-label="Asistente IA QServus">
+  <div class="chat-header">
+    <div class="chat-header-icon">🤖</div>
+    <div class="chat-header-info">
+      <div class="chat-header-title">Asistente QServus</div>
+      <div class="chat-header-sub">Asistente inteligente</div>
+    </div>
+    <button id="chat-close" aria-label="Cerrar chat">✕</button>
+  </div>
+  <div id="chat-messages">
+    <div class="msg bot">
+      👋 ¡Hola! Soy el asistente de QServus. Puedo ayudarte a encontrar información
+      sobre la plataforma, resolver dudas o guiarte paso a paso.
+      <br><br>¿En qué te puedo ayudar?
+    </div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." aria-label="Mensaje al asistente">
+    <button id="chat-send" aria-label="Enviar">
+      <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
+        <path d="M2 10L18 2L10 18L8.5 11.5L2 10Z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- ── DATA ──────────────────────────────────────────── -->
+<script>
+// ═══════════════════════════════════════════════════════════
+//  NAVIGATION STRUCTURE
+//  Edita aquí para agregar / quitar secciones y artículos
+// ═══════════════════════════════════════════════════════════
+const NAV = [
+  {
+    id: 'plataforma',
+    label: 'Primeros pasos',
+    icon: '🚀',
+    color: '#1d1d1f',
+    desc: 'Todo lo que necesitas para empezar',
+    items: [
+      { id: 'que-es-qservus',       title: '¿Qué es QServus?',              badge: null },
+      { id: 'primer-acceso',        title: 'Crear cuenta y primer acceso',   badge: null },
+      { id: 'recuperar-contrasena', title: 'Recuperar contraseña',           badge: null },
+      { id: 'conoce-la-interfaz',   title: 'Conoce la interfaz',             badge: null },
+    ]
+  },
+  {
+    id: 'que-esta-pasando',
+    label: '¿Qué está pasando?',
+    icon: '📊',
+    color: '#1d1d1f',
+    desc: 'Monitorea respuestas en tiempo real',
+    items: [
+      { id: 'listado-respuestas',  title: 'Ver respuestas en tiempo real',   badge: null },
+      { id: 'detalle-respuesta',   title: 'Explorar el detalle de una respuesta', badge: null },
+      { id: 'descarga-respuesta',  title: 'Descargar respuestas',            badge: null },
+    ]
+  },
+  {
+    id: 'encuestas',
+    label: 'Encuestas',
+    icon: '📝',
+    color: '#1d1d1f',
+    desc: 'Crea y gestiona tus encuestas',
+    items: [
+      { id: 'crear-encuesta',      title: 'Crear tu primera encuesta',       badge: null },
+      { id: 'tipos-preguntas',     title: '¿Qué tipos de preguntas puedo usar?', badge: null },
+      { id: 'derivaciones',        title: 'Preguntas condicionales y derivaciones', badge: null },
+      { id: 'publicar-encuesta',   title: 'Publicar y compartir una encuesta', badge: null },
+      { id: 'opciones-encuesta',   title: 'Exportar y otras opciones',       badge: null },
+    ]
+  },
+  {
+    id: 'sensores',
+    label: 'Sensores',
+    icon: '📡',
+    color: '#1d1d1f',
+    desc: 'Puntos de contacto para recopilar feedback',
+    items: [
+      { id: 'que-es-sensor',    title: '¿Qué es un sensor y cuándo usarlo?', badge: null },
+      { id: 'crear-sensor',     title: 'Crear y configurar un sensor',       badge: null },
+      { id: 'detalle-sensor',   title: 'Ver resultados de un sensor',        badge: null },
+      { id: 'opciones-sensor',  title: 'Opciones avanzadas de sensores',     badge: null },
+    ]
+  },
+  {
+    id: 'campanas',
+    label: 'Campañas',
+    icon: '📢',
+    color: '#1d1d1f',
+    desc: 'Envía encuestas a tus contactos',
+    items: [
+      { id: 'que-es-campana',      title: '¿Qué es una campaña y cuándo usarla?', badge: null },
+      { id: 'crear-campana',       title: 'Crear y lanzar una campaña',      badge: null },
+      { id: 'destinatarios',       title: 'Gestionar destinatarios',         badge: null },
+      { id: 'detalle-campana',     title: 'Ver resultados de una campaña',   badge: null },
+    ]
+  },
+  {
+    id: 'indicadores',
+    label: 'Indicadores',
+    icon: '📈',
+    color: '#1d1d1f',
+    desc: 'Visualiza y analiza tus resultados',
+    items: [
+      { id: 'tableros',            title: 'Crear y gestionar tableros',      badge: null },
+      { id: 'tipos-indicadores',   title: '¿Qué tipos de indicadores existen?', badge: null },
+      { id: 'crear-indicador',     title: 'Agregar un indicador a un tablero', badge: null },
+      { id: 'tipos-graficos',      title: 'Tipos de gráficos disponibles',   badge: null },
+    ]
+  },
+  {
+    id: 'reportes',
+    label: 'Reportes',
+    icon: '📋',
+    color: '#1d1d1f',
+    desc: 'Exporta y analiza tus datos',
+    items: [
+      { id: 'lista-reportes',      title: '¿Qué reportes están disponibles?', badge: null },
+      { id: 'reportes-campanas',   title: 'Reportes de campañas',            badge: null },
+      { id: 'reportes-sensores',   title: 'Reportes de sensores',            badge: null },
+      { id: 'reportes-avanzados',  title: 'Reportes avanzados y consolidados', badge: null },
+    ]
+  },
+  {
+    id: 'acciones',
+    label: 'Acciones Automatizadas',
+    icon: '⚡',
+    color: '#1d1d1f',
+    desc: 'Automatiza notificaciones y flujos',
+    items: [
+      { id: 'que-son-acciones',    title: '¿Qué son las acciones automatizadas?', badge: null },
+      { id: 'crear-accion',        title: 'Crear una acción automatizada',   badge: null },
+      { id: 'tipos-acciones',      title: 'Tipos de acciones disponibles',   badge: null },
+    ]
+  },
+  {
+    id: 'api',
+    label: 'API & Desarrolladores',
+    icon: '🔌',
+    color: '#1d1d1f',
+    desc: 'Integra QServus con tus sistemas',
+    items: [
+      { id: 'api-intro',           title: '¿Cómo funciona la API de QServus?', badge: null },
+      { id: 'autenticacion',       title: 'Autenticación y credenciales',    badge: null },
+      { id: 'endpoints',           title: 'Endpoints principales',           badge: null },
+      { id: 'codigos-estado',      title: 'Códigos de estado HTTP',          badge: null },
+    ]
+  },
+];
+
+// ═══════════════════════════════════════════════════════════
+//  ARTICLE CACHE — artículos cargados se guardan aquí
+// ═══════════════════════════════════════════════════════════
+const ARTICLE_CACHE = {};
+
+// ═══════════════════════════════════════════════════════════
+//  SEARCH INDEX — se construye desde los títulos del NAV
+//  (se enriquece con el texto cuando se carga cada artículo)
+// ═══════════════════════════════════════════════════════════
+let searchIndex = [];
+NAV.forEach(sec => {
+  sec.items.forEach(item => {
+    searchIndex.push({
+      id: item.id,
+      title: item.title,
+      section: sec.label,
+      sectionId: sec.id,
+      sectionIcon: sec.icon,
+      text: item.title + ' ' + sec.label,
+    });
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════
+let currentArticleId = null;
+let chatOpen = false;
+let chatHistory = [];
+
+// ═══════════════════════════════════════════════════════════
+//  RENDER SIDEBAR
+// ═══════════════════════════════════════════════════════════
+function renderNav() {
+  const root = document.getElementById('nav-root');
+  root.innerHTML = NAV.map(sec => `
+    <div class="nav-group" id="group-${sec.id}">
+      <button class="nav-group-btn" onclick="toggleGroup('${sec.id}')">
+        <span class="nav-group-icon">${sec.icon}</span>
+        <span class="nav-group-label">${sec.label}</span>
+        <span class="nav-group-chevron">›</span>
+      </button>
+      <div class="nav-items">
+        ${sec.items.map(item => `
+          <div class="nav-item" id="nav-${item.id}" onclick="loadArticle('${item.id}')">
+            <span class="nav-item-dot"></span>
+            ${item.title}
+            ${item.badge ? `<span class="nav-badge ${item.badge}">${item.badge}</span>` : ''}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleGroup(id) {
+  const g = document.getElementById('group-' + id);
+  g.classList.toggle('open');
+}
+
+function openGroup(sectionId) {
+  const g = document.getElementById('group-' + sectionId);
+  if (g && !g.classList.contains('open')) g.classList.add('open');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  RENDER WELCOME
+// ═══════════════════════════════════════════════════════════
+function renderWelcome() {
+  // Quick access (first item of first 4 sections)
+  const qsGrid = document.getElementById('qs-grid');
+  qsGrid.innerHTML = NAV.slice(0,4).map(sec => `
+    <div class="qs-card" onclick="loadArticle('${sec.items[0].id}')">
+      <div class="qs-icon">${sec.icon}</div>
+      <div class="qs-card-title">${sec.label}</div>
+      <div class="qs-card-desc">${sec.desc}</div>
+    </div>
+  `).join('');
+
+  // All sections
+  const sectionsGrid = document.getElementById('sections-grid');
+  sectionsGrid.innerHTML = NAV.map(sec => `
+    <div class="qs-card" onclick="loadArticle('${sec.items[0].id}')">
+      <div class="qs-icon">${sec.icon}</div>
+      <div class="qs-card-title">${sec.label}</div>
+      <div class="qs-card-desc">${sec.items.length} artículos</div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
+//  LOAD ARTICLE — fetch desde /articulos/seccion/id.html
+// ═══════════════════════════════════════════════════════════
+async function loadArticle(id) {
+  currentArticleId = id;
+
+  // Find section
+  let sec = null, itemIdx = -1;
+  NAV.forEach(s => {
+    const idx = s.items.findIndex(i => i.id === id);
+    if (idx !== -1) { sec = s; itemIdx = idx; }
+  });
+  if (!sec) return;
+
+  const item = sec.items[itemIdx];
+
+  // Toggle views
+  document.getElementById('welcome').style.display = 'none';
+  const articleEl = document.getElementById('article');
+  articleEl.style.display = 'block';
+
+  // Breadcrumb
+  document.getElementById('breadcrumb').innerHTML = `
+    <span onclick="showWelcome()">Inicio</span>
+    <span class="sep">›</span>
+    <span onclick="openGroup('${sec.id}')">${sec.label}</span>
+    <span class="sep">›</span>
+    <span style="color:var(--text)">${item.title}</span>
+  `;
+
+  // Badge meta
+  const meta = document.getElementById('article-meta');
+  meta.innerHTML = item.badge
+    ? `<span class="article-tag ${item.badge}">${item.badge === 'new' ? 'Nuevo' : item.badge === 'updated' ? 'Actualizado' : 'En progreso'}</span>`
+    : '';
+
+  // Article nav (prev / next) — se arma siempre
+  const allItems = NAV.flatMap(s => s.items.map(i => ({...i, secId: s.id})));
+  const pos = allItems.findIndex(i => i.id === id);
+  const prev = allItems[pos - 1];
+  const next = allItems[pos + 1];
+  document.getElementById('article-nav').innerHTML = `
+    ${prev ? `<button class="article-nav-btn prev" onclick="loadArticle('${prev.id}')">
+      <span class="article-nav-label">← Anterior</span>
+      <span class="article-nav-title">${prev.title}</span>
+    </button>` : '<div></div>'}
+    ${next ? `<button class="article-nav-btn next" onclick="loadArticle('${next.id}')">
+      <span class="article-nav-label">Siguiente →</span>
+      <span class="article-nav-title">${next.title}</span>
+    </button>` : ''}
+  `;
+
+  // Sidebar highlight
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const navItem = document.getElementById('nav-' + id);
+  if (navItem) { navItem.classList.add('active'); openGroup(sec.id); }
+  document.getElementById('content-area').scrollIntoView({behavior:'smooth', block:'start'});
+  closeSidebar();
+
+  // Si ya está en caché, renderizar directo
+  if (ARTICLE_CACHE[id]) {
+    renderArticleData(ARTICLE_CACHE[id], item);
+    return;
+  }
+
+  // Mostrar loading
+  document.getElementById('article-title').textContent = item.title;
+  document.getElementById('article-lead').textContent = '';
+  document.getElementById('article-body').innerHTML = `
+    <div class="placeholder-article">
+      <div class="ph-icon" style="animation:spin 1s linear infinite;display:inline-block">⏳</div>
+      <p>Cargando artículo…</p>
+    </div>
+  `;
+
+  // Fetch del archivo
+  const path = `articulos/${sec.id}/${id}.html`;
+  try {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error('not found');
+    const html = await res.text();
+
+    // Parsear: el archivo tiene formato JSON-like en comentario inicial
+    // Formato: <!-- {"title":"...","lead":"...","updated":"..."} -->
+    // seguido del HTML del body
+    let title = item.title, lead = '', updated = '', body = html;
+    const metaMatch = html.match(/^<!--\s*(\{[\s\S]*?\})\s*-->/);
+    if (metaMatch) {
+      try {
+        const m = JSON.parse(metaMatch[1]);
+        title = m.title || title;
+        lead = m.lead || '';
+        updated = m.updated || '';
+        body = html.slice(metaMatch[0].length).trim();
+      } catch(e) {}
+    }
+
+    const artData = { title, lead, updated, body };
+    ARTICLE_CACHE[id] = artData;
+
+    // Enriquecer search index con texto real
+    const si = searchIndex.find(x => x.id === id);
+    if (si) si.text = title + ' ' + lead + ' ' + body.replace(/<[^>]+>/g, ' ');
+
+    renderArticleData(artData, item);
+
+  } catch(e) {
+    // Placeholder si no existe todavía
+    ARTICLE_CACHE[id] = null;
+    document.getElementById('article-title').textContent = item.title;
+    document.getElementById('article-lead').textContent = '';
+    document.getElementById('article-body').innerHTML = `
+      <div class="placeholder-article">
+        <div class="ph-icon">🚧</div>
+        <p>
+          <strong>Artículo pendiente de redacción.</strong><br>
+          Este contenido se está trabajando y estará disponible próximamente.
+          Usa el asistente IA para resolver dudas sobre este tema.
+        </p>
+      </div>
+    `;
+  }
+}
+
+function renderArticleData(art, item) {
+  document.getElementById('article-title').textContent = art.title;
+  document.getElementById('article-lead').textContent = art.lead || '';
+  document.getElementById('article-body').innerHTML = art.body || '';
+  const meta = document.getElementById('article-meta');
+  if (art.updated && !meta.querySelector('.article-updated')) {
+    meta.innerHTML += `<span class="article-updated">Actualizado: ${art.updated}</span>`;
+  }
+}
+
+function showWelcome() {
+  currentArticleId = null;
+  document.getElementById('welcome').style.display = 'flex';
+  document.getElementById('article').style.display = 'none';
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  window.scrollTo({top:0, behavior:'smooth'});
+  closeSidebar();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  MOBILE SIDEBAR
+// ═══════════════════════════════════════════════════════════
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('visible');
+}
+
+document.getElementById('menu-toggle').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('visible');
+});
+document.getElementById('sidebar-overlay').addEventListener('click', closeSidebar);
+
+// ═══════════════════════════════════════════════════════════
+//  SEARCH
+// ═══════════════════════════════════════════════════════════
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const searchClear = document.getElementById('search-clear');
+
+function highlight(text, query) {
+  if (!query) return text;
+  const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return text.replace(re, '<mark class="sr-item-mark">$1</mark>');
+}
+
+function doSearch(q) {
+  if (!q.trim()) { searchResults.classList.remove('visible'); return; }
+  const lower = q.toLowerCase();
+  const hits = searchIndex.filter(a =>
+    a.title.toLowerCase().includes(lower) ||
+    a.section.toLowerCase().includes(lower) ||
+    a.text.toLowerCase().includes(lower)
+  ).slice(0, 8);
+
+  if (!hits.length) {
+    searchResults.innerHTML = `<div class="sr-empty">No se encontraron resultados para "<strong>${q}</strong>"</div>`;
+  } else {
+    // Group by section
+    const grouped = {};
+    hits.forEach(h => {
+      if (!grouped[h.section]) grouped[h.section] = [];
+      grouped[h.section].push(h);
+    });
+    searchResults.innerHTML = Object.entries(grouped).map(([sec, items]) => `
+      <div class="sr-section">
+        <div class="sr-label">${sec}</div>
+        ${items.map(item => `
+          <div class="sr-item" onclick="loadArticle('${item.id}'); clearSearch();" role="option">
+            <span class="sr-item-icon">${item.sectionIcon}</span>
+            <div>
+              <div class="sr-item-title">${highlight(item.title, q)}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+  }
+  searchResults.classList.add('visible');
+}
+
+searchInput.addEventListener('input', e => {
+  doSearch(e.target.value);
+  searchClear.style.display = e.target.value ? 'block' : 'none';
+});
+
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Escape') clearSearch();
+});
+
+// Shortcut: "/" focuses search
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== searchInput) {
+    e.preventDefault();
+    searchInput.focus();
+  }
+});
+
+function clearSearch() {
+  searchInput.value = '';
+  searchResults.classList.remove('visible');
+  searchClear.style.display = 'none';
+  searchInput.blur();
+}
+
+searchClear.addEventListener('click', clearSearch);
+document.addEventListener('click', e => {
+  if (!e.target.closest('#search-wrap')) searchResults.classList.remove('visible');
+});
+
+// ═══════════════════════════════════════════════════════════
+//  AI CHAT
+// ═══════════════════════════════════════════════════════════
+document.getElementById('chat-fab').addEventListener('click', () => {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-panel').classList.toggle('open', chatOpen);
+  if (chatOpen) document.getElementById('chat-input').focus();
+});
+document.getElementById('chat-close').addEventListener('click', () => {
+  chatOpen = false;
+  document.getElementById('chat-panel').classList.remove('open');
+});
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  input.value = '';
+  document.getElementById('chat-send').disabled = true;
+
+  appendMsg(msg, 'user');
+  chatHistory.push({ role: 'user', content: msg });
+
+  const typing = appendMsg('<div class="typing-dots"><span></span><span></span><span></span></div>', 'bot typing');
+
+  // Build context from manual structure
+  const context = NAV.map(s =>
+    `## ${s.label}\n${s.items.map(i => `- ${i.title}`).join('\n')}`
+  ).join('\n\n');
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `Eres el asistente de ayuda de QServus, una plataforma SaaS de experiencia del cliente (VoC).
+Responde en español, de forma clara y concisa. Usa el contexto del manual para guiar al usuario.
+Si no sabes algo con certeza, dilo honestamente y sugiere explorar la sección correspondiente.
+No inventes funcionalidades que no existan.
+
+Estructura del manual:
+${context}`,
+        messages: chatHistory,
+      })
+    });
+
+    const data = await res.json();
+    typing.remove();
+
+    const reply = data.content?.[0]?.text || 'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
+    appendMsg(reply, 'bot');
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch(e) {
+    typing.remove();
+    appendMsg('Ocurrió un error de conexión. Verifica tu internet e intenta de nuevo.', 'bot');
+  }
+
+  document.getElementById('chat-send').disabled = false;
+  input.focus();
+}
+
+function appendMsg(html, cls) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + cls;
+  div.innerHTML = html;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+document.getElementById('chat-send').addEventListener('click', sendChat);
+document.getElementById('chat-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+});
+
+// ═══════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════
+renderNav();
+renderWelcome();
+</script>
+</body>
+</html>
