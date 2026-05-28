@@ -1,0 +1,69 @@
+<!-- {"title":"Listado de tickets","lead":"Vista principal de la pestaña Gestión, donde puedes filtrar, buscar y administrar todos los tickets de tu organización, además de crear nuevos casos manualmente.","updated":"2026"} -->
+
+<h2>Navegación por carpetas y pautas</h2>
+<p>En el panel lateral izquierdo del módulo Gestión encontrarás una barra de navegación organizada por <strong>carpetas</strong> y <strong>pautas</strong> (encuestas). Haciendo clic en una pauta específica, la lista de tickets se filtra automáticamente para mostrar solo los casos de esa encuesta. Esto es útil cuando gestionas tickets de múltiples campañas y necesitas enfocarte en una sola.</p>
+
+<div class="img-wrap">
+  <img src="URL_CDN_FIGURA_9_3" alt="Panel de navegación por pautas en el listado de tickets">
+  <div class="img-caption">Figura 9.3 — Panel lateral de navegación por pautas</div>
+</div>
+
+<h2>Columnas del listado</h2>
+<p>Cada fila del listado representa un ticket individual con la siguiente información:</p>
+<ul>
+  <li><strong>Nº Ticket:</strong> identificador único del caso.</li>
+  <li><strong>Fecha:</strong> fecha en que se generó el ticket.</li>
+  <li><strong>Tipo:</strong> categoría del ticket según la alerta que lo originó.</li>
+  <li><strong>Cliente:</strong> nombre de la persona que respondió la encuesta.</li>
+  <li><strong>Asunto:</strong> descripción breve del motivo del caso.</li>
+  <li><strong>Asignado a:</strong> usuario responsable de gestionar el ticket.</li>
+  <li><strong>Estado:</strong> estado actual del ticket (Nuevo, Abierto, Derivado, Finalizado, etc.).</li>
+</ul>
+
+<h2>Filtros disponibles</h2>
+<p>En la barra superior puedes combinar los siguientes filtros para acotar la lista:</p>
+<ul>
+  <li><strong>Cliente:</strong> busca por nombre o correo del cliente.</li>
+  <li><strong>Período:</strong> rango de fechas de creación del ticket.</li>
+  <li><strong>Prioridad:</strong> Normal, Alta o Urgente.</li>
+  <li><strong>Tiempo:</strong> filtra según el tiempo transcurrido desde la creación.</li>
+  <li><strong>Estado:</strong> selecciona uno o varios estados (Nuevo, Abierto, Vencido, Finalizado, etc.).</li>
+  <li><strong>Asignado a:</strong> filtra por el usuario encargado.</li>
+  <li><strong>Pauta:</strong> encuesta específica que originó los tickets.</li>
+  <li><strong>Campañas / Sensores:</strong> canales de distribución de la encuesta.</li>
+  <li><strong>Datos extra:</strong> filtros adicionales según los campos personalizados configurados en tu organización.</li>
+</ul>
+
+<div class="img-wrap">
+  <img src="URL_CDN_FIGURA_9_4" alt="Barra de filtros del listado de tickets">
+  <div class="img-caption">Figura 9.4 — Barra de filtros disponibles</div>
+</div>
+
+<h2>Crear un nuevo ticket</h2>
+<p>Si necesitas gestionar un caso que no proviene de una encuesta, puedes crear un ticket manualmente haciendo clic en el botón <strong>+ Nuevo ticket</strong>. Se abrirá un formulario donde debes completar:</p>
+<ul>
+  <li><strong>Cliente:</strong> busca y selecciona un cliente existente o crea uno nuevo.</li>
+  <li><strong>Tipo de ticket:</strong> categoría del caso.</li>
+  <li><strong>Prioridad:</strong> Normal, Alta o Urgente.</li>
+  <li><strong>Asunto:</strong> descripción breve del motivo del ticket.</li>
+  <li><strong>Asignar:</strong> puedes asignarlo al azar entre los encargados disponibles o seleccionar uno específico.</li>
+</ul>
+
+<div class="img-wrap">
+  <img src="URL_CDN_FIGURA_9_5" alt="Modal para crear nuevo ticket">
+  <div class="img-caption">Figura 9.5 — Formulario de creación de nuevo ticket</div>
+</div>
+
+<h2>Agregar un nuevo cliente</h2>
+<p>Si el cliente aún no existe en el sistema, puedes crearlo directamente desde el formulario de nuevo ticket usando el botón <strong>+ Nuevo cliente</strong>. Deberás ingresar:</p>
+<ul>
+  <li>Nombre completo</li>
+  <li>Correo electrónico</li>
+  <li>Teléfono</li>
+  <li>Indicar si es una empresa (toggle <em>Es empresa</em>)</li>
+</ul>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Para ver el detalle completo de un ticket y gestionar sus acciones, haz clic sobre cualquier fila del listado. Esto abre la <a href="#" onclick="loadArticle('detalle-tickets');return false;">vista de detalle del ticket</a>.</div>
+</div>
