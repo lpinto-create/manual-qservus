@@ -595,81 +595,6 @@
 </head>
 <body>
 
-<!-- ── PASSWORD OVERLAY ───────────────────────────────── -->
-<div id="auth-overlay">
-  <div id="auth-box">
-    <div id="auth-logo">
-      <div class="logo-icon" style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--text);margin:0 auto 20px;">
-        <img src="https://qservus.s3.amazonaws.com/aut/sin fondo.png" alt="QServus" style="width:30px;height:30px;object-fit:contain;">
-      </div>
-    </div>
-    <h2 id="auth-title">Centro de Ayuda QServus</h2>
-    <p id="auth-sub">Ingresa la contraseña para continuar</p>
-    <div id="auth-input-wrap">
-      <input id="auth-input" type="password" placeholder="Contraseña" autocomplete="current-password">
-      <button id="auth-btn">Ingresar</button>
-    </div>
-    <p id="auth-error">Contraseña incorrecta</p>
-  </div>
-</div>
-
-<style>
-  #auth-overlay {
-    position: fixed; inset: 0; z-index: 9999;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  #auth-box {
-    background: var(--bg-2);
-    border: 1px solid var(--border-2);
-    border-radius: 16px;
-    padding: 40px 36px;
-    width: 100%; max-width: 380px;
-    text-align: center;
-    box-shadow: 0 8px 32px rgba(0,0,0,.08);
-  }
-  #auth-title {
-    font-size: 20px; font-weight: 700;
-    letter-spacing: -.4px; color: var(--text);
-    margin-bottom: 8px;
-  }
-  #auth-sub {
-    font-size: 14px; color: var(--text-2);
-    margin-bottom: 28px;
-  }
-  #auth-input-wrap {
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  #auth-input {
-    width: 100%; height: 42px;
-    background: var(--bg-3); border: 1px solid var(--border);
-    border-radius: 8px; color: var(--text);
-    padding: 0 14px; font-size: 15px;
-    font-family: var(--font); outline: none;
-    transition: border-color .2s, box-shadow .2s;
-    text-align: center; letter-spacing: 2px;
-  }
-  #auth-input::placeholder { letter-spacing: 0; color: var(--text-3); }
-  #auth-input:focus {
-    border-color: var(--text-3);
-    box-shadow: 0 0 0 3px var(--accent-dim);
-  }
-  #auth-btn {
-    width: 100%; height: 42px;
-    background: var(--text); color: #fff;
-    border: none; border-radius: 8px;
-    font-size: 14px; font-weight: 600;
-    font-family: var(--font); cursor: pointer;
-    transition: opacity .15s;
-  }
-  #auth-btn:hover { opacity: .85; }
-  #auth-error {
-    font-size: 13px; color: var(--red);
-    margin-top: 14px; display: none;
-  }
-  #auth-overlay.hidden { display: none; }
-</style>
 
 <!-- Overlay for mobile sidebar -->
 <div id="sidebar-overlay"></div>
@@ -711,7 +636,7 @@
 <nav id="sidebar" aria-label="Navegación principal">
   <div class="sidebar-inner" id="nav-root"></div>
   <div class="sidebar-footer">
-    <span>📄</span> QServus Docs · 2026
+    <span>📄</span> QServus Docs · 2025
   </div>
 </nav>
 
@@ -1425,25 +1350,45 @@ async function sendChat() {
 
   const typing = appendMsg('<div class="typing-dots"><span></span><span></span><span></span></div>', 'bot typing');
 
-  // Build context from manual structure
-  const context = NAV.map(s =>
+  // ── Contexto del manual ────────────────────────────────
+  // 1. Índice completo (siempre presente)
+  const navIndex = NAV.map(s =>
     `## ${s.label}\n${s.items.map(i => `- ${i.title}`).join('\n')}`
   ).join('\n\n');
 
+  // 2. Artículo que está leyendo ahora (si hay uno abierto)
+  const strip = html => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  let currentCtx = '';
+  if (currentArticleId && ARTICLE_CACHE[currentArticleId]) {
+    const art = ARTICLE_CACHE[currentArticleId];
+    currentCtx = `\n\n---\nARTÍCULO ABIERTO AHORA — "${art.title}":\n${strip(art.body)}`;
+  }
+
+  // 3. Otros artículos que ya cargó en esta sesión
+  const otherArticles = Object.entries(ARTICLE_CACHE)
+    .filter(([id, art]) => art && id !== currentArticleId)
+    .map(([, art]) => `### ${art.title}\n${strip(art.body)}`)
+    .join('\n\n');
+  const cachedCtx = otherArticles
+    ? `\n\n---\nARTÍCULOS VISITADOS EN ESTA SESIÓN:\n${otherArticles}`
+    : '';
+
+  const systemPrompt = `Eres el asistente de ayuda de QServus, una plataforma SaaS de experiencia del cliente (VoC).
+Responde en español, de forma clara y concisa. Basa tus respuestas en el contenido del manual.
+Si no sabes algo con certeza, dilo honestamente. No inventes funcionalidades que no existan.
+Cuando menciones una sección, usa su nombre exacto tal como aparece en el manual.
+
+ÍNDICE DEL MANUAL:
+${navIndex}${currentCtx}${cachedCtx}`;
+
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('https://qsn8n.qservus.com/webhook/qservus-chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: `Eres el asistente de ayuda de QServus, una plataforma SaaS de experiencia del cliente (VoC).
-Responde en español, de forma clara y concisa. Usa el contexto del manual para guiar al usuario.
-Si no sabes algo con certeza, dilo honestamente y sugiere explorar la sección correspondiente.
-No inventes funcionalidades que no existan.
-
-Estructura del manual:
-${context}`,
+        model: 'gpt-4.1',
+        max_tokens: 800,
+        system: systemPrompt,
         messages: chatHistory,
       })
     });
@@ -1451,7 +1396,10 @@ ${context}`,
     const data = await res.json();
     typing.remove();
 
-    const reply = data.content?.[0]?.text || 'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
+    // Compatible con respuesta OpenAI (choices) o Anthropic (content)
+    const reply = data.content?.[0]?.text
+      || data.choices?.[0]?.message?.content
+      || 'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
     appendMsg(reply, 'bot');
     chatHistory.push({ role: 'assistant', content: reply });
   } catch(e) {
@@ -1478,38 +1426,6 @@ document.getElementById('chat-input').addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
 });
 
-// ═══════════════════════════════════════════════════════════
-//  AUTH
-// ═══════════════════════════════════════════════════════════
-(function() {
-  const PASS = 'QServus123$';
-  const SESSION_KEY = 'qs_auth';
-  const overlay = document.getElementById('auth-overlay');
-  const input   = document.getElementById('auth-input');
-  const btn     = document.getElementById('auth-btn');
-  const error   = document.getElementById('auth-error');
-
-  if (sessionStorage.getItem(SESSION_KEY) === '1') {
-    overlay.classList.add('hidden');
-  }
-
-  function attempt() {
-    if (input.value === PASS) {
-      sessionStorage.setItem(SESSION_KEY, '1');
-      overlay.classList.add('hidden');
-      error.style.display = 'none';
-    } else {
-      error.style.display = 'block';
-      input.value = '';
-      input.focus();
-      input.style.borderColor = 'var(--red)';
-      setTimeout(() => input.style.borderColor = '', 1200);
-    }
-  }
-
-  btn.addEventListener('click', attempt);
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
-})();
 
 // ═══════════════════════════════════════════════════════════
 //  INIT
