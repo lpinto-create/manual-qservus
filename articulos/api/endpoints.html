@@ -1,0 +1,74 @@
+<!-- {"title":"Endpoints disponibles","lead":"Referencia de los endpoints de la API REST de QServus: obtener sensores activos, registrar respuestas, enviar encuestas y consultar la lista negra.","updated":"2026"} -->
+
+<h2>Obtener sensores activos</h2>
+<p>Devuelve un array con todos los sensores activos de la organización, incluyendo sus encuestas, páginas y preguntas con sus alternativas.</p>
+
+<p><strong>Método:</strong> GET<br>
+<strong>Endpoint:</strong> <code>/api/sensors/</code></p>
+
+<p>La respuesta es un array de objetos sensor, donde cada sensor incluye:</p>
+<ul>
+  <li><code>id</code> y <code>name</code>: identificador y nombre del sensor.</li>
+  <li><code>surveys</code>: array de encuestas del sensor, cada una con sus <code>pages</code> y <code>questions</code>.</li>
+</ul>
+
+<p>Cada pregunta incluye: <code>type</code>, <code>type_str</code>, <code>title</code>, <code>mandatory</code> y <code>alternatives</code> (con nombre, valor e ícono).</p>
+
+<p><strong>Ejemplo con curl:</strong></p>
+<pre><code>curl -H "Content-Type: application/json" \
+  -H "Authorization: Token 194cd5d43b6a1b6c0dc15403d3eb0adfc80148bf" \
+  https://qservus.redcalidad.com/api/sensors/</code></pre>
+
+<hr>
+
+<h2>Recibir respuesta</h2>
+<p>Registra una o varias respuestas de clientes directamente en el sistema.</p>
+
+<p><strong>Método:</strong> POST<br>
+<strong>Endpoint:</strong> <code>/api/responses/</code></p>
+
+<p>El cuerpo es un array de objetos respuesta, cada uno con:</p>
+<ul>
+  <li><code>su_survey_id</code>: ID de la encuesta.</li>
+  <li><code>qs_sensor_id</code>: ID del sensor.</li>
+  <li><code>creation</code>: fecha y hora de la respuesta.</li>
+  <li><code>full_name</code>, <code>email</code>, <code>ip</code>, <code>user_agent</code>: datos del respondente.</li>
+  <li><code>answers</code>: array de respuestas, cada una con <code>su_question_id</code>, <code>answer</code>, <code>answer_motive</code> y <code>answer_other</code>.</li>
+</ul>
+
+<p>La respuesta devuelve un objeto con <code>users_respondents</code>: array de IDs de los respondentes registrados.</p>
+
+<hr>
+
+<h2>Enviar encuesta a destinatario</h2>
+<p>Envía una encuesta de campaña a un destinatario específico.</p>
+
+<p><strong>Método:</strong> POST<br>
+<strong>Endpoint:</strong> <code>/api/send/</code></p>
+
+<p>El cuerpo incluye los datos del destinatario. La respuesta devuelve un objeto con <code>id_respondent</code>: el ID del destinatario creado en el sistema.</p>
+
+<hr>
+
+<h2>Obtener destinatario en lista negra</h2>
+<p>Consulta si un correo electrónico está registrado en la lista negra de la organización.</p>
+
+<p><strong>Método:</strong> GET<br>
+<strong>Endpoint:</strong> <code>/api/blacklist/</code></p>
+
+<p>La respuesta es un array de objetos con los destinatarios en lista negra que coinciden con los parámetros de búsqueda.</p>
+
+<hr>
+
+<h2>Verificar estado de la plataforma</h2>
+<p>Comprueba que los servicios de QServus estén operativos.</p>
+
+<p><strong>Método:</strong> GET<br>
+<strong>Endpoint:</strong> <code>/api/status/</code></p>
+
+<p>La respuesta es un objeto con un atributo que indica el estado actual de la plataforma.</p>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Consulta los <a href="#" onclick="loadArticle('codigos-estado');return false;">Códigos de estado HTTP</a> para interpretar las respuestas de error de la API.</div>
+</div>

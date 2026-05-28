@@ -1,0 +1,32 @@
+<!-- {"title":"Códigos de estado HTTP","lead":"Referencia de los códigos HTTP que devuelve la API de QServus para indicar el resultado de cada solicitud: éxito, error de cliente o error de servidor.","updated":"2026"} -->
+
+<h2>Categorías de respuesta</h2>
+<p>Todos los estados de la API de QServus corresponden a códigos HTTP estándar, agrupados en tres categorías:</p>
+
+<ul>
+  <li><strong>2XX — Respuesta exitosa:</strong> la solicitud fue recibida y procesada correctamente.</li>
+  <li><strong>4XX — Error en el lado del cliente:</strong> la solicitud contiene un error, datos inválidos o falta de autorización.</li>
+  <li><strong>5XX — Error en el lado del servidor:</strong> el servidor encontró un problema al procesar la solicitud.</li>
+</ul>
+
+<h2>Códigos más comunes</h2>
+
+<table>
+  <thead>
+    <tr><th>Código</th><th>Nombre</th><th>Descripción</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>200</td><td>OK</td><td>La solicitud fue exitosa y la respuesta contiene los datos solicitados.</td></tr>
+    <tr><td>201</td><td>Created</td><td>El recurso fue creado correctamente.</td></tr>
+    <tr><td>400</td><td>Bad Request</td><td>La solicitud tiene un formato incorrecto o le faltan parámetros requeridos.</td></tr>
+    <tr><td>401</td><td>Unauthorized</td><td>No se proporcionó un token de autenticación válido.</td></tr>
+    <tr><td>403</td><td>Forbidden</td><td>El usuario autenticado no tiene permisos para realizar esta operación.</td></tr>
+    <tr><td>404</td><td>Not Found</td><td>El recurso solicitado no existe en el sistema.</td></tr>
+    <tr><td>500</td><td>Internal Server Error</td><td>Error interno del servidor. Contacta a soporte si persiste.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Si recibes un error 401, verifica que estás incluyendo el token en el encabezado <code>Authorization</code> de la solicitud con el formato correcto: <code>Token &lt;tu_token&gt;</code>.</div>
+</div>

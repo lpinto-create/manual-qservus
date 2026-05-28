@@ -1,0 +1,23 @@
+<!-- {"title":"Introducción a la API de QServus","lead":"La API REST de QServus permite integrar la plataforma con sistemas externos para obtener sensores activos, recibir respuestas, enviar encuestas y consultar estados.","updated":"2026"} -->
+
+<h2>¿Qué es la API de QServus?</h2>
+<p>QServus expone una API REST que permite a sistemas externos interactuar con la plataforma de forma programática. Mediante la API puedes automatizar el envío de encuestas, registrar respuestas desde tus propios sistemas, obtener listados de sensores activos y consultar el estado de la plataforma.</p>
+
+<h2>Formato de datos</h2>
+<p>Para las entradas y salidas de la API se utiliza el formato JSON (JavaScript Object Notation). JSON es un formato liviano para el intercambio de datos que describe la información con una sintaxis estructurada de clave-valor, compatible con la mayoría de los lenguajes de programación.</p>
+
+<h2>Endpoints disponibles</h2>
+<p>La API de QServus incluye los siguientes endpoints principales:</p>
+<ul>
+  <li><strong>Autenticación:</strong> obtiene el token de acceso necesario para usar el resto de los endpoints.</li>
+  <li><strong>Obtener sensores activos:</strong> devuelve la lista de sensores activos con sus encuestas y preguntas.</li>
+  <li><strong>Recibir respuesta:</strong> registra una o varias respuestas de clientes en el sistema.</li>
+  <li><strong>Enviar encuesta a destinatario:</strong> envía una encuesta a un destinatario específico.</li>
+  <li><strong>Obtener destinatario en lista negra:</strong> consulta si un correo está en la lista negra.</li>
+  <li><strong>Verificar estado de la plataforma:</strong> comprueba que los servicios estén operativos.</li>
+</ul>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Para comenzar a usar la API, primero debes <a href="#" onclick="loadArticle('autenticacion');return false;">autenticarte</a> para obtener tu token. Luego puedes usar ese token en el encabezado de cada solicitud a los <a href="#" onclick="loadArticle('endpoints');return false;">endpoints disponibles</a>.</div>
+</div>

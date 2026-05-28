@@ -1,0 +1,50 @@
+<!-- {"title":"Autenticación","lead":"Obtén el token de acceso necesario para usar la API de QServus enviando tus credenciales al endpoint de autenticación.","updated":"2026"} -->
+
+<h2>¿Cómo funciona?</h2>
+<p>Para usar la API de QServus debes obtener un token de autenticación. Este token debe incluirse en el encabezado de cada solicitud posterior. La autenticación se realiza enviando una solicitud POST con tus credenciales al endpoint correspondiente.</p>
+
+<h2>Parámetros de entrada</h2>
+<p>El cuerpo de la solicitud debe ser un objeto JSON con los siguientes atributos:</p>
+<ul>
+  <li><code>email</code>: correo electrónico del usuario registrado en QServus.</li>
+  <li><code>password</code>: contraseña del usuario.</li>
+</ul>
+
+<pre><code>{
+  "email": "valvarez@example.com",
+  "password": "333TY2OPZ$"
+}</code></pre>
+
+<h2>Respuesta</h2>
+<p>La respuesta es un objeto JSON con los datos del usuario y su empresa, más el token de acceso:</p>
+<ul>
+  <li><code>id</code>: identificador del usuario.</li>
+  <li><code>email</code>: correo del usuario.</li>
+  <li><code>first_name</code> / <code>last_name</code>: nombre y apellido.</li>
+  <li><code>company</code>: objeto con los datos de la empresa (id, nombre, logo, colores).</li>
+  <li><code>token</code>: token de autenticación para usar en solicitudes posteriores.</li>
+</ul>
+
+<pre><code>{
+  "id": 1,
+  "email": "valvarez@example.com",
+  "avatar": null,
+  "first_name": "Victor",
+  "last_name": "Alvarez",
+  "company": {
+    "id": 1,
+    "name": "Example S.A.",
+    "logo": "https://example.com/media/logos/5e8c7/085c0.jpg",
+    "default_banner": "http://example.com/media/survey_logos/56d8/454.jpg",
+    "bg_color": "FFFFFF",
+    "font_color": "000000",
+    "btn_color": "0000FF",
+    "btn_font_color": "FFFFFF"
+  },
+  "token": "194cd5d43b6a1b6c0dc15403d3eb0adfc80148bf"
+}</code></pre>
+
+<div class="callout info">
+  <span class="callout-icon">ℹ️</span>
+  <div>Incluye el token en el encabezado <code>Authorization</code> de cada solicitud posterior usando el formato: <code>Token 194cd5d43b6a1b6c0dc15403d3eb0adfc80148bf</code>.</div>
+</div>
