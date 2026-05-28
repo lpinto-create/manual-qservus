@@ -1028,8 +1028,9 @@ NAV.forEach(sec => {
 // ═══════════════════════════════════════════════════════════
 let currentArticleId = null;
 let chatOpen = false;
-let chatHistory = [];
+let chatHistory = []; // solo para mostrar el historial en pantalla
 let chatLoading = false; // guard: evita llamadas múltiples simultáneas
+const sessionId = 'qs_' + Date.now(); // ID único por sesión — n8n Simple Memory lo usa para mantener historial
 
 // ═══════════════════════════════════════════════════════════
 //  RENDER SIDEBAR
@@ -1408,24 +1409,23 @@ ${navIndex}${currentCtx}${cachedCtx}`;
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'gpt-4.1',
-        max_tokens: 800,
-        system: systemPrompt,
-        messages: chatHistory,
+        sessionId,                                    // n8n Simple Memory usa esto para recordar la conversación
+        system:   systemPrompt,                       // contexto del manual (artículo abierto incluido)
+        messages: [{ role: 'user', content: msg }],  // solo el mensaje actual — el historial lo maneja n8n
       })
     });
 
     const data = await res.json();
     typing.remove();
 
-    // n8n puede devolver array o objeto — normalizamos
+    // Compatible con AI Agent (output), HTTP Request (content/choices) y array
     const d = Array.isArray(data) ? data[0] : data;
-    const reply = d?.content?.[0]?.text
+    const reply = d?.output
+      || d?.content?.[0]?.text
       || d?.choices?.[0]?.message?.content
-      || d?.output?.[0]?.content?.[0]?.text
       || 'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
     appendMsg(mdToHtml(reply), 'bot');
-    chatHistory.push({ role: 'assistant', content: reply });
+    chatHistory.push({ role: 'assistant', content: reply }); // solo para mostrar en pantalla
   } catch(e) {
     typing.remove();
     appendMsg('Ocurrió un error de conexión. Verifica tu internet e intenta de nuevo.', 'bot');
