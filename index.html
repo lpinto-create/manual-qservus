@@ -1029,6 +1029,7 @@ NAV.forEach(sec => {
 let currentArticleId = null;
 let chatOpen = false;
 let chatHistory = [];
+let chatLoading = false; // guard: evita llamadas múltiples simultáneas
 
 // ═══════════════════════════════════════════════════════════
 //  RENDER SIDEBAR
@@ -1338,10 +1339,12 @@ document.getElementById('chat-close').addEventListener('click', () => {
 });
 
 async function sendChat() {
+  if (chatLoading) return; // bloquea si ya hay una petición en curso
   const input = document.getElementById('chat-input');
   const msg = input.value.trim();
   if (!msg) return;
 
+  chatLoading = true;
   input.value = '';
   document.getElementById('chat-send').disabled = true;
 
@@ -1369,9 +1372,9 @@ async function sendChat() {
     ? `\n\n---\nCONTENIDO DEL MANUAL:\n${loadedArticles}`
     : '';
 
-  // 3. Índice completo (fallback si el caché aún está cargando)
+  // 3. Índice completo con descripciones de sección
   const navIndex = NAV.map(s =>
-    `## ${s.label}\n${s.items.map(i => `- ${i.title}`).join('\n')}`
+    `## ${s.label} — ${s.desc}\n${s.items.map(i => `- ${i.title}`).join('\n')}`
   ).join('\n\n');
 
   const systemPrompt = `Eres el asistente de ayuda EXCLUSIVO de QServus. Tu única función es resolver dudas sobre esta plataforma.
@@ -1426,10 +1429,11 @@ ${navIndex}${currentCtx}${cachedCtx}`;
   } catch(e) {
     typing.remove();
     appendMsg('Ocurrió un error de conexión. Verifica tu internet e intenta de nuevo.', 'bot');
+  } finally {
+    chatLoading = false;
+    document.getElementById('chat-send').disabled = false;
+    input.focus();
   }
-
-  document.getElementById('chat-send').disabled = false;
-  input.focus();
 }
 
 function mdToHtml(md) {
@@ -1461,50 +1465,12 @@ document.getElementById('chat-input').addEventListener('keydown', e => {
 });
 
 
-// ═══════════════════════════════════════════════════════════
-//  PRECARGA DE ARTÍCULOS — carga el contenido en segundo plano
-//  para que el asistente IA tenga contexto completo desde el inicio
-// ═══════════════════════════════════════════════════════════
-async function preloadArticles() {
-  const strip = html => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-
-  for (const sec of NAV) {
-    for (const item of sec.items) {
-      if (ARTICLE_CACHE[item.id] !== undefined) continue; // ya cargado
-      if (item.badge === 'new') { ARTICLE_CACHE[item.id] = null; continue; } // pendiente de redacción
-      try {
-        const res = await fetch(`articulos/${sec.id}/${item.id}.html`);
-        if (!res.ok) { ARTICLE_CACHE[item.id] = null; continue; }
-        const html = await res.text();
-        let title = item.title, lead = '', body = html;
-        const m = html.match(/^<!--\s*(\{[\s\S]*?\})\s*-->/);
-        if (m) {
-          try {
-            const meta = JSON.parse(m[1]);
-            title = meta.title || title;
-            lead  = meta.lead  || '';
-            body  = html.slice(m[0].length).trim();
-          } catch(e) {}
-        }
-        ARTICLE_CACHE[item.id] = { title, lead, body };
-        // Enriquecer índice de búsqueda
-        const si = searchIndex.find(x => x.id === item.id);
-        if (si) si.text = title + ' ' + lead + ' ' + strip(body);
-      } catch(e) {
-        ARTICLE_CACHE[item.id] = null;
-      }
-      // Pequeña pausa para no saturar
-      await new Promise(r => setTimeout(r, 40));
-    }
-  }
-}
 
 // ═══════════════════════════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════════════════════════
 renderNav();
 renderWelcome();
-preloadArticles(); // carga artículos en segundo plano
 </script>
 </body>
 </html>
