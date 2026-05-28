@@ -136,6 +136,7 @@
   }
   .sr-item:hover, .sr-item.active { background: var(--bg-3); }
   .sr-item-icon { color: var(--text-2); font-size: 13px; flex-shrink: 0; }
+  .sr-item-icon img { width: 14px; height: 14px; object-fit: contain; vertical-align: middle; }
   .sr-item-title { font-size: 13.5px; font-weight: 500; color: var(--text); }
   .sr-item-crumb { font-size: 11.5px; color: var(--text-2); margin-top: 1px; }
   .sr-item-mark { background: #ffe066; color: var(--text); border-radius: 2px; padding: 0 2px; }
@@ -184,7 +185,8 @@
     transition: color .15s; border-radius: 8px;
   }
   .nav-group-btn:hover { color: var(--text); background: var(--bg-3); }
-  .nav-group-icon { font-size: 14px; flex-shrink: 0; width: 18px; text-align: center; }
+  .nav-group-icon { font-size: 14px; flex-shrink: 0; width: 18px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .nav-group-icon img { width: 16px; height: 16px; object-fit: contain; display: block; }
   .nav-group-label { flex: 1; text-align: left; }
   .nav-group-chevron {
     font-size: 10px; color: var(--text-3);
@@ -199,7 +201,7 @@
     max-height: 0;
     transition: max-height .3s cubic-bezier(.4,0,.2,1);
   }
-  .nav-group.open .nav-items { max-height: 600px; }
+  .nav-group.open .nav-items { max-height: 800px; }
   .nav-item {
     display: flex; align-items: center; gap: 8px;
     padding: 6px 14px 6px 40px;
@@ -300,6 +302,7 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 17px;
   }
+  .qs-icon img { width: 20px; height: 20px; object-fit: contain; display: block; }
   .qs-card-title { font-size: 13px; font-weight: 600; color: var(--text); letter-spacing: -.2px; }
   .qs-card-desc { font-size: 11.5px; color: var(--text-2); line-height: 1.5; }
 
@@ -592,7 +595,9 @@
 <div id="auth-overlay">
   <div id="auth-box">
     <div id="auth-logo">
-      <div class="logo-icon" style="width:44px;height:44px;border-radius:10px;font-size:20px;display:flex;align-items:center;justify-content:center;background:var(--text);color:#fff;font-weight:800;margin:0 auto 20px;">Q</div>
+      <div class="logo-icon" style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--text);margin:0 auto 20px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/isotipo.png" alt="QServus" style="width:30px;height:30px;object-fit:contain;">
+      </div>
     </div>
     <h2 id="auth-title">Centro de Ayuda QServus</h2>
     <p id="auth-sub">Ingresa la contraseña para continuar</p>
@@ -676,7 +681,9 @@
   </button>
 
   <a href="#" class="logo" onclick="showWelcome()">
-    <div class="logo-icon">Q</div>
+    <div class="logo-icon">
+      <img src="https://qservus.s3.amazonaws.com/aut/isotipo.png" alt="QServus">
+    </div>
     QServus <span>Docs</span>
   </a>
   <div class="topbar-divider"></div>
@@ -781,7 +788,7 @@ const NAV = [
   {
     id: 'plataforma',
     label: 'Conociendo QServus',
-    icon: '🏠',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/isotipo.png" alt="">',
     desc: 'Acceso, navegación y configuración inicial',
     items: [
       { id: 'que-es-qservus',           title: '¿Qué es QServus?',                      badge: null },
@@ -797,7 +804,7 @@ const NAV = [
   {
     id: 'que-esta-pasando',
     label: '¿Qué está pasando?',
-    icon: '📊',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/¿Qué está pasando.svg" alt="">',
     desc: 'Monitorea respuestas en tiempo real',
     items: [
       { id: 'listado-respuestas',       title: 'Listado de respuestas',                  badge: null },
@@ -808,7 +815,7 @@ const NAV = [
   {
     id: 'encuestas',
     label: 'Encuestas',
-    icon: '📝',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Encuestas.svg" alt="">',
     desc: 'Crea y gestiona tus encuestas',
     items: [
       { id: 'listado-encuestas',        title: 'Listado de encuestas',                   badge: null },
@@ -841,7 +848,7 @@ const NAV = [
   {
     id: 'sensores',
     label: 'Sensores',
-    icon: '📡',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Sensores.svg" alt="">',
     desc: 'Canales para recopilar feedback',
     items: [
       { id: 'que-es-sensor',             title: '¿Qué es un sensor?',                   badge: null },
@@ -862,7 +869,7 @@ const NAV = [
   {
     id: 'campanas',
     label: 'Campañas',
-    icon: '📢',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Campañas.svg" alt="">',
     desc: 'Envía encuestas a tus contactos',
     items: [
       { id: 'que-es-campana',            title: '¿Qué es una campaña?',                 badge: null },
@@ -895,7 +902,7 @@ const NAV = [
   {
     id: 'indicadores',
     label: 'Indicadores',
-    icon: '📈',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Indicadores.svg" alt="">',
     desc: 'Tableros y visualización de resultados',
     items: [
       { id: 'tableros',                  title: 'Tableros',                              badge: null },
@@ -925,7 +932,7 @@ const NAV = [
   {
     id: 'tendencias',
     label: 'Panel de Tendencias',
-    icon: '📉',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Panel de Tendencias.svg" alt="">',
     desc: 'Análisis de tendencias y predicciones',
     items: [
       { id: 'que-es-tendencias',         title: '¿Qué es el panel de tendencias?',      badge: 'new' },
@@ -934,7 +941,7 @@ const NAV = [
   {
     id: 'reportes',
     label: 'Reportes',
-    icon: '📋',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Reportes.svg" alt="">',
     desc: 'Exporta y analiza tus datos',
     items: [
       { id: 'reportes-campanas',         title: 'Reportes de campañas',                 badge: null },
@@ -951,7 +958,7 @@ const NAV = [
   {
     id: 'acciones',
     label: 'Acciones Automatizadas',
-    icon: '⚡',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Acciones Automatizadas.svg" alt="">',
     desc: 'Automatiza notificaciones y flujos',
     items: [
       { id: 'que-son-acciones',          title: '¿Qué son las acciones automatizadas?', badge: null },
@@ -970,14 +977,18 @@ const NAV = [
     ]
   },
   {
-    id: 'seguimiento',
-    label: 'Seguimiento',
-    icon: '🔍',
+    id: 'tickets',
+    label: 'Tickets',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Tickets.svg" alt="">',
     desc: 'Gestión y seguimiento de casos',
     items: [
-      { id: 'que-es-seguimiento',        title: '¿Qué es el seguimiento?',              badge: null },
-      { id: 'listado-seguimiento',       title: 'Listado de seguimiento',                badge: null },
-      { id: 'detalle-seguimiento',       title: 'Detalle del seguimiento',               badge: null },
+      { id: 'que-es-tickets',            title: '¿Qué son los tickets?',                badge: null },
+      { id: 'listado-tickets',           title: 'Listado y filtros',                     badge: null },
+      { id: 'detalle-tickets',           title: 'Detalle del ticket',                    badge: null },
+      { id: 'resolver-tickets',          title: 'Resolver un ticket',                    badge: null },
+      { id: 'indicadores-tickets',       title: 'Indicadores',                           badge: null },
+      { id: 'reportes-tickets',          title: 'Reportes de tickets',                   badge: null },
+      { id: 'notificaciones-tickets',    title: 'Notificaciones',                        badge: null },
     ]
   },
   {
@@ -1021,7 +1032,7 @@ const NAV = [
   {
     id: 'configuracion',
     label: 'Configuración',
-    icon: '⚙️',
+    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Configuración.svg" alt="">',
     desc: 'Administra tu organización',
     items: [
       { id: 'info-empresa',              title: 'Información de la empresa',             badge: null },
