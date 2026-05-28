@@ -1351,27 +1351,28 @@ async function sendChat() {
   const typing = appendMsg('<div class="typing-dots"><span></span><span></span><span></span></div>', 'bot typing');
 
   // ── Contexto del manual ────────────────────────────────
-  // 1. Índice completo (siempre presente)
-  const navIndex = NAV.map(s =>
-    `## ${s.label}\n${s.items.map(i => `- ${i.title}`).join('\n')}`
-  ).join('\n\n');
-
-  // 2. Artículo que está leyendo ahora (si hay uno abierto)
   const strip = html => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+  // 1. Artículo abierto ahora (máxima prioridad)
   let currentCtx = '';
   if (currentArticleId && ARTICLE_CACHE[currentArticleId]) {
     const art = ARTICLE_CACHE[currentArticleId];
-    currentCtx = `\n\n---\nARTÍCULO ABIERTO AHORA — "${art.title}":\n${strip(art.body)}`;
+    currentCtx = `\n\n---\nARTÍCULO QUE EL USUARIO ESTÁ LEYENDO AHORA — "${art.title}":\n${strip(art.body)}`;
   }
 
-  // 3. Otros artículos que ya cargó en esta sesión
-  const otherArticles = Object.entries(ARTICLE_CACHE)
+  // 2. Todos los artículos del caché (precargados o visitados)
+  const loadedArticles = Object.entries(ARTICLE_CACHE)
     .filter(([id, art]) => art && id !== currentArticleId)
     .map(([, art]) => `### ${art.title}\n${strip(art.body)}`)
     .join('\n\n');
-  const cachedCtx = otherArticles
-    ? `\n\n---\nARTÍCULOS VISITADOS EN ESTA SESIÓN:\n${otherArticles}`
+  const cachedCtx = loadedArticles
+    ? `\n\n---\nCONTENIDO DEL MANUAL:\n${loadedArticles}`
     : '';
+
+  // 3. Índice completo (fallback si el caché aún está cargando)
+  const navIndex = NAV.map(s =>
+    `## ${s.label}\n${s.items.map(i => `- ${i.title}`).join('\n')}`
+  ).join('\n\n');
 
   const systemPrompt = `Eres el asistente de ayuda EXCLUSIVO de QServus. Tu única función es resolver dudas sobre esta plataforma.
 
@@ -1418,7 +1419,7 @@ ${navIndex}${currentCtx}${cachedCtx}`;
     const reply = data.content?.[0]?.text
       || data.choices?.[0]?.message?.content
       || 'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
-    appendMsg(reply, 'bot');
+    appendMsg(mdToHtml(reply), 'bot');
     chatHistory.push({ role: 'assistant', content: reply });
   } catch(e) {
     typing.remove();
@@ -1427,6 +1428,19 @@ ${navIndex}${currentCtx}${cachedCtx}`;
 
   document.getElementById('chat-send').disabled = false;
   input.focus();
+}
+
+function mdToHtml(md) {
+  return md
+    .replace(/\*\*(.*?)\*\*/gs, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/gs, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/^#{1,3} (.+)$/gm, '<strong>$1</strong>')
+    .replace(/^---+$/gm, '<hr style="border:none;border-top:1px solid var(--border-2);margin:6px 0">')
+    .replace(/^\- (.+)$/gm, '&bull; $1')
+    .replace(/^\d+\. (.+)$/gm, '$1')
+    .replace(/\n\n/g, '<br><br>')
+    .replace(/\n/g, '<br>');
 }
 
 function appendMsg(html, cls) {
@@ -1446,10 +1460,48 @@ document.getElementById('chat-input').addEventListener('keydown', e => {
 
 
 // ═══════════════════════════════════════════════════════════
+//  PRECARGA DE ARTÍCULOS — carga el contenido en segundo plano
+//  para que el asistente IA tenga contexto completo desde el inicio
+// ═══════════════════════════════════════════════════════════
+async function preloadArticles() {
+  const strip = html => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+  for (const sec of NAV) {
+    for (const item of sec.items) {
+      if (ARTICLE_CACHE[item.id] !== undefined) continue; // ya cargado
+      try {
+        const res = await fetch(`articulos/${sec.id}/${item.id}.html`);
+        if (!res.ok) { ARTICLE_CACHE[item.id] = null; continue; }
+        const html = await res.text();
+        let title = item.title, lead = '', body = html;
+        const m = html.match(/^<!--\s*(\{[\s\S]*?\})\s*-->/);
+        if (m) {
+          try {
+            const meta = JSON.parse(m[1]);
+            title = meta.title || title;
+            lead  = meta.lead  || '';
+            body  = html.slice(m[0].length).trim();
+          } catch(e) {}
+        }
+        ARTICLE_CACHE[item.id] = { title, lead, body };
+        // Enriquecer índice de búsqueda
+        const si = searchIndex.find(x => x.id === item.id);
+        if (si) si.text = title + ' ' + lead + ' ' + strip(body);
+      } catch(e) {
+        ARTICLE_CACHE[item.id] = null;
+      }
+      // Pequeña pausa para no saturar
+      await new Promise(r => setTimeout(r, 40));
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════════════════════════
 renderNav();
 renderWelcome();
+preloadArticles(); // carga artículos en segundo plano
 </script>
 </body>
 </html>
