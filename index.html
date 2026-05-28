@@ -1032,6 +1032,25 @@ let chatHistory = []; // solo para mostrar el historial en pantalla
 let chatLoading = false; // guard: evita llamadas múltiples simultáneas
 const sessionId = 'qs_' + Date.now(); // ID único por sesión — n8n Simple Memory lo usa para mantener historial
 
+// ── Rate limiter del chat ──────────────────────────────────
+const CHAT_RATE_LIMIT  = 2;      // máximo de llamadas permitidas...
+const CHAT_RATE_WINDOW = 10000;  // ...dentro de esta ventana (ms)
+const chatTimestamps   = [];     // registro de las últimas llamadas
+
+function chatRateCheck() {
+  const now = Date.now();
+  // Eliminar timestamps fuera de la ventana
+  while (chatTimestamps.length && now - chatTimestamps[0] > CHAT_RATE_WINDOW) {
+    chatTimestamps.shift();
+  }
+  if (chatTimestamps.length >= CHAT_RATE_LIMIT) {
+    const waitSec = Math.ceil((CHAT_RATE_WINDOW - (now - chatTimestamps[0])) / 1000);
+    return waitSec; // devuelve segundos de espera
+  }
+  chatTimestamps.push(now);
+  return 0; // ok, puede continuar
+}
+
 // ═══════════════════════════════════════════════════════════
 //  RENDER SIDEBAR
 // ═══════════════════════════════════════════════════════════
@@ -1344,6 +1363,13 @@ async function sendChat() {
   const input = document.getElementById('chat-input');
   const msg = input.value.trim();
   if (!msg) return;
+
+  // Rate limit: máximo 2 llamadas cada 10 segundos
+  const waitSec = chatRateCheck();
+  if (waitSec > 0) {
+    appendMsg(`⏳ Demasiadas preguntas seguidas. Espera ${waitSec} segundo${waitSec !== 1 ? 's' : ''} e intenta de nuevo.`, 'bot');
+    return;
+  }
 
   chatLoading = true;
   input.value = '';
