@@ -1415,9 +1415,11 @@ ${navIndex}${currentCtx}${cachedCtx}`;
     const data = await res.json();
     typing.remove();
 
-    // Compatible con respuesta OpenAI (choices) o Anthropic (content)
-    const reply = data.content?.[0]?.text
-      || data.choices?.[0]?.message?.content
+    // n8n puede devolver array o objeto — normalizamos
+    const d = Array.isArray(data) ? data[0] : data;
+    const reply = d?.content?.[0]?.text
+      || d?.choices?.[0]?.message?.content
+      || d?.output?.[0]?.content?.[0]?.text
       || 'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
     appendMsg(mdToHtml(reply), 'bot');
     chatHistory.push({ role: 'assistant', content: reply });
@@ -1469,6 +1471,7 @@ async function preloadArticles() {
   for (const sec of NAV) {
     for (const item of sec.items) {
       if (ARTICLE_CACHE[item.id] !== undefined) continue; // ya cargado
+      if (item.badge === 'new') { ARTICLE_CACHE[item.id] = null; continue; } // pendiente de redacción
       try {
         const res = await fetch(`articulos/${sec.id}/${item.id}.html`);
         if (!res.ok) { ARTICLE_CACHE[item.id] = null; continue; }
