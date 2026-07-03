@@ -1,79 +1,278 @@
-<!-- {"title":"Preguntas de selección","lead":"Las preguntas de selección permiten elegir entre una lista de opciones predefinidas. Incluyen selección única, múltiple, listas desplegables, imágenes, Sí/No, términos y condiciones, y ranking.","updated":"2026"} -->
+<!-- {"title":"Preguntas de selección","lead":"Las preguntas de selección permiten al encuestado elegir entre opciones predefinidas. QServus ofrece 5 tipos: Respuesta única, Respuesta múltiple, Sí/No, Términos y condiciones y Ranking.","updated":"2026"} -->
 
-<h2>Selección única (radio)</h2>
-<p>Permite elegir una sola opción entre una lista de alternativas presentadas como botones de radio. Puedes definir las alternativas, habilitar la opción "Otros" y distribuir las opciones al azar.</p>
+<h2>¿Qué son las preguntas de selección?</h2>
+<p>Las preguntas de selección presentan al encuestado un conjunto de alternativas predefinidas para elegir. Según el tipo, el encuestado puede seleccionar una sola opción, varias, ordenarlas por importancia o aceptar condiciones.</p>
 
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_29" alt="Pregunta tipo selección única">
-  <div class="img-caption">Figura 3.29 — Pregunta tipo selección única</div>
+<style>
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 24px 0; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-btn {
+  width: 100%; text-align: left; padding: 14px 18px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  background: var(--bg-2); cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font);
+}
+.accordion-btn:hover { background: var(--bg-3); }
+.accordion-btn .acc-arrow { transition: transform .2s; font-size: 12px; color: var(--text-3); }
+.accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; padding: 20px 18px; background: var(--bg-2); border-top: 1px solid var(--border-2); }
+.accordion-body.open { display: block; }
+.accordion-body h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+.accordion-body h4:first-child { margin-top: 0; }
+.accordion-body h5 { font-size: 12px; font-weight: 600; color: var(--text-2); margin: 14px 0 6px; text-transform: uppercase; letter-spacing: .4px; }
+.accordion-body table { width:100%; border-collapse:collapse; font-size:13px; margin: 12px 0; }
+.accordion-body th { padding:8px 10px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-3); font-weight:600; }
+.accordion-body td { padding:8px 10px; border-bottom:1px solid var(--border-2); vertical-align:top; }
+.accordion-body tr:last-child td { border-bottom: none; }
+.accordion-body .img-wrap { margin: 12px 0; }
+</style>
+
+<div class="accordion">
+
+  <!-- RESPUESTA ÚNICA -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Respuesta única <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite seleccionar una sola opción entre una lista de posibilidades. Incluye tres variantes de formato: <strong>Respuesta única</strong>, <strong>Lista desplegable</strong> y <strong>Tipo imagen</strong> — todas comparten el mismo formulario de configuración.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage305.png" alt="Formulario respuesta única">
+        <div class="img-caption">Figura 3.29 — Formulario de configuración básico</div>
+      </div>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage306.png" alt="Formulario respuesta única con opciones avanzadas">
+        <div class="img-caption">Figura 3.30 — Formulario con opciones avanzadas desplegadas</div>
+      </div>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage307.png" alt="Selector de formato lista desplegable">
+        <div class="img-caption">Figura 3.31 — Selector de formato: Respuesta única o Lista desplegable</div>
+      </div>
+
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Texto opcional para explicar el enunciado.</td></tr>
+          <tr><td><strong>Formato de pregunta</strong></td><td>No</td><td>Elige entre Respuesta única, Lista desplegable o Tipo imagen. Por defecto aparece como Respuesta única. Si se elige Lista desplegable, no estará disponible la opción Otros.</td></tr>
+          <tr><td><strong>Distribuir al azar</strong></td><td>No</td><td>Las alternativas aparecen en orden aleatorio. No afecta la posición final de Otros ni No aplica.</td></tr>
+          <tr><td><strong>Opción Otros</strong></td><td>No</td><td>Agrega una alternativa final de texto libre. No disponible en Lista desplegable.</td></tr>
+          <tr><td><strong>Texto opción Otros</strong></td><td>Sí*</td><td>Texto de la pregunta cuando el encuestado elige Otros.</td></tr>
+          <tr><td><strong>Opción No aplica</strong></td><td>No</td><td>Agrega una alternativa que no es válida como respuesta.</td></tr>
+          <tr><td><strong>Texto opción No aplica</strong></td><td>Sí*</td><td>Texto de la alternativa No aplica.</td></tr>
+          <tr><td><strong>Opciones avanzadas</strong></td><td>No</td><td>Imagen de la pregunta, probabilidad de aparición, página y opción para habilitar evaluación.</td></tr>
+          <tr><td><strong>Alternativas</strong></td><td>Sí</td><td>Las opciones de respuesta. Mínimo dos. Se agregan desde el ícono <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage180.png" alt="ícono agregar" style="height:16px;vertical-align:middle;"> una vez creada la pregunta.</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Vistas en la encuesta</h4>
+
+      <h5>Respuesta única — vista estándar</h5>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage169.png" alt="Vista respuesta única estándar">
+        <div class="img-caption">Figura 3.32 — Pregunta tipo respuesta única</div>
+      </div>
+
+      <h5>Con opción Otros</h5>
+      <p>Al marcar la opción Otros, el encuestado puede ingresar texto libre al seleccionarla.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage139.png" alt="Vista respuesta única con opción otros">
+        <div class="img-caption">Figura 3.33 — Pregunta tipo respuesta única con opción Otros</div>
+      </div>
+
+      <h5>Con opción No aplica</h5>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage33.png" alt="Vista respuesta única con no aplica">
+        <div class="img-caption">Figura 3.34 — Pregunta tipo respuesta única con No aplica</div>
+      </div>
+
+      <h5>Lista desplegable</h5>
+      <p>Ideal cuando hay una gran cantidad de alternativas. Las opciones aparecen en un menú desplegable en lugar de listadas. No incluye la opción Otros.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage60.png" alt="Vista tipo lista desplegable">
+        <div class="img-caption">Figura 3.35 — Pregunta tipo lista desplegable</div>
+      </div>
+
+      <h5>Tipo imagen</h5>
+      <p>Permite al encuestado elegir su opción entre imágenes en lugar de texto. Ideal para captar preferencias visuales de forma intuitiva. Al agregar las alternativas, aparecerá un ícono para seleccionar la imagen que representa cada opción.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage63.png" alt="Vista tipo imagen">
+        <div class="img-caption">Figura 3.36 — Pregunta tipo respuesta única con imágenes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESPUESTA MÚLTIPLE -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Respuesta múltiple <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite seleccionar varias opciones entre una lista de posibilidades. Puedes definir el número mínimo y máximo de alternativas que el encuestado debe marcar.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage308.png" alt="Formulario respuesta múltiple básico">
+        <div class="img-caption">Figura 3.37 — Formulario de configuración básico</div>
+      </div>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage309.png" alt="Formulario respuesta múltiple con opciones avanzadas">
+        <div class="img-caption">Figura 3.38 — Formulario con opciones avanzadas desplegadas</div>
+      </div>
+
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Texto opcional para explicar el enunciado.</td></tr>
+          <tr><td><strong>Distribuir al azar</strong></td><td>No</td><td>Las alternativas aparecen en orden aleatorio. No afecta la posición final de Otros ni No aplica.</td></tr>
+          <tr><td><strong>Opción Otros</strong></td><td>No</td><td>Agrega una alternativa final de texto libre.</td></tr>
+          <tr><td><strong>Texto opción Otros</strong></td><td>Sí*</td><td>Texto de la pregunta cuando el encuestado elige Otros.</td></tr>
+          <tr><td><strong>Opción No aplica</strong></td><td>No</td><td>Alternativa inválida que anula la regla de mínimo/máximo de alternativas.</td></tr>
+          <tr><td><strong>Texto opción No aplica</strong></td><td>Sí*</td><td>Texto de la alternativa No aplica.</td></tr>
+          <tr><td><strong>Opciones avanzadas</strong></td><td>No</td><td>Imagen, probabilidad, página, mínimo y máximo de alternativas a elegir, y opción para evaluar.</td></tr>
+          <tr><td><strong>Alternativas</strong></td><td>Sí</td><td>Mínimo dos opciones. Pueden llevar solo texto o texto con imagen.</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Vistas en la encuesta</h4>
+
+      <h5>Vista estándar</h5>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage238.png" alt="Vista respuesta múltiple estándar">
+        <div class="img-caption">Figura 3.39 — Pregunta tipo selección múltiple</div>
+      </div>
+
+      <h5>Con opción No aplica</h5>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage242.png" alt="Vista respuesta múltiple con no aplica">
+        <div class="img-caption">Figura 3.40 — Pregunta tipo selección múltiple con No aplica</div>
+      </div>
+
+      <h5>Con imágenes</h5>
+      <p>Las alternativas pueden incluir imágenes además del texto, haciéndolas más visuales e intuitivas para el encuestado.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage196.png" alt="Vista respuesta múltiple con imágenes">
+        <div class="img-caption">Figura 3.41 — Pregunta tipo selección múltiple con imágenes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SÍ/NO -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Sí/No <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite que el encuestado marque una sola opción de casilla de verificación entre dos valores: Sí o No. El orden en que aparecen los valores es configurable.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage310.png" alt="Formulario Sí/No básico">
+        <div class="img-caption">Figura 3.42 — Formulario de configuración básico</div>
+      </div>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage311.png" alt="Formulario Sí/No con opciones avanzadas">
+        <div class="img-caption">Figura 3.43 — Formulario con opciones avanzadas desplegadas</div>
+      </div>
+
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Texto opcional para explicar el enunciado.</td></tr>
+          <tr><td><strong>Orden</strong></td><td>Sí</td><td>Define el orden de aparición: Negativo a Positivo o Positivo a Negativo.</td></tr>
+          <tr><td><strong>Opciones avanzadas</strong></td><td>No</td><td>Permite agregar una imagen a la pregunta. También es compatible con imágenes en las alternativas.</td></tr>
+          <tr><td><strong>Probabilidad</strong></td><td>No</td><td>100%, 50% o 30% de aparición.</td></tr>
+          <tr><td><strong>Página</strong></td><td>Sí</td><td>Página donde se agregará la pregunta.</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage88.png" alt="Vista Sí/No en encuesta">
+        <div class="img-caption">Figura 3.44 — Pregunta tipo Sí/No</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TÉRMINOS Y CONDICIONES -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Términos y condiciones <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite que el encuestado marque una casilla de verificación aceptando los términos y condiciones, los cuales se presentan en un documento adjunto debajo de la casilla.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage272.png" alt="Formulario términos y condiciones">
+        <div class="img-caption">Figura 3.45 — Formulario de configuración</div>
+      </div>
+
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Texto opcional para explicar el enunciado.</td></tr>
+          <tr><td><strong>Probabilidad</strong></td><td>No</td><td>100%, 50% o 30% de aparición.</td></tr>
+          <tr><td><strong>Valor inicial</strong></td><td>Sí</td><td>Define si la casilla aparece marcada o desmarcada por defecto.</td></tr>
+          <tr><td><strong>Página</strong></td><td>Sí</td><td>Página donde se agregará la pregunta.</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage72.png" alt="Vista términos y condiciones en encuesta">
+        <div class="img-caption">Figura 3.46 — Pregunta tipo términos y condiciones</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RANKING -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Ranking <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite al encuestado ordenar las alternativas arrastrándolas según la importancia que les asigne. Es útil para conocer preferencias y prioridades.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage199.png" alt="Formulario ranking">
+        <div class="img-caption">Figura 3.47 — Formulario de configuración</div>
+      </div>
+
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Texto opcional para explicar el enunciado.</td></tr>
+          <tr><td><strong>Distribuir al azar</strong></td><td>No</td><td>Las alternativas aparecen en orden aleatorio al iniciar. No afecta la posición final de Otros.</td></tr>
+          <tr><td><strong>Opción Otros</strong></td><td>Sí</td><td>Agrega una alternativa final de texto libre.</td></tr>
+          <tr><td><strong>Texto opción Otros</strong></td><td>Sí</td><td>Texto de la pregunta cuando el encuestado elige Otros.</td></tr>
+          <tr><td><strong>Opciones avanzadas</strong></td><td>No</td><td>Permite adjuntar una imagen para complementar la pregunta.</td></tr>
+          <tr><td><strong>Probabilidad</strong></td><td>No</td><td>100%, 50% o 30% de aparición.</td></tr>
+          <tr><td><strong>Página</strong></td><td>Sí</td><td>Página donde se agregará la pregunta.</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <p>El encuestado arrastra las alternativas para ordenarlas según su preferencia.</p>
+      <div class="img-wrap" style="max-width:892px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage189.png" alt="Vista ranking en encuesta">
+        <div class="img-caption">Figura 3.48 — Pregunta tipo Ranking</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<p>Si está habilitada la opción <strong>Otros</strong>, al seleccionarla el cliente puede ingresar texto libre.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_30" alt="Selección única con opción Otros">
-  <div class="img-caption">Figura 3.30 — Selección única con opción Otros</div>
-</div>
-
-<h2>Selección única | Tipo lista</h2>
-<p>Muestra las alternativas en un menú desplegable. Recomendada cuando hay muchas opciones y se quiere ahorrar espacio en pantalla.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_32" alt="Pregunta tipo selección única lista">
-  <div class="img-caption">Figura 3.32 — Pregunta tipo selección única | Lista desplegable</div>
-</div>
-
-<h2>Selección única | Tipo imagen</h2>
-<p>El cliente elige entre un conjunto de imágenes. Útil para capturar preferencias visuales de forma intuitiva, como estilos de producto, logos o conceptos.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_33" alt="Pregunta tipo selección única imagen">
-  <div class="img-caption">Figura 3.33 — Pregunta tipo selección única | Imagen</div>
-</div>
-
-<h2>Selección múltiple</h2>
-<p>Permite marcar varias opciones a la vez. Puedes definir las alternativas, habilitar "Otros", distribuir al azar las opciones y establecer la cantidad máxima de alternativas seleccionables.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_34" alt="Pregunta tipo selección múltiple">
-  <div class="img-caption">Figura 3.34 — Pregunta tipo selección múltiple</div>
-</div>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_37" alt="Selección múltiple tipo imagen">
-  <div class="img-caption">Figura 3.37 — Selección múltiple con imágenes</div>
-</div>
-
-<h2>Sí/No</h2>
-<p>Presenta una sola casilla de verificación con dos valores posibles: Sí o No (o No y Sí, según el orden configurado). Ideal para preguntas de confirmación o acuerdo.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_38" alt="Pregunta tipo Sí/No">
-  <div class="img-caption">Figura 3.38 — Pregunta tipo Sí/No</div>
-</div>
-
-<h2>Términos y condiciones</h2>
-<p>Presenta un documento de términos y condiciones que el cliente debe aceptar marcando una casilla de verificación. El documento se adjunta en la configuración de la pregunta.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_39" alt="Configuración de términos y condiciones">
-  <div class="img-caption">Figura 3.39 — Formulario de configuración de Términos y condiciones</div>
-</div>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_40" alt="Pregunta tipo términos y condiciones">
-  <div class="img-caption">Figura 3.40 — Pregunta tipo Términos y condiciones</div>
-</div>
-
-<h2>Ranking</h2>
-<p>Permite que el cliente ordene las alternativas según su preferencia arrastrándolas. Útil para priorización de atributos o servicios.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_41" alt="Configuración de ranking">
-  <div class="img-caption">Figura 3.41 — Formulario de configuración de Ranking</div>
-</div>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_42" alt="Pregunta tipo Ranking">
-  <div class="img-caption">Figura 3.42 — Pregunta tipo Ranking</div>
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Continúa con <a href="#" onclick="loadArticle('tipos-escalas');return false;">Preguntas de escalas</a> para ver los demás tipos disponibles.</div>
 </div>
