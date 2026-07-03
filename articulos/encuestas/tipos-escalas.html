@@ -1,72 +1,193 @@
-<!-- {"title":"Preguntas de escalas","lead":"Las preguntas de escala permiten que el cliente elija un valor dentro de un rango. QServus ofrece cuatro tipos: caras, estrellas, Likert y números.","updated":"2026"} -->
+<!-- {"title":"Tipos de preguntas: Escalas","lead":"Guía de los cuatro tipos de escalas disponibles en QServus: caras, estrellas, Likert y números (NPS).","updated":"2026"} -->
 
-<h2>Escala de caras</h2>
-<p>Presenta una escala visual con íconos de caras (3 o 5 caras). Al seleccionar una cara, cambia de color: rojo para valores negativos, amarillo para el neutro y verde para los positivos. También muestra la etiqueta del valor seleccionado.</p>
-<p>Ideal para preguntas de satisfacción, nivel de acuerdo o evaluación de experiencia.</p>
+<style>
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 24px 0; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-btn { width: 100%; text-align: left; padding: 14px 18px; font-size: 14px; font-weight: 600; color: var(--text); background: var(--bg-2); cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--font); }
+.accordion-btn:hover { background: var(--bg-3); }
+.accordion-btn .acc-arrow { transition: transform .2s; font-size: 12px; color: var(--text-3); }
+.accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; padding: 20px 18px; background: var(--bg-2); border-top: 1px solid var(--border-2); }
+.accordion-body.open { display: block; }
+.accordion-body h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+.accordion-body h4:first-child { margin-top: 0; }
+.accordion-body h5 { font-size: 12px; font-weight: 600; color: var(--text-2); margin: 14px 0 6px; text-transform: uppercase; letter-spacing: .4px; }
+.accordion-body table { width:100%; border-collapse:collapse; font-size:13px; margin: 12px 0; }
+.accordion-body th { padding:8px 10px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-3); font-weight:600; }
+.accordion-body td { padding:8px 10px; border-bottom:1px solid var(--border-2); vertical-align:top; }
+.accordion-body tr:last-child td { border-bottom: none; }
+.accordion-body .img-wrap { margin: 12px 0; }
+</style>
 
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_42B" alt="Formulario de configuración de escala de caras">
-  <div class="img-caption">Figura 3.42 — Formulario de configuración de escala de caras</div>
-</div>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_43" alt="Escala de caras con 3 o 5 opciones">
-  <div class="img-caption">Figura 3.43 — Escala de caras con 3 o 5 opciones</div>
-</div>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_44" alt="Escala de caras con alternativa seleccionada">
-  <div class="img-caption">Figura 3.44 — Escala de caras con alternativa seleccionada</div>
-</div>
-
-<h2>Escala de estrellas</h2>
-<p>Presenta una escala con íconos de estrellas (5 o 10). Al seleccionar una estrella, se iluminan en amarillo esa y todas las que están a su izquierda. Se muestra la etiqueta del valor seleccionado.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_45" alt="Escala de estrellas">
-  <div class="img-caption">Figura 3.45 — Escala de estrellas con 5 o 10 opciones</div>
-</div>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_46" alt="Escala de estrellas con alternativa seleccionada">
-  <div class="img-caption">Figura 3.46 — Escala de estrellas con alternativa seleccionada</div>
-</div>
-
-<h2>Escala tipo Likert</h2>
-<p>Presenta una escala lineal con etiquetas en los extremos (por ejemplo: "Totalmente en desacuerdo" a "Totalmente de acuerdo"). El cliente selecciona un punto en la escala. Muy usada en encuestas de satisfacción y estudios de opinión.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_43B" alt="Formulario de configuración Likert">
-  <div class="img-caption">Figura 3.43 — Formulario de configuración de escala Likert</div>
-</div>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_44B" alt="Pregunta tipo Likert">
-  <div class="img-caption">Figura 3.44 — Pregunta tipo Likert en la encuesta</div>
-</div>
-
-<h2>Escala de números</h2>
-<p>Presenta un conjunto de números en orden ascendente. Puede mostrarse con radio buttons, sin radio o con colores. Soporta distintos rangos y es la base del indicador NPS cuando se configura como escala de 0 a 10.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_45B" alt="Formulario de configuración de escala de números">
-  <div class="img-caption">Figura 3.45 — Formulario de configuración de escala de números</div>
-</div>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_46B" alt="Pregunta tipo escala de números">
-  <div class="img-caption">Figura 3.46 — Escala de números: con radio, sin radio y con colores</div>
-</div>
+<h2>Preguntas de escala</h2>
+<p>Las preguntas de escala permiten que el encuestado seleccione una sola opción dentro de una secuencia de valores ordenados. QServus ofrece cuatro variantes: <strong>Caras</strong>, <strong>Estrellas</strong>, <strong>Likert</strong> y <strong>Números</strong>. Cada una comparte los mismos campos base y agrega opciones propias según su formato visual.</p>
 
 <div class="callout info">
   <span class="callout-icon">ℹ️</span>
-  <div>La escala NPS tiene el mismo diseño que la escala de 0 a 10, pero genera un gráfico NPS específico en la sección Indicadores. Ver <a href="#" onclick="loadArticle('indicador-nps');return false;">Indicador NPS</a>.</div>
+  <div>Todos los tipos de escala permiten solicitar <strong>justificación</strong> de respuesta, agregar la opción <strong>No aplica</strong> e invertir el orden de las alternativas desde las Opciones avanzadas.</div>
 </div>
 
-<h2>Opciones avanzadas de escalas</h2>
-<p>Las preguntas de escala incluyen opciones avanzadas adicionales como etiquetas de rango, justificación obligatoria y configuraciones de visualización. Accede a ellas desde el formulario de configuración de la pregunta.</p>
+<div class="accordion">
 
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_47" alt="Opciones avanzadas de escala de números">
-  <div class="img-caption">Figura 3.47 — Opciones avanzadas de escala de números</div>
+  <!-- CARAS -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      😊 Escala de caras <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite que el encuestado seleccione una cara que represente su nivel de satisfacción, acuerdo o evaluación. Disponible en formato de <strong>3 o 5 caras</strong>.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap" style="max-width:500px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage201.png" alt="Formulario de configuración de escala de caras">
+        <div class="img-caption">Figura 1 — Modal de configuración de pregunta tipo escala de caras.</div>
+      </div>
+
+      <table>
+        <tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr>
+        <tr><td>Enunciado de la pregunta</td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+        <tr><td>Cantidad de caras</td><td>Sí</td><td>Seleccione 3 o 5 caras como alternativas.</td></tr>
+        <tr><td>Texto de los valores</td><td>Sí</td><td>Conjunto de etiquetas que describe cada alternativa.</td></tr>
+        <tr><td>Página</td><td>Sí</td><td>Página del cuestionario donde se agrega la pregunta.</td></tr>
+        <tr><td>Texto de ayuda</td><td>No</td><td>Explicación opcional del enunciado.</td></tr>
+        <tr><td>Imagen de la pregunta</td><td>No</td><td>Imagen complementaria para la pregunta.</td></tr>
+        <tr><td>Opciones avanzadas</td><td>No</td><td>Probabilidad, justificación, opción No aplica e inversión de orden.</td></tr>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <p>La primera imagen muestra una escala de 3 caras; la segunda, una de 5 caras.</p>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage279.png" alt="Pregunta tipo escala de caras con 3 y 5 opciones">
+        <div class="img-caption">Figura 2 — Escala de caras con 3 y 5 alternativas.</div>
+      </div>
+
+      <h4>Comportamiento al seleccionar</h4>
+      <p>Al seleccionar una cara, cambia de color: <strong>rojo</strong> para valores negativos, <strong>amarillo</strong> para el neutro y <strong>verde</strong> para los positivos. Además se muestra la etiqueta del valor elegido.</p>
+      <div class="img-wrap" style="max-width:500px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage218.png" alt="Escala de caras con alternativa seleccionada">
+        <div class="img-caption">Figura 3 — Cara seleccionada con cambio de color y etiqueta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESTRELLAS -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      ⭐ Escala de estrellas <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite evaluar mediante estrellas. Disponible en formato de <strong>5 o 10 estrellas</strong>. Para 10 estrellas, la escala numérica del 1 al 10 se aplica por defecto y no es modificable.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap" style="max-width:500px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage283.png" alt="Formulario de configuración de escala de estrellas">
+        <div class="img-caption">Figura 4 — Modal de configuración de pregunta tipo escala de estrellas.</div>
+      </div>
+
+      <table>
+        <tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr>
+        <tr><td>Enunciado de la pregunta</td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+        <tr><td>Cantidad de estrellas</td><td>Sí</td><td>Seleccione 5 o 10 estrellas.</td></tr>
+        <tr><td>Texto de los valores</td><td>Sí</td><td>Para 5 estrellas: etiquetas de muy insatisfecho a muy satisfecho (personalizables). Para 10 estrellas: escala numérica fija del 1 al 10.</td></tr>
+        <tr><td>Página</td><td>Sí</td><td>Página del cuestionario donde se agrega la pregunta.</td></tr>
+        <tr><td>Imagen de la pregunta</td><td>No</td><td>Imagen complementaria para la pregunta.</td></tr>
+        <tr><td>Opciones avanzadas</td><td>No</td><td>Probabilidad, justificación, No aplica, orden inverso y personalizar rangos de escala.</td></tr>
+        <tr><td>Personalizar valores de escala</td><td>No</td><td>Define qué valores se clasifican como bajo estándar, neutro y sobre estándar.</td></tr>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <p>La primera imagen muestra una escala de 5 estrellas; la segunda, una de 10 estrellas.</p>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage282.png" alt="Pregunta tipo escala de estrellas con 5 y 10 opciones">
+        <div class="img-caption">Figura 5 — Escala de estrellas con 5 y 10 alternativas.</div>
+      </div>
+
+      <h4>Comportamiento al seleccionar</h4>
+      <p>Al seleccionar una estrella, las anteriores también se iluminan. Se muestra la etiqueta del valor elegido a la izquierda de la escala.</p>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage190.png" alt="Escala de estrellas con alternativa seleccionada">
+        <div class="img-caption">Figura 6 — Estrella seleccionada con etiqueta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIKERT -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      📊 Escala Likert <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>La escala Likert presenta una secuencia de opciones en forma de botones horizontales, ideales para medir grado de acuerdo, frecuencia o satisfacción. Permite personalizar las etiquetas de cada valor.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage51.png" alt="Formulario de configuración de escala Likert">
+        <div class="img-caption">Figura 7 — Modal de configuración de pregunta tipo Likert.</div>
+      </div>
+
+      <table>
+        <tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr>
+        <tr><td>Enunciado de la pregunta</td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+        <tr><td>Texto de los valores</td><td>Sí</td><td>Etiquetas para cada punto de la escala.</td></tr>
+        <tr><td>Página</td><td>Sí</td><td>Página del cuestionario donde se agrega la pregunta.</td></tr>
+        <tr><td>Texto de ayuda</td><td>No</td><td>Explicación opcional del enunciado.</td></tr>
+        <tr><td>Imagen de la pregunta</td><td>No</td><td>Imagen complementaria para la pregunta.</td></tr>
+        <tr><td>Opciones avanzadas</td><td>No</td><td>Probabilidad, justificación, No aplica e inversión de orden.</td></tr>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage173.png" alt="Pregunta tipo Likert en la encuesta">
+        <div class="img-caption">Figura 8 — Escala Likert en la encuesta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NÚMEROS / NPS -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      🔢 Escala de números (NPS) <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Presenta una fila de botones numéricos. Es el formato estándar para preguntas de <strong>Net Promoter Score (NPS)</strong> y otras escalas numéricas. Soporta distintas variantes visuales: con radio, sin radio y con colores.</p>
+
+      <h4>Formulario de configuración</h4>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage107.png" alt="Formulario de configuración de escala de números">
+        <div class="img-caption">Figura 9 — Modal de configuración de pregunta tipo escala de números.</div>
+      </div>
+
+      <table>
+        <tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr>
+        <tr><td>Enunciado de la pregunta</td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+        <tr><td>Rango de la escala</td><td>Sí</td><td>Define los valores mínimo y máximo de la escala (ej. 0–10 para NPS).</td></tr>
+        <tr><td>Etiqueta mínimo / máximo</td><td>No</td><td>Texto descriptivo que aparece en los extremos de la escala.</td></tr>
+        <tr><td>Página</td><td>Sí</td><td>Página del cuestionario donde se agrega la pregunta.</td></tr>
+        <tr><td>Texto de ayuda</td><td>No</td><td>Explicación opcional del enunciado.</td></tr>
+        <tr><td>Imagen de la pregunta</td><td>No</td><td>Imagen complementaria para la pregunta.</td></tr>
+        <tr><td>Opciones avanzadas</td><td>No</td><td>Estilo visual (radio/sin radio/colores), probabilidad, justificación, No aplica e inversión de orden.</td></tr>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <p>La escala de números puede mostrarse en tres estilos: con radio, sin radio y con colores.</p>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage249.png" alt="Escala de números en sus tres variantes visuales">
+        <div class="img-caption">Figura 10 — Escala de números: con radio, sin radio y con colores.</div>
+      </div>
+
+      <h4>Opciones avanzadas de escala</h4>
+      <p>Desde las opciones avanzadas el usuario puede definir rangos de clasificación (bajo estándar, neutro, sobre estándar) y el estilo visual de los botones.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage216.png" alt="Opciones avanzadas de escala de números">
+        <div class="img-caption">Figura 11 — Opciones avanzadas de la escala de números.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>¿No sabes qué escala usar? Las <strong>caras</strong> funcionan bien para pantallas táctiles (kioscos), las <strong>estrellas</strong> son familiares para evaluaciones de producto, el <strong>Likert</strong> es ideal para acuerdo/desacuerdo, y los <strong>números</strong> son el estándar para NPS y CES.</div>
 </div>
