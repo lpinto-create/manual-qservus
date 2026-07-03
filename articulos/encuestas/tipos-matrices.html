@@ -1,41 +1,131 @@
-<!-- {"title":"Preguntas de matrices","lead":"Las preguntas de matriz crean una página completa con múltiples ítems evaluados bajo la misma escala. QServus ofrece matrices de 5 estrellas, 7 números, 0 a 10 y 1 a 10.","updated":"2026"} -->
+<!-- {"title":"Tipos de preguntas: Matrices","lead":"Las preguntas de matriz permiten evaluar varios ítems en una sola página usando una escala común.","updated":"2026"} -->
 
-<h2>¿Qué es una matriz?</h2>
-<p>Una pregunta de matriz ocupa una página completa del cuestionario y presenta una tabla donde cada fila es un ítem a evaluar y las columnas representan los valores de la escala. Es ideal para evaluar varios atributos relacionados bajo el mismo criterio en una sola pantalla.</p>
+<style>
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 24px 0; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-btn { width: 100%; text-align: left; padding: 14px 18px; font-size: 14px; font-weight: 600; color: var(--text); background: var(--bg-2); cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--font); }
+.accordion-btn:hover { background: var(--bg-3); }
+.accordion-btn .acc-arrow { transition: transform .2s; font-size: 12px; color: var(--text-3); }
+.accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; padding: 20px 18px; background: var(--bg-2); border-top: 1px solid var(--border-2); }
+.accordion-body.open { display: block; }
+.accordion-body h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+.accordion-body h4:first-child { margin-top: 0; }
+.accordion-body table { width:100%; border-collapse:collapse; font-size:13px; margin: 12px 0; }
+.accordion-body th { padding:8px 10px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-3); font-weight:600; }
+.accordion-body td { padding:8px 10px; border-bottom:1px solid var(--border-2); vertical-align:top; }
+.accordion-body tr:last-child td { border-bottom: none; }
+.accordion-body .img-wrap { margin: 12px 0; }
+</style>
+
+<h2>Preguntas de matriz</h2>
+<p>Las preguntas de matriz agrupan varios ítems a evaluar en una sola página, presentando una escala común para todos. Son ideales para medir múltiples aspectos de un mismo servicio o experiencia en un formato compacto y fácil de responder.</p>
 
 <div class="callout warning">
   <span class="callout-icon">⚠️</span>
-  <div>Las preguntas de matriz requieren que la página donde se agregan esté en blanco. No se pueden combinar con otras preguntas en la misma página.</div>
+  <div>Todas las preguntas de matriz <strong>requieren que la página esté en blanco</strong> al momento de agregarlas. No pueden convivir con otras preguntas en la misma página.</div>
 </div>
 
-<h2>Matriz de escala de 5 estrellas</h2>
-<p>Crea una tabla con preguntas de escala 1 a 5 con diseño de estrellas. Cada fila representa un ítem a evaluar. El cliente marca de 1 a 5 estrellas por cada ítem.</p>
+<div class="accordion">
 
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_48" alt="Matriz de escala de 5 estrellas">
-  <div class="img-caption">Figura 3.48 — Pregunta tipo matriz de escala de 5 estrellas</div>
+  <!-- MATRIZ 5 ESTRELLAS -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      ⭐ Matriz de escala de 5 estrellas <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Crea una página completa con múltiples ítems evaluados en una escala de 1 a 5 representada con estrellas. Es útil para medir la satisfacción con distintos aspectos de un mismo servicio.</p>
+
+      <h4>Campos de configuración</h4>
+      <table>
+        <tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr>
+        <tr><td>Enunciado de la pregunta</td><td>Sí</td><td>Texto principal de la matriz.</td></tr>
+        <tr><td>Texto de los valores</td><td>Sí</td><td>Etiquetas para la escala (por defecto: de muy insatisfecho a muy satisfecho).</td></tr>
+        <tr><td>Ítems a evaluar</td><td>Sí</td><td>Los distintos aspectos o elementos que se evaluarán en la escala.</td></tr>
+        <tr><td>Opción no aplica</td><td>No</td><td>Agrega una alternativa que el encuestado puede seleccionar si el ítem no aplica a su experiencia.</td></tr>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage197.png" alt="Pregunta tipo matriz de escala de 5 estrellas">
+        <div class="img-caption">Figura 1 — Matriz de escala de 5 estrellas en la encuesta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATRIZ 7 NÚMEROS -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      🔢 Matriz de escala de 7 números <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Crea una página completa con múltiples ítems evaluados en una escala numérica del 1 al 7. Ideal para medir distintos atributos con una escala de respuesta más granular.</p>
+
+      <h4>Campos de configuración</h4>
+      <table>
+        <tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr>
+        <tr><td>Enunciado de la pregunta</td><td>Sí</td><td>Texto principal de la matriz.</td></tr>
+        <tr><td>Ítems a evaluar</td><td>Sí</td><td>Los distintos elementos que se evaluarán en la escala numérica.</td></tr>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage172.png" alt="Pregunta tipo matriz de escala de 7 números">
+        <div class="img-caption">Figura 2 — Matriz de escala de 7 números en la encuesta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATRIZ 0 A 10 -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      🔢 Matriz de escala de 0 a 10 <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Crea una página completa con múltiples ítems evaluados en una escala numérica del 0 al 10. Compatible con el formato NPS aplicado a varios atributos simultáneamente.</p>
+
+      <h4>Campos de configuración</h4>
+      <table>
+        <tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr>
+        <tr><td>Enunciado de la pregunta</td><td>Sí</td><td>Texto principal de la matriz.</td></tr>
+        <tr><td>Ítems a evaluar</td><td>Sí</td><td>Los distintos elementos que se evaluarán en la escala de 0 a 10.</td></tr>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage47.png" alt="Pregunta tipo matriz de escala de 0 a 10">
+        <div class="img-caption">Figura 3 — Matriz de escala de 0 a 10 en la encuesta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATRIZ 1 A 10 -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      🔢 Matriz de escala de 1 a 10 <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Crea una página completa con múltiples ítems evaluados en una escala numérica del 1 al 10. Similar a la variante 0–10 pero excluyendo el valor cero.</p>
+
+      <h4>Campos de configuración</h4>
+      <table>
+        <tr><th>Campo</th><th>Obligatorio</th><th>Descripción</th></tr>
+        <tr><td>Enunciado de la pregunta</td><td>Sí</td><td>Texto principal de la matriz.</td></tr>
+        <tr><td>Ítems a evaluar</td><td>Sí</td><td>Los distintos elementos que se evaluarán en la escala de 1 a 10.</td></tr>
+      </table>
+
+      <h4>Vista en la encuesta</h4>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage134.png" alt="Pregunta tipo matriz de escala de 1 a 10">
+        <div class="img-caption">Figura 4 — Matriz de escala de 1 a 10 en la encuesta.</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<h2>Matriz de escala de 7 números</h2>
-<p>Presenta una tabla con escala numérica de 1 a 7 por cada ítem. Útil para evaluaciones con mayor granularidad que una escala de 5 puntos.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_49" alt="Matriz de escala de 7 números">
-  <div class="img-caption">Figura 3.49 — Pregunta tipo matriz de escala de 7 números</div>
-</div>
-
-<h2>Matriz de escala de 0 a 10</h2>
-<p>Presenta una tabla con escala numérica de 0 a 10 por cada ítem. Permite evaluaciones en el mismo rango que el NPS.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_50" alt="Matriz de escala de 0 a 10">
-  <div class="img-caption">Figura 3.50 — Pregunta tipo matriz de escala de 0 a 10</div>
-</div>
-
-<h2>Matriz de escala de 1 a 10</h2>
-<p>Similar a la anterior pero con escala de 1 a 10. Útil cuando se prefiere no incluir el valor 0 en las opciones del cliente.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_51" alt="Matriz de escala de 1 a 10">
-  <div class="img-caption">Figura 3.51 — Pregunta tipo matriz de escala de 1 a 10</div>
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Las matrices son muy útiles cuando se quiere evaluar varios atributos en una sola pantalla. Para encuestas cortas o kioscos, considera si el espacio de pantalla es suficiente para mostrar todos los ítems cómodamente.</div>
 </div>
