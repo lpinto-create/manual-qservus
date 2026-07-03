@@ -1,12 +1,12 @@
 <!-- {"title":"Preguntas de texto","lead":"Las preguntas de texto permiten que los encuestados proporcionen respuestas abiertas. Pueden ser de texto simple o multilínea, con validaciones opcionales.","updated":"2026"} -->
 
 <h2>¿Qué son las preguntas de texto?</h2>
-<p>Las preguntas de texto simple o multilínea permiten que los encuestados puedan proporcionar respuestas abiertas y no estructuradas para expresar sus ideas, opiniones y experiencias sin restricciones.</p>
+<p>Las preguntas de texto permiten que los encuestados proporcionen respuestas abiertas y no estructuradas para expresar sus ideas, opiniones y experiencias sin restricciones. Pueden ser de texto simple o multilínea.</p>
 
 <h2>Formulario de configuración</h2>
 <p>Al agregar una pregunta de tipo <strong>Texto</strong> el sistema solicitará completar el siguiente formulario:</p>
 
-<div class="img-wrap">
+<div class="img-wrap" style="max-width:500px;">
   <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage290.png" alt="Formulario de configuración pregunta tipo texto">
   <div class="img-caption">Figura 3.22 — Formulario de configuración de pregunta tipo texto</div>
 </div>
@@ -33,7 +33,7 @@
     <tr>
       <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Probabilidad de la pregunta</strong></td>
       <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">No</td>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Probabilidad de aparición de la pregunta. Valores: 100%, 50% o 30%.</td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Probabilidad de aparición. Valores: 100%, 50% o 30%.</td>
     </tr>
     <tr style="background:var(--bg-3);">
       <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Tipo de texto</strong></td>
@@ -41,21 +41,16 @@
       <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Texto simple o multilínea.</td>
     </tr>
     <tr>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Tipo de validación</strong></td>
-      <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">No</td>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Solo disponible en texto simple. Delimita el tipo de respuesta aceptada.</td>
-    </tr>
-    <tr style="background:var(--bg-3);">
       <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Página</strong></td>
       <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">Sí</td>
       <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Página del cuestionario donde se agregará la pregunta.</td>
     </tr>
-    <tr>
+    <tr style="background:var(--bg-3);">
       <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Mínimo de caracteres</strong></td>
       <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">No</td>
       <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Número mínimo aceptado de caracteres en la respuesta.</td>
     </tr>
-    <tr style="background:var(--bg-3);">
+    <tr>
       <td style="padding:10px 12px;"><strong>Máximo de caracteres</strong></td>
       <td style="padding:10px 12px; text-align:center;">No</td>
       <td style="padding:10px 12px;">Número máximo aceptado de caracteres en la respuesta.</td>
@@ -64,36 +59,32 @@
 </table>
 
 <h2>Probabilidad de aparición</h2>
-<p>La probabilidad define con qué frecuencia aparecerá la pregunta al encuestado. Al seleccionar el campo se despliegan las opciones disponibles:</p>
+<p>Al seleccionar el campo <strong>Probabilidad</strong> se despliegan las opciones disponibles:</p>
 
-<div class="img-wrap">
+<div class="img-wrap" style="max-width:500px;">
   <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage291.png" alt="Opciones de probabilidad">
   <div class="img-caption">Figura 3.23 — Opciones de probabilidad de aparición</div>
 </div>
 
-<h2>Tipos de texto</h2>
-<p>El campo <strong>Tipo de texto</strong> permite elegir entre dos modalidades:</p>
+<h2>Tipo de texto</h2>
+<p>Al seleccionar el campo <strong>Tipo de texto</strong> se despliegan las dos modalidades disponibles:</p>
+
+<div class="img-wrap" style="max-width:500px;">
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage292.png" alt="Selector tipo de texto">
+  <div class="img-caption">Figura 3.24 — Opciones del campo Tipo de texto</div>
+</div>
 
 <h3>Texto simple</h3>
-<p>Diseñado para obtener respuestas claras y específicas usando campos de texto cortos. Permite configurar validaciones de formato.</p>
+<p>Diseñado para obtener respuestas claras y específicas usando campos de texto cortos.</p>
 
 <div class="img-wrap">
   <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage234.png" alt="Vista de pregunta tipo texto simple en la encuesta">
-  <div class="img-caption">Figura 3.24 — Vista de pregunta tipo texto simple en la encuesta</div>
+  <div class="img-caption">Figura 3.25 — Vista de pregunta tipo texto simple en la encuesta</div>
 </div>
 
-<h3>Texto multilínea</h3>
-<p>Ideal para captar ideas, opiniones y experiencias en profundidad. No tiene validación de formato disponible.</p>
+<p>El texto simple permite configurar un <strong>Tipo de validación</strong> para delimitar el formato de respuesta aceptado:</p>
 
-<div class="img-wrap">
-  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage292.png" alt="Vista de pregunta tipo texto multilínea">
-  <div class="img-caption">Figura 3.25 — Vista de pregunta tipo texto multilínea en la encuesta</div>
-</div>
-
-<h2>Validaciones disponibles (texto simple)</h2>
-<p>Al seleccionar <strong>Texto simple</strong>, el campo <strong>Tipo de validación</strong> permite delimitar el formato de respuesta aceptado:</p>
-
-<div class="img-wrap">
+<div class="img-wrap" style="max-width:500px;">
   <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage293.png" alt="Tipos de validación disponibles">
   <div class="img-caption">Figura 3.26 — Tipos de validación disponibles para texto simple</div>
 </div>
@@ -109,6 +100,14 @@
   <li>General</li>
   <li>Teléfono</li>
 </ul>
+
+<h3>Texto multilínea</h3>
+<p>Ideal para captar ideas, opiniones y experiencias en profundidad. No tiene validación de formato disponible.</p>
+
+<div class="img-wrap">
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage185.png" alt="Vista de pregunta tipo texto multilínea en la encuesta">
+  <div class="img-caption">Figura 3.27 — Vista de pregunta tipo texto multilínea en la encuesta</div>
+</div>
 
 <div class="callout tip">
   <span class="callout-icon">💡</span>
