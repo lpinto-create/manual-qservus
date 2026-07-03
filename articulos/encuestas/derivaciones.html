@@ -1,27 +1,52 @@
-<!-- {"title":"Derivaciones","lead":"Las derivaciones permiten definir saltos de página automáticos según la alternativa que seleccione el cliente en una pregunta.","updated":"2026"} -->
+<!-- {"title":"Derivaciones","lead":"Configura saltos de página o saltos al final de la encuesta según la alternativa que seleccione el encuestado.","updated":"2026"} -->
 
-<h2>¿Qué es una derivación?</h2>
-<p>Una derivación es una condición que, al seleccionar cierta alternativa, lleva al encuestado directamente a otra página del cuestionario o al final de la encuesta, saltándose las páginas intermedias.</p>
+<h2>¿Qué son las derivaciones?</h2>
+<p>Las derivaciones permiten definir condiciones para que, al seleccionar una alternativa determinada, el encuestado sea llevado a una página específica del cuestionario o directamente al final de la encuesta. Esto permite crear flujos ramificados sin exponer preguntas irrelevantes.</p>
 
-<h2>Cómo configurarla</h2>
-<p>Haz clic en el ícono de derivación de la pregunta que deseas configurar. Se abrirá un cuadro de diálogo donde, para cada alternativa de la pregunta, puedes seleccionar a qué página saltará el cliente o si irá directamente al final.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_53" alt="Configuración de derivaciones">
-  <div class="img-caption">Figura 3.53 — Derivaciones de preguntas</div>
+<div class="callout info">
+  <span class="callout-icon">ℹ️</span>
+  <div>Las derivaciones están disponibles para los siguientes tipos de preguntas: selección simple (radio, lista e imagen), escala de caras, escala de estrellas y escala de números.</div>
 </div>
 
-<h2>Tipos de preguntas que soportan derivaciones</h2>
-<ul>
-  <li>Selección única tipo radio</li>
-  <li>Selección única tipo lista</li>
-  <li>Selección única tipo imagen</li>
-  <li>Escala de caras</li>
-  <li>Escala de estrellas</li>
-  <li>Escala de números</li>
-</ul>
+<h2>Cómo configurar una derivación</h2>
+
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Ubicar la pregunta</h4>
+      <p>En el cuestionario, identifica la pregunta desde la que quieres definir el salto.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Presionar el ícono de derivaciones</h4>
+      <p>Haz clic en el ícono de derivaciones disponible en las opciones de la pregunta. Se abrirá un cuadro de diálogo.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Asignar destino por alternativa</h4>
+      <p>Para cada alternativa de la pregunta, selecciona a qué página debe ir el encuestado o si debe saltar al final de la encuesta.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>Guardar</h4>
+      <p>Confirma la configuración. Las derivaciones quedan activas al publicar la encuesta.</p>
+    </div>
+  </div>
+</div>
+
+<div class="img-wrap" style="max-width:700px">
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage108.png" alt="Cuadro de diálogo de configuración de derivaciones">
+  <div class="img-caption">Figura 1 — Cuadro de diálogo de derivaciones por alternativa.</div>
+</div>
 
 <div class="callout tip">
   <span class="callout-icon">💡</span>
-  <div>Las derivaciones son útiles para crear encuestas ramificadas donde distintos perfiles de clientes reciben preguntas diferentes según sus respuestas. Para mostrar u ocultar preguntas dentro de la misma página, usa <a href="#" onclick="loadArticle('preguntas-condicionales');return false;">Preguntas condicionales</a>.</div>
+  <div>Si una pregunta tiene derivaciones activas, las preguntas de páginas omitidas no se mostrarán ni se registrarán como respondidas. Úsalas cuando quieras acortar el cuestionario según el perfil del encuestado.</div>
 </div>
