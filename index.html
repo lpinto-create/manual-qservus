@@ -710,8 +710,7 @@
 <!-- ── DATA ──────────────────────────────────────────── -->
 <script>
 // ═══════════════════════════════════════════════════════════
-//  NAVIGATION STRUCTURE
-//  Edita aquí para agregar / quitar secciones y artículos
+//  NAVIGATION STRUCTURE — IDs alineados con nombres de archivo
 // ═══════════════════════════════════════════════════════════
 const NAV = [
   {
@@ -724,10 +723,7 @@ const NAV = [
       { id: 'como-acceder',             title: 'Cómo acceder',                           badge: null },
       { id: 'recuperar-contrasena',     title: 'Recuperar contraseña',                   badge: null },
       { id: 'navegacion',               title: 'Navegación general',                     badge: null },
-      { id: 'multiples-plataformas',    title: 'Múltiples plataformas',                  badge: null },
-      { id: 'navegadores-compatibles',  title: 'Navegadores compatibles',                badge: null },
-      { id: 'acceso-movil',             title: 'Acceso desde móvil y tablet',            badge: null },
-      { id: 'modo-offline',             title: 'Modo offline',                           badge: null },
+      { id: 'accesibilidad',            title: 'Múltiples plataformas',                  badge: null },
     ]
   },
   {
@@ -782,12 +778,12 @@ const NAV = [
     items: [
       { id: 'que-es-sensor',             title: '¿Qué es un sensor?',                   badge: null },
       { id: 'crear-sensor',              title: 'Crear un sensor',                       badge: null },
-      { id: 'sensor-opciones-avanzadas', title: 'Opciones avanzadas',                    badge: null },
+      { id: 'opciones-avanzadas-sensor', title: 'Opciones avanzadas',                    badge: null },
       { id: 'diseno-sensor',             title: 'Diseño del sensor',                     badge: null },
       { id: 'detalle-sensor',            title: 'Detalle del sensor',                    badge: null },
-      { id: 'sensor-indicadores',        title: 'Indicadores del sensor',                badge: null },
-      { id: 'sensor-acceso',             title: 'Acceso al sensor',                      badge: null },
-      { id: 'sensor-reportes',           title: 'Reportes del sensor',                   badge: null },
+      { id: 'indicadores-sensor',        title: 'Indicadores del sensor',                badge: null },
+      { id: 'acceso-sensor',             title: 'Acceso al sensor',                      badge: null },
+      { id: 'reportes-sensor',           title: 'Reportes del sensor',                   badge: null },
       { id: 'editar-sensor',             title: 'Editar sensor',                         badge: null },
       { id: 'datos-solicitados',         title: 'Configurar datos solicitados',          badge: null },
       { id: 'datos-adicionales',         title: 'Datos adicionales',                     badge: null },
@@ -801,17 +797,17 @@ const NAV = [
     icon: '<img src="https://qservus.s3.amazonaws.com/aut/Campañas.svg" class="nav-svg-icon" alt="">',
     desc: 'Envía encuestas a tus contactos',
     items: [
-      { id: 'que-es-campana',            title: '¿Qué es una campaña?',                 badge: null },
-      { id: 'crear-campana',             title: 'Crear una campaña',                     badge: null },
-      { id: 'campana-opciones-avanzadas',title: 'Opciones avanzadas',                    badge: null },
-      { id: 'detalle-campana',           title: 'Detalle de la campaña',                 badge: null },
-      { id: 'campana-indicadores',       title: 'Indicadores de la campaña',             badge: null },
-      { id: 'campana-resultados',        title: 'Resultados',                            badge: null },
-      { id: 'campana-reportes',          title: 'Reportes de la campaña',                badge: null },
-      { id: 'destinatarios',             title: 'Destinatarios',                         badge: null },
-      { id: 'exportar-destinatarios',    title: 'Exportar destinatarios',                badge: null },
-      { id: 'editar-campana',            title: 'Editar campaña en ejecución',           badge: null },
-      { id: 'campana-acciones',          title: 'Acciones de campaña',                   badge: null },
+      { id: 'que-es-campana',              title: '¿Qué es una campaña?',               badge: null },
+      { id: 'crear-campana',               title: 'Crear una campaña',                   badge: null },
+      { id: 'opciones-avanzadas-campana',  title: 'Opciones avanzadas',                  badge: null },
+      { id: 'detalle-campana',             title: 'Detalle de la campaña',               badge: null },
+      { id: 'indicadores-campana',         title: 'Indicadores de la campaña',           badge: null },
+      { id: 'resultados-campana',          title: 'Resultados',                          badge: null },
+      { id: 'reportes-campana',            title: 'Reportes de la campaña',              badge: null },
+      { id: 'destinatarios-campana',       title: 'Destinatarios',                       badge: null },
+      { id: 'exportar-destinatarios',      title: 'Exportar destinatarios',              badge: null },
+      { id: 'editar-campana',              title: 'Editar campaña en ejecución',         badge: null },
+      { id: 'acciones-campana',            title: 'Acciones de campaña',                 badge: null },
     ]
   },
   {
@@ -834,28 +830,39 @@ const NAV = [
     icon: '<img src="https://qservus.s3.amazonaws.com/aut/Indicadores.svg" class="nav-svg-icon" alt="">',
     desc: 'Tableros y visualización de resultados',
     items: [
-      { id: 'tableros',                  title: 'Tableros',                              badge: null },
-      { id: 'tablero-automatico',        title: 'Tablero automático',                    badge: null },
-      { id: 'tablero-personalizado',     title: 'Tablero personalizado',                 badge: null },
-      { id: 'crear-tablero',             title: 'Crear un tablero',                      badge: null },
-      { id: 'tipos-indicadores',         title: 'Tipos de indicadores',                  badge: null },
-      { id: 'crear-indicador',           title: 'Crear un indicador',                    badge: null },
-      { id: 'configurar-filtros',        title: 'Configurar filtros',                    badge: null },
-      { id: 'configurar-tablero',        title: 'Configurar tablero',                    badge: null },
-      { id: 'detalle-indicador',         title: 'Detalle del indicador',                 badge: null },
-      { id: 'grafico-satisfaccion',      title: 'Gráfico de Satisfacción Neta',          badge: null },
-      { id: 'indicador-nps',             title: 'Indicador NPS',                         badge: null },
-      { id: 'grafico-barras',            title: 'Gráfico de barras',                     badge: null },
-      { id: 'grafico-torta',             title: 'Gráfico de torta',                      badge: null },
-      { id: 'grafico-columna',           title: 'Gráfico de columna',                    badge: null },
-      { id: 'grafico-lineas',            title: 'Gráfico de líneas',                     badge: null },
-      { id: 'nube-palabras',             title: 'Nube de palabras',                      badge: null },
-      { id: 'grafico-burbujas',          title: 'Gráfico de burbujas',                   badge: null },
-      { id: 'grafico-treemap',           title: 'Gráfico Treemap',                       badge: null },
-      { id: 'grafico-impulsores',        title: 'Gráfico de impulsores',                 badge: null },
-      { id: 'tabla-dinamica',            title: 'Indicador de tabla dinámica',           badge: null },
-      { id: 'analitica-avanzada',        title: 'Analítica avanzada e IA',               badge: null },
-      { id: 'text-analytics',            title: 'Text Analytics',                        badge: null },
+      { id: 'tableros',                    title: 'Tableros',                            badge: null },
+      { id: 'tablero-automatico',          title: 'Tablero automático',                  badge: null },
+      { id: 'tablero-personalizado',       title: 'Tablero personalizado',               badge: null },
+      { id: 'crear-tablero',               title: 'Crear un tablero',                    badge: null },
+      { id: 'tipos-indicadores',           title: 'Tipos de indicadores',                badge: null },
+      { id: 'crear-indicador',             title: 'Crear un indicador',                  badge: null },
+      { id: 'indicador-escala',            title: 'Indicador de escala',                 badge: null },
+      { id: 'indicador-alternativas',      title: 'Indicador de alternativas',           badge: null },
+      { id: 'indicador-texto',             title: 'Indicador de texto',                  badge: null },
+      { id: 'indicador-sino',              title: 'Indicador de Sí/No',                  badge: null },
+      { id: 'indicador-matriz',            title: 'Indicador de matriz',                 badge: null },
+      { id: 'indicador-tabla',             title: 'Indicador de tabla',                  badge: null },
+      { id: 'indicador-analitica-avanzada',title: 'Indicador de analítica avanzada',     badge: null },
+      { id: 'indicador-api',               title: 'Indicador de API',                    badge: null },
+      { id: 'indicador-metricas',          title: 'Indicador de métricas',               badge: null },
+      { id: 'configurar-filtros',          title: 'Configurar filtros',                  badge: null },
+      { id: 'configurar-tablero',          title: 'Configurar tablero',                  badge: null },
+      { id: 'detalle-indicador',           title: 'Detalle del indicador',               badge: null },
+      { id: 'grafico-satisfaccion-neta',   title: 'Gráfico de Satisfacción Neta',        badge: null },
+      { id: 'indicador-nps',               title: 'Indicador NPS',                       badge: null },
+      { id: 'grafico-nota',                title: 'Gráfico de nota',                     badge: null },
+      { id: 'grafico-nps-evolutivo',       title: 'Gráfico evolutivo de NPS',            badge: null },
+      { id: 'grafico-barras',              title: 'Gráfico de barras',                   badge: null },
+      { id: 'grafico-torta',               title: 'Gráfico de torta',                    badge: null },
+      { id: 'grafico-columna',             title: 'Gráfico de columna',                  badge: null },
+      { id: 'grafico-lineas',              title: 'Gráfico de líneas',                   badge: null },
+      { id: 'nube-palabras',               title: 'Nube de palabras',                    badge: null },
+      { id: 'grafico-burbujas',            title: 'Gráfico de burbujas',                 badge: null },
+      { id: 'grafico-treemap',             title: 'Gráfico Treemap',                     badge: null },
+      { id: 'grafico-impulsores',          title: 'Gráfico de impulsores',               badge: null },
+      { id: 'tabla-dinamica-indicador',    title: 'Indicador de tabla dinámica',         badge: null },
+      { id: 'analitica-avanzada-ia',       title: 'Analítica avanzada e IA',             badge: null },
+      { id: 'text-analytics',              title: 'Text Analytics',                      badge: null },
     ]
   },
   {
@@ -875,11 +882,11 @@ const NAV = [
     items: [
       { id: 'reportes-campanas',         title: 'Reportes de campañas',                 badge: null },
       { id: 'reportes-sensores',         title: 'Reportes de sensores',                 badge: null },
-      { id: 'reportes-encuestas-pdf',    title: 'Reporte de encuesta en PDF',           badge: null },
-      { id: 'reportes-encuestas-web',    title: 'Reporte de encuesta web',              badge: null },
+      { id: 'reporte-encuesta-pdf',      title: 'Reporte de encuesta en PDF',           badge: null },
+      { id: 'reporte-encuesta-web',      title: 'Reporte de encuesta web',              badge: null },
       { id: 'reportes-avanzados',        title: 'Reportes avanzados',                   badge: null },
-      { id: 'reporte-consolidado',       title: 'Reporte consolidado por segmento',     badge: null },
-      { id: 'reporte-consolidado-td',    title: 'Consolidado para tablas dinámicas',    badge: null },
+      { id: 'consolidado-segmento',      title: 'Reporte consolidado por segmento',     badge: null },
+      { id: 'consolidado-dinamicas',     title: 'Consolidado para tablas dinámicas',    badge: null },
       { id: 'reporte-seguimiento',       title: 'Reporte de seguimiento',               badge: null },
       { id: 'historial-cliente',         title: 'Historial de cliente',                 badge: null },
     ]
@@ -896,8 +903,8 @@ const NAV = [
       { id: 'alerta-satisfaccion',       title: 'Alerta de satisfacción/insatisfacción', badge: null },
       { id: 'alertas-personalizadas',    title: 'Alertas personalizadas',                badge: null },
       { id: 'enviar-informacion',        title: 'Enviar información',                    badge: null },
-      { id: 'resumen-diario',            title: 'Envío resumen diario',                  badge: null },
-      { id: 'envio-informacion',         title: 'Envío de información',                  badge: null },
+      { id: 'envio-resumen-diario',      title: 'Envío resumen diario',                  badge: null },
+      { id: 'envio-informacion-accion',  title: 'Envío de información',                  badge: null },
       { id: 'envio-respuestas',          title: 'Envío respuestas a usuarios',           badge: null },
       { id: 'ejecutar-proceso',          title: 'Ejecutar proceso',                      badge: null },
       { id: 'redirigir-finalizar',       title: 'Redirigir al finalizar',                badge: null },
@@ -964,12 +971,12 @@ const NAV = [
     icon: '<img src="https://qservus.s3.amazonaws.com/aut/Configuración.svg" class="nav-svg-icon" alt="">',
     desc: 'Administra tu organización',
     items: [
-      { id: 'info-empresa',              title: 'Información de la empresa',             badge: null },
+      { id: 'informacion-empresa',       title: 'Información de la empresa',             badge: null },
       { id: 'grupos',                    title: 'Grupos',                                badge: null },
       { id: 'lista-destinatarios',       title: 'Lista de destinatarios',                badge: null },
       { id: 'lista-negra',               title: 'Destinatarios en lista negra',          badge: null },
       { id: 'facturacion',               title: 'Facturación de su plan',                badge: null },
-      { id: 'config-seguimiento',        title: 'Seguimiento',                           badge: null },
+      { id: 'seguimiento-config',        title: 'Seguimiento',                           badge: null },
       { id: 'seguridad',                 title: 'Seguridad',                             badge: null },
       { id: 'segmentos',                 title: 'Segmentos',                             badge: null },
       { id: 'usuarios',                  title: 'Usuarios',                              badge: null },
@@ -999,7 +1006,6 @@ const NAV = [
     ]
   },
 ];
-
 // ═══════════════════════════════════════════════════════════
 //  ARTICLE CACHE — artículos cargados se guardan aquí
 // ═══════════════════════════════════════════════════════════
