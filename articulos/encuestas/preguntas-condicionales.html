@@ -1,28 +1,52 @@
-<!-- {"title":"Preguntas condicionales","lead":"Las preguntas condicionales permiten mostrar u ocultar preguntas siguientes según la alternativa seleccionada por el cliente.","updated":"2026"} -->
+<!-- {"title":"Preguntas condicionales","lead":"Muestra u oculta preguntas del cuestionario según la alternativa que seleccione el encuestado.","updated":"2026"} -->
 
 <h2>¿Qué son las preguntas condicionales?</h2>
-<p>Una pregunta condicional define si otras preguntas del cuestionario se muestran o se ocultan, dependiendo de lo que el cliente haya respondido en una pregunta anterior.</p>
-<p>A diferencia de las <a href="#" onclick="loadArticle('derivaciones');return false;">derivaciones</a> (que cambian de página), las preguntas condicionales actúan sobre la visibilidad de preguntas dentro del flujo de la encuesta.</p>
-
-<h2>Cómo configurarlas</h2>
-<p>Haz clic en el ícono de preguntas condicionales de la pregunta que actuará como condición. Se abrirá un cuadro de diálogo donde, para cada pregunta posterior a la actual, defines si se muestra o se oculta según las distintas alternativas de la pregunta actual.</p>
-
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_54" alt="Configuración de preguntas condicionales">
-  <div class="img-caption">Figura 3.54 — Preguntas condicionales</div>
-</div>
-
-<p>Las condiciones pueden crearse en relación a las alternativas de la pregunta o por dato extra (información adicional del encuestado).</p>
-
-<h2>Tipos de preguntas que soportan esta opción</h2>
-<ul>
-  <li>Selección única tipo radio</li>
-  <li>Selección única tipo imagen</li>
-  <li>Escala de caras</li>
-  <li>Escala de números de 1 a 7</li>
-</ul>
+<p>Las preguntas condicionales (también llamadas lógica de visualización) permiten definir qué preguntas se mostrarán u ocultarán a continuación según la alternativa seleccionada en la pregunta actual. A diferencia de las <a href="#" onclick="loadArticle('derivaciones');return false;">derivaciones</a>, que saltan páginas completas, las condicionales operan a nivel de pregunta individual dentro de una misma página o en páginas siguientes.</p>
 
 <div class="callout info">
   <span class="callout-icon">ℹ️</span>
-  <div>Las preguntas condicionales son ideales para personalizar la experiencia del cliente sin crear múltiples encuestas: un cliente insatisfecho puede ver preguntas de seguimiento que no verá uno satisfecho.</div>
+  <div>Las preguntas condicionales están disponibles en: selección simple tipo radio, selección simple tipo imagen, escala de caras y escala de números de 1 a 7.</div>
+</div>
+
+<h2>Cómo configurar una pregunta condicional</h2>
+
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Ubicar la pregunta</h4>
+      <p>En el cuestionario, identifica la pregunta desde la que quieres controlar la visibilidad de otras preguntas.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Presionar el ícono de lógica condicional</h4>
+      <p>Haz clic en el ícono de preguntas condicionales en las opciones de la pregunta. Se abrirá un cuadro de diálogo.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Definir la condición</h4>
+      <p>Para cada pregunta posterior, define si se muestra o se oculta según las alternativas de la pregunta actual. También puedes crear condiciones basadas en un <strong>dato extra</strong> del encuestado.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>Guardar</h4>
+      <p>Confirma la configuración. La lógica queda activa al publicar la encuesta.</p>
+    </div>
+  </div>
+</div>
+
+<div class="img-wrap" style="max-width:700px">
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage257.png" alt="Cuadro de diálogo de preguntas condicionales">
+  <div class="img-caption">Figura 1 — Configuración de preguntas condicionales por alternativa o dato extra.</div>
+</div>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Combina preguntas condicionales con derivaciones para construir flujos complejos: usa las condicionales para mostrar u ocultar preguntas dentro de una página y las derivaciones para saltar entre páginas completas.</div>
 </div>
