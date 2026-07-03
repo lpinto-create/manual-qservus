@@ -1,23 +1,23 @@
-<!-- {"title":"¿Qué son las acciones automatizadas?","lead":"Las acciones automatizadas permiten enviar notificaciones, alertas e información de forma automática según las respuestas recibidas en tus encuestas.","updated":"2026"} -->
+<!-- {"title":"¿Qué son las acciones automatizadas?","lead":"Las acciones automatizadas permiten enviar notificaciones y ejecutar procesos automáticamente según las respuestas obtenidas en las encuestas.","updated":"2026"} -->
 
-<h2>¿Qué son?</h2>
-<p>Las acciones de QServus envían diferentes tipos de notificaciones vía email. Cada acción está asociada a una encuesta específica y se activa automáticamente cuando se cumplen las condiciones configuradas.</p>
+<h2>¿Qué son las acciones automatizadas?</h2>
+<p>Las acciones de QServus envían diferentes tipos de notificaciones vía email y ejecutan procesos de forma automática. Cada acción está asociada a una encuesta específica (campaña o sensor) y a uno o varios usuarios que recibirán la notificación.</p>
 
 <h2>Categorías de acciones</h2>
-<p>Existen 4 categorías de acciones disponibles:</p>
-<ul>
-  <li><strong>Obtener opinión:</strong> permite al cliente expresar felicitaciones, sugerencias o reclamos al finalizar la encuesta.</li>
-  <li><strong>Enviar notificaciones:</strong> genera alertas según la acumulación de respuestas o crea notificaciones personalizadas basadas en respuestas específicas.</li>
-  <li><strong>Enviar información:</strong> define envíos de correos como resúmenes diarios, información condicional o reenvío de respuestas a usuarios.</li>
-  <li><strong>Ejecutar proceso:</strong> realiza un proceso interno después de que se contesta una encuesta, como redirigir a una URL, cargar respuestas a SFTP o enviar un OTP.</li>
-</ul>
+<p>Existen 4 categorías principales:</p>
 
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_8" alt="Categorías de acciones automatizadas">
-  <div class="img-caption">Figura 8 — Categorías de acciones</div>
-</div>
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Categoría</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><a href="#" onclick="loadArticle('obtener-opinion');return false;"><strong>Obtener opinión</strong></a></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Permite al encuestado expresar felicitaciones, sugerencias o reclamos al finalizar la encuesta.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><a href="#" onclick="loadArticle('enviar-notificacion');return false;"><strong>Enviar notificación</strong></a></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Genera alertas de satisfacción, insatisfacción o personalizadas según las respuestas recibidas.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><a href="#" onclick="loadArticle('enviar-informacion');return false;"><strong>Enviar información</strong></a></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Define envíos de correo como resumen diario, información al encuestado o respuestas a usuarios de QServus.</td></tr>
+  <tr><td style="padding:10px"><a href="#" onclick="loadArticle('ejecutar-proceso');return false;"><strong>Ejecutar proceso</strong></a></td><td style="padding:10px">Realiza procesos internos al finalizar la encuesta: redirigir a URL, carga SFTP o envío OTP.</td></tr>
+</table>
 
-<div class="callout tip">
-  <span class="callout-icon">💡</span>
-  <div>Cada acción se configura dentro de una encuesta específica. Para crear o editar acciones, accede al módulo <strong>Acciones automatizadas</strong> desde el menú principal.</div>
+<div class="img-wrap" style="max-width:700px">
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage188.png" alt="Categorías de acciones automatizadas">
+  <div class="img-caption">Figura 1 — Las 4 categorías de acciones automatizadas.</div>
 </div>

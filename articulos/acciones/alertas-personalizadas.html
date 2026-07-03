@@ -1,31 +1,30 @@
-<!-- {"title":"Alertas personalizadas","lead":"Configura notificaciones por email que se envían automáticamente cuando el cliente selecciona alternativas específicas en la encuesta, con perfiles de gestión asignables.","updated":"2026"} -->
+<!-- {"title":"Alertas personalizadas","lead":"Define condiciones propias combinando encuestas, preguntas, datos extras y filtros para generar alertas a medida.","updated":"2026"} -->
 
-<h2>¿Cómo funciona?</h2>
-<p>Las alertas personalizadas envían un email a los destinatarios configurados cuando el cliente responde una o varias alternativas específicas en la encuesta. A diferencia de las alertas de satisfacción/insatisfacción, aquí se definen las condiciones exactas por respuesta, no por acumulación.</p>
+<h2>¿Qué son las alertas personalizadas?</h2>
+<p>Las alertas personalizadas permiten configurar condiciones específicas combinando múltiples variables para generar notificaciones más precisas que las alertas estándar de satisfacción/insatisfacción.</p>
 
-<h2>Crear una alerta personalizada</h2>
-<p>En la lista de notificaciones personalizadas, selecciona el ícono para crear una nueva acción y completa el formulario de configuración.</p>
+<h2>Configuración</h2>
+<p>En la lista de notificaciones personalizadas, haz clic en el ícono de nueva acción y completa el formulario:</p>
 
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_8_8" alt="Formulario de configuración alerta personalizada">
-  <div class="img-caption">Figura 8.8 — Formulario de configuración de alerta personalizada</div>
+<div class="img-wrap" style="max-width:700px">
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage193.png" alt="Formulario de alerta personalizada">
+  <div class="img-caption">Figura 1 — Formulario de configuración de alerta personalizada.</div>
 </div>
 
-<h2>Perfiles de la acción</h2>
-<p>Existen 4 tipos de perfiles que pueden asignarse a una alerta personalizada. Cada perfil define qué puede hacer el usuario con la alerta asignada:</p>
-<ul>
-  <li><strong>Encargado:</strong> recibe la alerta y es responsable de gestionar el caso.</li>
-  <li><strong>Supervisor:</strong> además de las acciones básicas de gestión (ingresar mensajes y finalizar), puede reabrir un caso ya finalizado.</li>
-  <li><strong>Administrador:</strong> puede gestionar y asignar las alertas a distintos encargados.</li>
-  <li><strong>Notificado:</strong> recibe un correo informando sobre las alertas asignadas, sin acciones de gestión.</li>
-</ul>
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Sección</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Campo</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Encuestas</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Encuesta</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Encuesta a la que estará asociada la acción.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Encuestas</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Campañas / Sensores</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Campañas o sensores específicos a asociar (opcional).</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Encuestas</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Filtros de datos extras</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Filtros adicionales sobre la base de datos del encuestado.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Condiciones</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Tipo condición</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Define la lógica que activa la alerta.</td></tr>
+  <tr><td style="padding:10px">Destinatarios</td><td style="padding:10px">Usuarios</td><td style="padding:10px">Usuarios de QServus que recibirán la notificación.</td></tr>
+</table>
 
 <div class="img-wrap">
-  <img src="URL_CDN_FIGURA_8_9" alt="Notificación de correo de una alerta personalizada">
-  <div class="img-caption">Figura 8.9 — Ejemplo de correo de notificación personalizada</div>
-</div>
-
-<div class="callout tip">
-  <span class="callout-icon">💡</span>
-  <div>Las alertas personalizadas se integran con el módulo de <a href="#" onclick="loadArticle('que-es-seguimiento');return false;">Seguimiento</a>, donde los encargados y supervisores gestionan los casos abiertos.</div>
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage176.png" alt="Vista de alerta personalizada configurada">
+  <div class="img-caption">Figura 2 — Alerta personalizada configurada.</div>
 </div>

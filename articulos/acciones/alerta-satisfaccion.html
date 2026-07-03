@@ -1,36 +1,25 @@
-<!-- {"title":"Alerta de satisfacción e insatisfacción","lead":"Configura alertas que se disparan automáticamente cuando se acumula una cantidad definida de notas positivas o negativas en una pregunta específica.","updated":"2026"} -->
+<!-- {"title":"Alerta de satisfacción/insatisfacción","lead":"Configura alertas automáticas que se disparan al acumularse respuestas positivas o negativas en una pregunta.","updated":"2026"} -->
 
 <h2>¿Cómo funciona?</h2>
-<p>La alerta de satisfacción se activa cuando se acumula una cantidad configurada de notas positivas en una pregunta específica durante un período determinado. La alerta de insatisfacción funciona de la misma forma, pero con notas negativas. Son útiles para detectar tendencias y notificar al equipo cuando se supera un umbral definido.</p>
+<p>La alerta de satisfacción se dispara cuando se acumula una cierta cantidad de notas <strong>positivas</strong> en una pregunta específica dentro de un período determinado (en horas). La alerta de insatisfacción funciona igual pero con notas <strong>negativas</strong>. Al cumplirse la condición, se notifica a los destinatarios configurados.</p>
 
-<h2>Crear una alerta</h2>
-<p>En la lista de notificaciones de satisfacción o insatisfacción, selecciona el ícono para crear una nueva acción. Completa el formulario con la siguiente información:</p>
+<h2>Configuración</h2>
+<p>En la lista de notificaciones, haz clic en el ícono de nueva acción y completa el formulario:</p>
 
-<div class="steps">
-  <div class="step">
-    <div class="step-num">1</div>
-    <div class="step-body">
-      <h4>Selecciona la pregunta</h4>
-      <p>Define qué pregunta de la encuesta activará la alerta al acumular notas positivas o negativas.</p>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num">2</div>
-    <div class="step-body">
-      <h4>Define el umbral de acumulación</h4>
-      <p>Indica cuántas respuestas positivas o negativas deben acumularse para que se envíe la alerta.</p>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num">3</div>
-    <div class="step-body">
-      <h4>Configura los destinatarios</h4>
-      <p>Agrega los correos de los usuarios que recibirán la notificación cuando se active la alerta.</p>
-    </div>
-  </div>
+<div class="img-wrap" style="max-width:700px">
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage94.png" alt="Formulario de configuración de alerta de satisfacción">
+  <div class="img-caption">Figura 1 — Formulario de configuración de alerta de satisfacción/insatisfacción.</div>
 </div>
 
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_8_7" alt="Formulario de configuración alerta de satisfacción/insatisfacción">
-  <div class="img-caption">Figura 8.7 — Formulario de configuración de alerta de satisfacción/insatisfacción</div>
-</div>
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Campo</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Obligatorio</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Tipo</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sensor o campaña.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Encuesta</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Encuesta asociada a la acción.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Pregunta</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Pregunta que se evaluará para gatillar la alerta.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Intervalo (horas)</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Período en horas desde la primera respuesta para acumular notas.</td></tr>
+  <tr><td style="padding:10px">Destinatarios</td><td style="padding:10px">Sí</td><td style="padding:10px">Usuarios de QServus que recibirán la notificación.</td></tr>
+</table>

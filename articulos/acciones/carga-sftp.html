@@ -1,36 +1,17 @@
-<!-- {"title":"Carga de respuestas a SFTP","lead":"Acción que transfiere automáticamente las respuestas recibidas a un servidor SFTP externo, permitiendo integración con sistemas propios de la organización.","updated":"2026"} -->
+<!-- {"title":"Carga de respuestas a SFTP","lead":"Envía automáticamente las respuestas de la encuesta a un servidor SFTP cada vez que se recibe una respuesta.","updated":"2026"} -->
 
 <h2>¿Cómo funciona?</h2>
-<p>Esta acción permite enviar automáticamente las respuestas de la encuesta a un servidor SFTP configurado por tu organización. Es útil para integraciones con sistemas internos que requieren recibir los datos de forma estructurada y automatizada.</p>
+<p>Esta acción envía las respuestas de la encuesta de forma automática a un servidor SFTP configurado, cada vez que un encuestado completa la encuesta. Es ideal para integraciones con sistemas externos que procesan los datos de satisfacción.</p>
 
-<h2>Configurar la acción</h2>
-<p>Para crear una acción de carga a SFTP, selecciona el ícono de creación en la lista y completa el formulario con los datos del servidor SFTP de destino:</p>
-
-<div class="steps">
-  <div class="step">
-    <div class="step-num">1</div>
-    <div class="step-body">
-      <h4>Nombre de la acción</h4>
-      <p>Asigna un nombre identificador para esta configuración.</p>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num">2</div>
-    <div class="step-body">
-      <h4>Datos del servidor SFTP</h4>
-      <p>Ingresa el host, puerto, usuario y contraseña del servidor SFTP al que se enviarán las respuestas.</p>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num">3</div>
-    <div class="step-body">
-      <h4>Ruta de destino</h4>
-      <p>Define el directorio del servidor donde se depositarán los archivos de respuestas.</p>
-    </div>
-  </div>
-</div>
+<h2>Configuración</h2>
+<p>Crea una nueva acción de tipo SFTP y completa el formulario con los datos de conexión y credenciales del servidor destino.</p>
 
 <div class="img-wrap">
-  <img src="URL_CDN_FIGURA_8_21" alt="Formulario de configuración de carga de respuestas SFTP">
-  <div class="img-caption">Figura 8.21 — Formulario de configuración de carga a SFTP</div>
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage110.png" alt="Formulario de configuración de carga SFTP">
+  <div class="img-caption">Figura 1 — Formulario de configuración de carga de respuestas a SFTP.</div>
+</div>
+
+<div class="callout info">
+  <span class="callout-icon">ℹ️</span>
+  <div>Para configurar esta acción necesitas los datos de acceso al servidor SFTP: host, puerto, usuario y contraseña o llave SSH.</div>
 </div>
