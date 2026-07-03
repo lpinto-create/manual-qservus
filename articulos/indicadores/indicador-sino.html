@@ -1,0 +1,90 @@
+<!-- {"title":"Indicador de Sí/No","lead":"Visualiza los resultados de preguntas tipo Sí/No en gráficos de barras o columna, con soporte para métricas netas y ponderación personalizada.","updated":"2026"} -->
+
+<style>
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 24px 0; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-btn { width: 100%; text-align: left; padding: 14px 18px; font-size: 14px; font-weight: 600; color: var(--text); background: var(--bg-2); cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--font); }
+.accordion-btn:hover { background: var(--bg-3); }
+.accordion-btn .acc-arrow { transition: transform .2s; font-size: 12px; color: var(--text-3); }
+.accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; padding: 20px 18px; background: var(--bg-2); border-top: 1px solid var(--border-2); }
+.accordion-body.open { display: block; }
+.accordion-body h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+.accordion-body h4:first-child { margin-top: 0; }
+.accordion-body .img-wrap { margin: 12px 0; }
+</style>
+
+<h2>¿Qué es el indicador de Sí/No?</h2>
+<p>El indicador de Sí/No se usa exclusivamente con preguntas de tipo <strong>Sí/No</strong>. Permite visualizar la distribución de respuestas y su evolución en el tiempo, con soporte para métricas netas y ponderación personalizada.</p>
+
+<h2>Configuración</h2>
+
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Campo</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Nombre del indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Nombre con el que se identificará el indicador en el tablero.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Ancho del indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Espacio que ocupará en el tablero: Estándar (12:4), Mitad horizontal (12:6), Doble en horizontal (12:8), Triple en horizontal (12:12).</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Métrica</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Neto</strong> — diferencia entre respuestas Sí y No sobre el total.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Tipo de indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Evolutivo, Abierto por datos extras, Abierto por pregunta, Abierto por pregunta (evolutivo), Abierto por pregunta y datos extras.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Tipo de gráfico</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Barras o columna, según el tipo de indicador seleccionado.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Agrupar fecha por</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Granularidad temporal del eje cuando se usa tipo Evolutivo: día, semana, mes, etc.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Filtrar por dato extra</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Filtra los resultados según un dato extra del encuestado.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Valores datos extra</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Valores específicos del dato extra por los que filtrar.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Mostrar como recomendación</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Muestra el indicador en formato de recomendación (Sí = Promotor, No = Detractor).</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Mostrar etiqueta de número de respuestas</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Muestra el conteo de respuestas como etiqueta sobre el gráfico.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Ponderado personalizado</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Permite asignar pesos distintos a las respuestas Sí y No para calcular métricas ponderadas.</td></tr>
+  <tr><td style="padding:10px"><strong>Preguntas agregadas</strong></td><td style="padding:10px">Lista de preguntas Sí/No incluidas en el indicador con su encuesta, alias, filtros y estado.</td></tr>
+</table>
+
+<h2>Tipos de gráfico disponibles</h2>
+
+<div class="accordion">
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      ▬ Gráfico de barras <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Muestra la distribución de respuestas Sí y No en barras horizontales. Disponible en tipo <strong>Acumulado</strong> y <strong>Abierto por pregunta</strong>.</p>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage178.png" alt="Gráfico de barras Sí/No">
+        <div class="img-caption">Figura 1 — Gráfico de barras para preguntas Sí/No.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      🥧 Gráfico de torta <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Muestra la proporción de respuestas Sí y No en formato circular. Disponible en tipo <strong>Acumulado</strong>.</p>
+      <div class="img-wrap" style="max-width:700px">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage155.png" alt="Gráfico de torta Sí/No">
+        <div class="img-caption">Figura 2 — Gráfico de torta para respuestas Sí/No.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      📊 Gráfico de columna <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Muestra la evolución de las respuestas Sí y No agrupadas por período de tiempo. Disponible en tipo <strong>Evolutivo</strong>.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage3.png" alt="Gráfico de columna Sí/No evolutivo">
+        <div class="img-caption">Figura 3 — Gráfico de columna evolutivo para Sí/No.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Usa <strong>Ponderado personalizado</strong> cuando las respuestas Sí y No tienen distinto peso en tu negocio. Por ejemplo, si "Sí" implica una acción de seguimiento, puedes darle mayor ponderación en el cálculo neto.</div>
+</div>

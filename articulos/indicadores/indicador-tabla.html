@@ -1,0 +1,64 @@
+<!-- {"title":"Indicador de tabla","lead":"Visualiza las respuestas de tus encuestas en formato de tabla dinámica o tabla de respuestas directas.","updated":"2026"} -->
+
+<style>
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 24px 0; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-btn { width: 100%; text-align: left; padding: 14px 18px; font-size: 14px; font-weight: 600; color: var(--text); background: var(--bg-2); cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--font); }
+.accordion-btn:hover { background: var(--bg-3); }
+.accordion-btn .acc-arrow { transition: transform .2s; font-size: 12px; color: var(--text-3); }
+.accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; padding: 20px 18px; background: var(--bg-2); border-top: 1px solid var(--border-2); }
+.accordion-body.open { display: block; }
+.accordion-body h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+.accordion-body h4:first-child { margin-top: 0; }
+.accordion-body .img-wrap { margin: 12px 0; }
+</style>
+
+<h2>¿Qué es el indicador de tabla?</h2>
+<p>El indicador de tabla permite visualizar los datos de las encuestas en formato tabular. Es especialmente útil cuando se necesita ver el detalle de respuestas individuales o cruzar múltiples preguntas en una vista consolidada.</p>
+
+<h2>Configuración</h2>
+
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Campo</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Nombre del indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Nombre con el que se identificará el indicador en el tablero.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Ancho del indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Espacio que ocupará en el tablero: Estándar (12:4), Mitad horizontal (12:6), Doble en horizontal (12:8), Triple en horizontal (12:12).</td></tr>
+  <tr><td style="padding:10px"><strong>Tipo de gráfico</strong></td><td style="padding:10px">Define el formato de la tabla: <strong>Tabla Dinámica</strong> o <strong>Tabla de respuestas</strong>.</td></tr>
+</table>
+
+<h2>Tipos de tabla disponibles</h2>
+
+<div class="accordion">
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      🔲 Tabla Dinámica <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Combina múltiples preguntas en columnas para un análisis consolidado. Permite cruzar variables y obtener una vista estructurada de los datos, similar a una tabla dinámica de Excel. Ideal para análisis comparativos entre preguntas o segmentos.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage2.png" alt="Tabla dinámica">
+        <div class="img-caption">Figura 1 — Indicador de tabla dinámica (doble entrada).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      📋 Tabla de respuestas <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Muestra el detalle de las respuestas individuales en formato de tabla, donde cada fila es una respuesta y cada columna es una pregunta o dato del encuestado. Útil para revisión directa de respuestas sin necesidad de descargar un reporte.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>La <strong>Tabla Dinámica</strong> es ideal para análisis ejecutivo y presentaciones. La <strong>Tabla de respuestas</strong> es más útil para el equipo operativo que necesita revisar respuestas individuales en tiempo real.</div>
+</div>

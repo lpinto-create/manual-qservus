@@ -1,0 +1,72 @@
+<!-- {"title":"Indicador de matriz de doble entrada","lead":"Visualiza los resultados de preguntas de matriz de doble entrada en gráficos de barras o columna.","updated":"2026"} -->
+
+<style>
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 24px 0; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-btn { width: 100%; text-align: left; padding: 14px 18px; font-size: 14px; font-weight: 600; color: var(--text); background: var(--bg-2); cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--font); }
+.accordion-btn:hover { background: var(--bg-3); }
+.accordion-btn .acc-arrow { transition: transform .2s; font-size: 12px; color: var(--text-3); }
+.accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; padding: 20px 18px; background: var(--bg-2); border-top: 1px solid var(--border-2); }
+.accordion-body.open { display: block; }
+.accordion-body h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+.accordion-body h4:first-child { margin-top: 0; }
+.accordion-body .img-wrap { margin: 12px 0; }
+</style>
+
+<h2>¿Qué es el indicador de matriz de doble entrada?</h2>
+<p>El indicador de matriz de doble entrada se usa exclusivamente con <strong>preguntas de tipo matriz</strong>. Permite visualizar simultáneamente los resultados de múltiples ítems evaluados en una misma escala, comparando las distribuciones de respuesta entre ellos.</p>
+
+<h2>Configuración</h2>
+
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Campo</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Nombre del indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Nombre con el que se identificará el indicador en el tablero.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Ancho del indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Espacio que ocupará en el tablero: Estándar (12:4), Mitad horizontal (12:6), Doble en horizontal (12:8), Triple en horizontal (12:12).</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Métrica</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Porcentaje — muestra la proporción de cada respuesta sobre el total por ítem.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Tipo de indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Acumulado o Evolutivo.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Tipo de gráfico</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Barras o columna según el tipo de indicador seleccionado.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Mostrar etiqueta de número de respuestas</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Muestra el conteo de respuestas como etiqueta sobre cada barra o columna.</td></tr>
+  <tr><td style="padding:10px"><strong>Preguntas agregadas</strong></td><td style="padding:10px">Lista de preguntas de matriz incluidas en el indicador con su encuesta, alias, filtros y estado.</td></tr>
+</table>
+
+<h2>Tipos de gráfico disponibles</h2>
+
+<div class="accordion">
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      ▬ Gráfico de barras <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Muestra cada ítem de la matriz como una barra horizontal, con la distribución de respuestas apilada o agrupada. Permite comparar rápidamente el desempeño entre múltiples ítems. Disponible en tipo <strong>Acumulado</strong>.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage18.png" alt="Gráfico de barras matriz de doble entrada">
+        <div class="img-caption">Figura 1 — Gráfico de barras para matriz de doble entrada.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      📊 Gráfico de columna <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Muestra cada ítem de la matriz como columnas verticales agrupadas por período. Ideal para ver la evolución de los ítems en el tiempo. Disponible en tipo <strong>Evolutivo</strong>.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage3.png" alt="Gráfico de columna matriz evolutivo">
+        <div class="img-caption">Figura 2 — Gráfico de columna evolutivo para matriz de doble entrada.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="callout info">
+  <span class="callout-icon">ℹ️</span>
+  <div>Este indicador solo está disponible para preguntas creadas como <a href="#" onclick="loadArticle('tipos-matrices');return false;">matriz de escala</a>. No aplica para preguntas de selección múltiple ni escalas individuales.</div>
+</div>

@@ -1,0 +1,86 @@
+<!-- {"title":"Indicador de analítica avanzada","lead":"Analiza respuestas de texto multilínea con inteligencia artificial para identificar temas, sentimientos y categorías automáticamente.","updated":"2026"} -->
+
+<style>
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 24px 0; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-btn { width: 100%; text-align: left; padding: 14px 18px; font-size: 14px; font-weight: 600; color: var(--text); background: var(--bg-2); cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--font); }
+.accordion-btn:hover { background: var(--bg-3); }
+.accordion-btn .acc-arrow { transition: transform .2s; font-size: 12px; color: var(--text-3); }
+.accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; padding: 20px 18px; background: var(--bg-2); border-top: 1px solid var(--border-2); }
+.accordion-body.open { display: block; }
+.accordion-body h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+.accordion-body h4:first-child { margin-top: 0; }
+.accordion-body .img-wrap { margin: 12px 0; }
+</style>
+
+<h2>¿Qué es el indicador de analítica avanzada?</h2>
+<p>El indicador de analítica avanzada usa inteligencia artificial para procesar y analizar automáticamente las respuestas de preguntas de <strong>texto multilínea</strong>. Va más allá de la nube de palabras: categoriza, identifica sentimientos y extrae insights accionables sin revisión manual.</p>
+
+<div class="callout info">
+  <span class="callout-icon">ℹ️</span>
+  <div>Este indicador está disponible <strong>solo para preguntas de texto multilínea</strong>. Las capacidades disponibles dependen del plan contratado. Consulta con el equipo de QServus para conocer las funcionalidades disponibles en tu organización.</div>
+</div>
+
+<h2>Configuración</h2>
+
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Campo</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Nombre del indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Nombre con el que se identificará el indicador en el tablero.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Tipo de indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Define el modo de análisis: acumulado, evolutivo u otros según configuración.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Métrica</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Define qué aspecto del análisis se visualiza: sentimiento, categorías, temas, etc.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Tipo de gráfico</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Varía según la métrica seleccionada.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Ancho del indicador</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Espacio que ocupará en el tablero: Estándar (12:4), Mitad horizontal (12:6), Doble en horizontal (12:8), Triple en horizontal (12:12).</td></tr>
+  <tr><td style="padding:10px"><strong>Preguntas agregadas</strong></td><td style="padding:10px">Preguntas de texto multilínea incluidas en el indicador.</td></tr>
+</table>
+
+<h2>Capacidades de análisis</h2>
+
+<div class="accordion">
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      😊 Análisis de sentimiento <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Clasifica cada respuesta de texto automáticamente como <strong>positiva</strong>, <strong>neutra</strong> o <strong>negativa</strong> según el contenido del comentario, sin necesidad de revisión manual.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      🏷️ Categorización automática <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Agrupa los comentarios en temas o categorías identificadas automáticamente por el modelo de IA, destacando los focos de atención más frecuentes en el feedback de los clientes.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      📈 Detección de tendencias <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Identifica cómo evolucionan los temas y sentimientos en el tiempo, permitiendo detectar cambios en la percepción de los clientes entre períodos.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      📝 Resúmenes automáticos <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Genera resúmenes ejecutivos de grandes volúmenes de respuestas, sintetizando los puntos más relevantes del feedback sin necesidad de leer cada respuesta individualmente.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Para análisis de texto simple (sin IA), usa el <a href="#" onclick="loadArticle('indicador-texto');return false;">Indicador de texto</a> con nube de palabras. Para el análisis profundo con IA, este indicador es la opción correcta.</div>
+</div>

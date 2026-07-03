@@ -1,19 +1,42 @@
-<!-- {"title":"Text Analytics","lead":"Text Analytics analiza automáticamente las respuestas de texto abierto para extraer categorías, sentimientos y patrones sin revisión manual.","updated":"2026"} -->
+<!-- {"title":"Text Analytics","lead":"Analiza automáticamente las respuestas de texto abierto para identificar temas, sentimientos y tendencias en los comentarios de tus clientes.","updated":"2026"} -->
 
 <h2>¿Qué es Text Analytics?</h2>
-<p>Text Analytics es la funcionalidad de QServus que procesa las respuestas de texto abierto (preguntas de texto simple o multilínea) usando procesamiento de lenguaje natural (NLP) para extraer información estructurada de las respuestas no estructuradas de los clientes.</p>
+<p>Text Analytics es la herramienta de QServus que utiliza procesamiento de lenguaje natural (NLP) e inteligencia artificial para analizar de forma automática las respuestas de texto abierto de tus encuestas. Transforma comentarios no estructurados en información organizada y accionable.</p>
 
-<h2>¿Qué analiza?</h2>
-<ul>
-  <li><strong>Sentimiento</strong>: clasifica cada respuesta como positiva, neutral o negativa.</li>
-  <li><strong>Categorías o temas</strong>: agrupa respuestas bajo temas recurrentes (atención, precio, tiempo de espera, etc.).</li>
-  <li><strong>Palabras clave</strong>: identifica los términos más frecuentes y relevantes en el conjunto de respuestas.</li>
+<h2>¿Para qué sirve?</h2>
+<p>Cuando tienes cientos o miles de respuestas de texto, leerlas una a una es inviable. Text Analytics permite:</p>
+
+<ul style="margin:12px 0 12px 24px;line-height:1.9">
+  <li><strong>Clasificar el sentimiento</strong> de cada respuesta como positivo, neutro o negativo.</li>
+  <li><strong>Agrupar comentarios por temas</strong> recurrentes (ej. "tiempo de espera", "atención del personal", "precio").</li>
+  <li><strong>Identificar las palabras y frases más frecuentes</strong> en el feedback de los clientes.</li>
+  <li><strong>Detectar tendencias en el tiempo</strong>, viendo cómo cambia el sentimiento o los temas mencionados entre períodos.</li>
+  <li><strong>Correlacionar el texto con la nota</strong>, para entender qué comentan los clientes insatisfechos vs. los satisfechos.</li>
 </ul>
 
-<h2>Ventajas</h2>
-<p>Permite analizar miles de respuestas de texto en segundos, sin que el equipo tenga que leer y clasificar cada una manualmente. Esto facilita detectar problemas recurrentes, oportunidades de mejora y cambios en la percepción del cliente a lo largo del tiempo.</p>
+<h2>¿Cómo funciona?</h2>
+<p>Text Analytics procesa automáticamente las respuestas de las preguntas de texto abierto (texto simple y multilínea) de tus encuestas activas. No requiere configuración adicional — el análisis se ejecuta sobre las respuestas ya recopiladas.</p>
 
 <div class="callout info">
   <span class="callout-icon">ℹ️</span>
-  <div>Text Analytics complementa la <a href="#" onclick="loadArticle('nube-palabras');return false;">nube de palabras</a> con análisis de mayor profundidad. La disponibilidad de esta funcionalidad depende del plan contratado.</div>
+  <div>Text Analytics está disponible para preguntas de tipo <strong>texto simple</strong> y <strong>texto multilínea</strong>. Para obtener mejores resultados, asegúrate de que las preguntas inviten a respuestas descriptivas y no solo de una palabra.</div>
+</div>
+
+<h2>Interpretación de resultados</h2>
+
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Elemento</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sentimiento positivo</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Comentarios que expresan satisfacción, elogio o experiencias favorables.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sentimiento neutro</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Comentarios descriptivos sin carga emocional clara.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sentimiento negativo</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Comentarios que expresan insatisfacción, quejas o experiencias desfavorables.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Temas detectados</td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Categorías temáticas identificadas automáticamente en los comentarios.</td></tr>
+  <tr><td style="padding:10px">Nube de palabras</td><td style="padding:10px">Visualización de las palabras más frecuentes, donde el tamaño refleja la frecuencia de aparición.</td></tr>
+</table>
+
+<div class="callout tip">
+  <span class="callout-icon">💡</span>
+  <div>Combina Text Analytics con los <a href="#" onclick="loadArticle('analitica-avanzada-ia');return false;">indicadores de IA</a> para obtener una visión completa: los números te dicen cuánto, el texto te dice por qué.</div>
 </div>
