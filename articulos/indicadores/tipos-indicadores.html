@@ -1,44 +1,33 @@
-<!-- {"title":"Tipos de indicadores","lead":"Conoce los seis tipos de indicadores disponibles en QServus y con qué tipo de pregunta se asocia cada uno.","updated":"2026"} -->
+<!-- {"title":"Tipos de indicadores","lead":"QServus ofrece distintos tipos de indicadores organizados en dos grupos: datos de respuestas y datos operacionales.","updated":"2026"} -->
 
 <h2>¿Qué tipos de indicadores existen?</h2>
-<p>En QServus cada tipo de indicador está relacionado con un tipo de pregunta específico. A continuación se describe cada uno.</p>
+<p>Al crear un nuevo indicador en un tablero, puedes elegir entre dos grupos según la fuente de datos.</p>
+
+<h2>Desde Datos de respuestas</h2>
 
 <table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
   <tr style="background:var(--bg-2)">
     <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Tipo</th>
     <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Pregunta asociada</th>
-    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Gráficos disponibles</th>
   </tr>
-  <tr>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de escala</strong></td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Escalas de caras, estrellas o números (1-3, 1-5, 1-7, 1-10, 0-10). Puede ser acumulado, evolutivo o abierto.</td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Nota, barra, comparativo, columnas, líneas.</td>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de escala</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Escalas de caras, estrellas o números (1-3, 1-5, 1-7, 1-10 y 0-10).</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de alternativas</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Selección con respuesta única, múltiple o tipo lista.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de texto</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Texto simple o multilínea.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de Sí/No</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Solo para preguntas tipo Sí/No.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de matriz de doble entrada</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Solo para preguntas de matriz de doble entrada.</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de tabla</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Tablas dinámicas y tabla de respuestas.</td></tr>
+  <tr><td style="padding:10px"><strong>Indicador de analítica avanzada</strong></td><td style="padding:10px">Solo para texto multilínea. Usa IA para analizar sentimiento y categorizar respuestas.</td></tr>
+</table>
+
+<h2>Desde Datos operacionales</h2>
+
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Tipo</th>
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Descripción</th>
   </tr>
-  <tr>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de alternativas</strong></td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Selección única, múltiple o tipo lista. Puede ser acumulado o evolutivo.</td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Barra, torta, columna.</td>
-  </tr>
-  <tr>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de texto</strong></td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Texto simple o multilínea. Puede ser acumulado o evolutivo.</td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Nube de palabras.</td>
-  </tr>
-  <tr>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador Sí/No</strong></td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Preguntas de tipo Sí/No. Puede ser evolutivo, abierto por pregunta o abierto por datos extras.</td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Barra, columna.</td>
-  </tr>
-  <tr>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de matriz de doble entrada</strong></td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Preguntas de matriz de doble entrada. Puede ser evolutivo.</td>
-    <td style="padding:10px;border-bottom:1px solid var(--border-2)">Columna, barra.</td>
-  </tr>
-  <tr>
-    <td style="padding:10px"><strong>Indicador de tabla dinámica</strong></td>
-    <td style="padding:10px">Respuestas Sí/No. Puede ser evolutivo, abierto por pregunta o abierto por datos extras.</td>
-    <td style="padding:10px">Barra, columna.</td>
-  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)"><strong>Indicador de API</strong></td><td style="padding:10px;border-bottom:1px solid var(--border-2)">Indicador alimentado con datos externos enviados mediante la API de QServus.</td></tr>
+  <tr><td style="padding:10px"><strong>Indicador de métricas</strong></td><td style="padding:10px">Muestra información de participación en encuestas y estadísticas de envíos.</td></tr>
 </table>
 
 <div class="callout tip">
