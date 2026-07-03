@@ -6,7 +6,6 @@
 <title>QServus — Centro de Ayuda</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Mono:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* ── TOKENS — Apple Grayscale ────────────────────────────── */
   :root {
     --bg:         #f5f5f7;
     --bg-2:       #ffffff;
@@ -28,559 +27,199 @@
     --font:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --mono:       'DM Mono', 'SF Mono', monospace;
   }
-
-  /* ── RESET ──────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-    font-size: 15px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   button { cursor: pointer; font-family: var(--font); border: none; background: none; }
   input { font-family: var(--font); }
   ul, ol { list-style: none; }
 
-  /* ── TOPBAR ─────────────────────────────────────────────── */
-  #topbar {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    height: var(--topbar-h);
-    background: rgba(245,245,247,.88);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--border-2);
-    display: flex; align-items: center; gap: 16px;
-    padding: 0 20px;
-  }
-  #menu-toggle {
-    display: none;
-    width: 36px; height: 36px;
-    align-items: center; justify-content: center;
-    border-radius: 8px; color: var(--text-2);
-    transition: background .15s, color .15s;
-  }
+  /* TOPBAR */
+  #topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--topbar-h); background: rgba(245,245,247,.88); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border-2); display: flex; align-items: center; gap: 16px; padding: 0 20px; }
+  #menu-toggle { display: none; width: 36px; height: 36px; align-items: center; justify-content: center; border-radius: 8px; color: var(--text-2); transition: background .15s, color .15s; }
   #menu-toggle:hover { background: var(--bg-3); color: var(--text); }
-  .logo {
-    display: flex; align-items: center; gap: 10px;
-    font-weight: 700; font-size: 17px; letter-spacing: -.4px;
-    color: var(--text); white-space: nowrap;
-  }
-  .logo-icon {
-    width: 30px; height: 30px; border-radius: 7px;
-    background: var(--text);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 800; color: #fff;
-    flex-shrink: 0; letter-spacing: -.5px;
-  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: -.4px; color: var(--text); white-space: nowrap; }
+  .logo-icon { width: 30px; height: 30px; border-radius: 7px; background: var(--text); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #fff; flex-shrink: 0; letter-spacing: -.5px; }
   .logo span { color: var(--text-2); font-weight: 400; font-size: 15px; }
   .topbar-divider { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
-
-  /* Search */
-  #search-wrap {
-    flex: 1; max-width: 480px;
-    position: relative;
-  }
-  #search-icon {
-    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-    color: var(--text-3); pointer-events: none;
-  }
-  #search-input {
-    width: 100%; height: 34px;
-    background: var(--bg-3);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    padding: 0 12px 0 34px;
-    font-size: 13.5px;
-    transition: border-color .2s, box-shadow .2s;
-    outline: none;
-  }
+  #search-wrap { flex: 1; max-width: 480px; position: relative; }
+  #search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-3); pointer-events: none; }
+  #search-input { width: 100%; height: 34px; background: var(--bg-3); border: 1px solid var(--border); border-radius: 8px; color: var(--text); padding: 0 12px 0 34px; font-size: 13.5px; transition: border-color .2s, box-shadow .2s; outline: none; }
   #search-input::placeholder { color: var(--text-3); }
-  #search-input:focus {
-    border-color: var(--text-3);
-    background: var(--bg-2);
-    box-shadow: 0 0 0 3px var(--accent-dim);
-  }
-  #search-clear {
-    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-    color: var(--text-3); display: none; padding: 2px;
-    border-radius: 4px; font-size: 14px; line-height: 1;
-  }
+  #search-input:focus { border-color: var(--text-3); background: var(--bg-2); box-shadow: 0 0 0 3px var(--accent-dim); }
+  #search-clear { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--text-3); display: none; padding: 2px; border-radius: 4px; font-size: 14px; line-height: 1; }
   #search-clear:hover { color: var(--text); background: var(--bg-2); }
-
-  /* Search results dropdown */
-  #search-results {
-    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
-    background: var(--bg-2); border: 1px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
-    display: none; z-index: 300;
-    max-height: 380px; overflow-y: auto;
-  }
+  #search-results { position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06); display: none; z-index: 300; max-height: 380px; overflow-y: auto; }
   #search-results.visible { display: block; }
   .sr-section { padding: 6px 0; border-bottom: 1px solid var(--border-2); }
   .sr-section:last-child { border-bottom: none; }
-  .sr-label { padding: 6px 14px 4px; font-size: 10.5px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); }
-  .sr-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 8px 14px; cursor: pointer;
-    transition: background .1s;
-  }
+  .sr-label { padding: 6px 14px 4px; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); }
+  .sr-item { display: flex; align-items: center; gap: 10px; padding: 8px 14px; cursor: pointer; transition: background .1s; }
   .sr-item:hover, .sr-item.active { background: var(--bg-3); }
   .sr-item-icon { color: var(--text-2); font-size: 13px; flex-shrink: 0; }
   .sr-item-icon img { width: 14px; height: 14px; object-fit: contain; vertical-align: middle; }
   .sr-item-title { font-size: 13.5px; font-weight: 500; color: var(--text); }
-  .sr-item-crumb { font-size: 11.5px; color: var(--text-2); margin-top: 1px; }
   .sr-item-mark { background: #ffe066; color: var(--text); border-radius: 2px; padding: 0 2px; }
   .sr-empty { padding: 20px 14px; color: var(--text-2); font-size: 13.5px; text-align: center; }
-
-  /* Topbar right */
   .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-  .version-badge {
-    font-size: 11px; font-family: var(--mono);
-    background: var(--bg-3); color: var(--text-2);
-    border: 1px solid var(--border);
-    border-radius: 20px; padding: 2px 10px;
-    letter-spacing: .3px;
-  }
+  .version-badge { font-size: 11px; font-family: var(--mono); background: var(--bg-3); color: var(--text-2); border: 1px solid var(--border); border-radius: 20px; padding: 2px 10px; letter-spacing: .3px; }
 
-  /* ── LAYOUT ─────────────────────────────────────────────── */
-  #layout {
-    display: flex;
-    padding-top: var(--topbar-h);
-    min-height: 100vh;
-  }
+  /* LAYOUT */
+  #layout { display: flex; padding-top: var(--topbar-h); min-height: 100vh; }
 
-  /* ── SIDEBAR ────────────────────────────────────────────── */
-  #sidebar {
-    position: fixed; top: var(--topbar-h); left: 0; bottom: 0;
-    width: var(--sidebar-w);
-    background: var(--bg-2);
-    border-right: 1px solid var(--border-2);
-    overflow-y: auto; overflow-x: hidden;
-    z-index: 100;
-    transition: transform .25s cubic-bezier(.4,0,.2,1);
-    scrollbar-width: thin; scrollbar-color: var(--border-2) transparent;
-  }
+  /* SIDEBAR */
+  #sidebar { position: fixed; top: var(--topbar-h); left: 0; bottom: 0; width: var(--sidebar-w); background: var(--bg-2); border-right: 1px solid var(--border-2); overflow-y: auto; overflow-x: hidden; z-index: 100; transition: transform .25s cubic-bezier(.4,0,.2,1); scrollbar-width: thin; scrollbar-color: var(--border-2) transparent; }
   #sidebar::-webkit-scrollbar { width: 4px; }
   #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-
   .sidebar-inner { padding: 16px 0 40px; }
 
   /* Nav group */
   .nav-group { margin-bottom: 2px; }
-  .nav-group-btn {
-    width: 100%; display: flex; align-items: center; gap: 9px;
-    padding: 8px 14px; color: var(--text-2);
-    font-size: 11.5px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: .8px;
-    transition: color .15s; border-radius: 8px;
-  }
+  .nav-group-btn { width: 100%; display: flex; align-items: center; gap: 9px; padding: 8px 14px; color: var(--text-2); font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; transition: color .15s; border-radius: 8px; }
   .nav-group-btn:hover { color: var(--text); background: var(--bg-3); }
-  .logo-icon img { width: 22px; height: 22px; max-width: 22px; max-height: 22px; object-fit: contain; display: block; flex-shrink: 0; }
   .nav-group-icon { font-size: 14px; flex-shrink: 0; width: 18px; text-align: center; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .nav-svg-icon { width: 16px; height: 16px; min-width: 16px; max-width: 16px; min-height: 16px; max-height: 16px; object-fit: contain; display: block; }
-  .qs-icon { overflow: hidden; }
-  .qs-icon .nav-svg-icon { width: 20px; height: 20px; min-width: 20px; max-width: 20px; min-height: 20px; max-height: 20px; }
-  .sr-item-icon .nav-svg-icon { width: 14px; height: 14px; min-width: 14px; max-width: 14px; min-height: 14px; max-height: 14px; vertical-align: middle; }
   .nav-group-label { flex: 1; text-align: left; }
-  .nav-group-chevron {
-    font-size: 10px; color: var(--text-3);
-    transition: transform .2s;
-  }
+  .nav-group-chevron { font-size: 10px; color: var(--text-3); transition: transform .2s; }
   .nav-group.open .nav-group-chevron { transform: rotate(90deg); }
   .nav-group.open .nav-group-btn { color: var(--text); }
+  .nav-items { overflow: hidden; max-height: 0; transition: max-height .3s cubic-bezier(.4,0,.2,1); }
+  .nav-group.open .nav-items { max-height: 2000px; }
+
+  /* Sub-groups */
+  .nav-subgroup { margin: 2px 0; }
+  .nav-subgroup-btn { width: 100%; display: flex; align-items: center; gap: 6px; padding: 5px 14px 5px 32px; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .7px; color: var(--text-3); cursor: pointer; border-radius: 6px; transition: color .15s, background .15s; font-family: var(--font); }
+  .nav-subgroup-btn:hover { color: var(--text-2); background: var(--bg-3); }
+  .nav-subgroup.open .nav-subgroup-btn { color: var(--text-2); }
+  .nav-subgroup-chevron { font-size: 9px; transition: transform .2s; margin-left: auto; }
+  .nav-subgroup.open .nav-subgroup-chevron { transform: rotate(90deg); }
+  .nav-subitems { overflow: hidden; max-height: 0; transition: max-height .25s cubic-bezier(.4,0,.2,1); }
+  .nav-subgroup.open .nav-subitems { max-height: 600px; }
 
   /* Nav items */
-  .nav-items {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height .3s cubic-bezier(.4,0,.2,1);
-  }
-  .nav-group.open .nav-items { max-height: 800px; }
-  .nav-item {
-    display: flex; align-items: center; gap: 8px;
-    padding: 6px 14px 6px 40px;
-    font-size: 13px; color: var(--text-2);
-    cursor: pointer; border-radius: 8px; margin: 1px 6px;
-    transition: color .12s, background .12s;
-    position: relative;
-  }
+  .nav-item { display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 40px; font-size: 13px; color: var(--text-2); cursor: pointer; border-radius: 8px; margin: 1px 6px; transition: color .12s, background .12s; position: relative; }
+  .nav-item.sub { padding-left: 48px; }
   .nav-item:hover { color: var(--text); background: var(--bg-3); }
-  .nav-item.active {
-    color: var(--text); background: var(--bg-3);
-    font-weight: 500;
-  }
-  .nav-item.active::after {
-    content: ''; position: absolute; left: 18px; top: 50%;
-    transform: translateY(-50%);
-    width: 3px; height: 16px; border-radius: 2px;
-    background: var(--text);
-  }
-  .nav-item-dot {
-    width: 4px; height: 4px; border-radius: 50%;
-    background: var(--border); flex-shrink: 0;
-    transition: background .12s;
-  }
+  .nav-item.active { color: var(--text); background: var(--bg-3); font-weight: 500; }
+  .nav-item.active::after { content: ''; position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 3px; height: 16px; border-radius: 2px; background: var(--text); }
+  .nav-item-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); flex-shrink: 0; transition: background .12s; }
   .nav-item.active .nav-item-dot { background: var(--text); }
-
-  /* Nav badges */
-  .nav-badge {
-    margin-left: auto; font-size: 10px; font-weight: 600;
-    padding: 1px 6px; border-radius: 10px;
-  }
+  .nav-badge { margin-left: auto; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 10px; }
   .nav-badge.new { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
   .nav-badge.updated { background: #fff8e1; color: #f57c00; border: 1px solid #ffe082; }
   .nav-badge.wip { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+  .sidebar-footer { position: sticky; bottom: 0; background: var(--bg-2); border-top: 1px solid var(--border-2); padding: 10px 16px; font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 6px; letter-spacing: .2px; }
 
-  /* Sidebar footer */
-  .sidebar-footer {
-    position: sticky; bottom: 0;
-    background: var(--bg-2);
-    border-top: 1px solid var(--border-2);
-    padding: 10px 16px;
-    font-size: 11px; color: var(--text-3);
-    display: flex; align-items: center; gap: 6px;
-    letter-spacing: .2px;
-  }
+  /* MAIN */
+  #main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  #content-area { flex: 1; padding: 48px 56px; max-width: 900px; }
 
-  /* ── MAIN CONTENT ───────────────────────────────────────── */
-  #main {
-    margin-left: var(--sidebar-w);
-    flex: 1; min-width: 0;
-    display: flex; flex-direction: column;
-  }
-
-  /* Content area */
-  #content-area {
-    flex: 1; padding: 48px 56px;
-    max-width: 900px;
-  }
-
-  /* Welcome screen */
-  #welcome {
-    display: flex; flex-direction: column;
-    align-items: flex-start; gap: 0;
-  }
-  .welcome-eyebrow {
-    font-size: 12px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 1.2px; color: var(--text-3); margin-bottom: 14px;
-  }
-  .welcome-title {
-    font-size: 40px; font-weight: 700; line-height: 1.1;
-    letter-spacing: -1.5px; margin-bottom: 14px; color: var(--text);
-  }
+  /* Welcome */
+  #welcome { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+  .welcome-eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-3); margin-bottom: 14px; }
+  .welcome-title { font-size: 40px; font-weight: 700; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 14px; color: var(--text); }
   .welcome-title em { color: var(--text-2); font-style: normal; font-weight: 300; }
-  .welcome-desc {
-    font-size: 16px; color: var(--text-2); line-height: 1.65;
-    max-width: 520px; margin-bottom: 40px; font-weight: 400;
-  }
-
-  /* Quick start cards */
-  .qs-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 12px; width: 100%; margin-bottom: 44px;
-  }
-  .qs-card {
-    background: var(--bg-2); border: 1px solid var(--border-2);
-    border-radius: var(--radius); padding: 18px;
-    cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .2s;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .qs-card:hover {
-    border-color: var(--border);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(0,0,0,.08);
-  }
-  .qs-icon {
-    width: 34px; height: 34px; border-radius: 8px;
-    background: var(--bg-3); border: 1px solid var(--border-2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 17px;
-  }
+  .welcome-desc { font-size: 16px; color: var(--text-2); line-height: 1.65; max-width: 520px; margin-bottom: 40px; font-weight: 400; }
+  .qs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; width: 100%; margin-bottom: 44px; }
+  .qs-card { background: var(--bg-2); border: 1px solid var(--border-2); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .2s; display: flex; flex-direction: column; gap: 10px; }
+  .qs-card:hover { border-color: var(--border); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+  .qs-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--bg-3); border: 1px solid var(--border-2); display: flex; align-items: center; justify-content: center; font-size: 17px; }
   .qs-icon img { width: 20px; height: 20px; object-fit: contain; display: block; }
   .qs-card-title { font-size: 13px; font-weight: 600; color: var(--text); letter-spacing: -.2px; }
   .qs-card-desc { font-size: 11.5px; color: var(--text-2); line-height: 1.5; }
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-3); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-2); }
 
-  /* Section divider */
-  .section-label {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 1px; color: var(--text-3);
-    margin-bottom: 12px; padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-2);
-  }
-
-  /* Article view */
+  /* Article */
   #article { display: none; }
-  .article-breadcrumb {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 12.5px; color: var(--text-3); margin-bottom: 24px;
-  }
+  .article-breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text-3); margin-bottom: 24px; }
   .article-breadcrumb span { color: var(--text-2); cursor: pointer; }
   .article-breadcrumb span:hover { color: var(--text); }
   .article-breadcrumb .sep { color: var(--text-3); }
-  .article-meta {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 20px;
-  }
-  .article-tag {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: .7px; padding: 3px 10px; border-radius: 20px;
-  }
+  .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .article-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .7px; padding: 3px 10px; border-radius: 20px; }
   .article-tag.new { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
   .article-tag.updated { background: #fff8e1; color: #f57c00; border: 1px solid #ffe082; }
   .article-updated { font-size: 12px; color: var(--text-3); }
-
-  /* Article typography */
-  .article-title {
-    font-size: 32px; font-weight: 700; letter-spacing: -1.2px;
-    line-height: 1.15; margin-bottom: 14px; color: var(--text);
-  }
-  .article-lead {
-    font-size: 17px; color: var(--text-2); line-height: 1.65;
-    margin-bottom: 32px; padding-bottom: 28px;
-    border-bottom: 1px solid var(--border-2);
-    font-weight: 400;
-  }
-  .article-body h2 {
-    font-size: 21px; font-weight: 600; letter-spacing: -.5px;
-    margin: 36px 0 12px; color: var(--text);
-  }
-  .article-body h3 {
-    font-size: 16px; font-weight: 600; letter-spacing: -.2px;
-    margin: 24px 0 8px; color: var(--text);
-  }
+  .article-title { font-size: 32px; font-weight: 700; letter-spacing: -1.2px; line-height: 1.15; margin-bottom: 14px; color: var(--text); }
+  .article-lead { font-size: 17px; color: var(--text-2); line-height: 1.65; margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--border-2); font-weight: 400; }
+  .article-body h2 { font-size: 21px; font-weight: 600; letter-spacing: -.5px; margin: 36px 0 12px; color: var(--text); }
+  .article-body h3 { font-size: 16px; font-weight: 600; letter-spacing: -.2px; margin: 24px 0 8px; color: var(--text); }
   .article-body p { margin-bottom: 14px; color: var(--text-2); line-height: 1.75; }
-  .article-body ul, .article-body ol {
-    margin: 0 0 16px 20px; color: var(--text-2); line-height: 1.75;
-  }
+  .article-body ul, .article-body ol { margin: 0 0 16px 20px; color: var(--text-2); line-height: 1.75; }
   .article-body ul { list-style: disc; }
   .article-body ol { list-style: decimal; }
   .article-body li { margin-bottom: 6px; }
   .article-body strong { color: var(--text); font-weight: 600; }
-  .article-body code {
-    font-family: var(--mono); font-size: 12.5px;
-    background: var(--bg-3); border: 1px solid var(--border);
-    border-radius: 5px; padding: 1px 6px; color: var(--text);
-  }
-  .article-body pre {
-    background: var(--text); border: none;
-    border-radius: var(--radius); padding: 18px 20px;
-    overflow-x: auto; margin: 0 0 20px;
-  }
-  .article-body pre code {
-    background: none; border: none; padding: 0; font-size: 13px;
-    color: #f5f5f7; line-height: 1.6;
-  }
-
-  /* Callout boxes */
-  .callout {
-    border-radius: var(--radius); padding: 14px 18px;
-    margin: 20px 0; display: flex; gap: 12px; align-items: flex-start;
-    font-size: 13.5px; line-height: 1.6;
-  }
+  .article-body a { color: var(--blue); text-decoration: underline; }
+  .article-body code { font-family: var(--mono); font-size: 12.5px; background: var(--bg-3); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; color: var(--text); }
+  .article-body pre { background: var(--text); border: none; border-radius: var(--radius); padding: 18px 20px; overflow-x: auto; margin: 0 0 20px; }
+  .article-body pre code { background: none; border: none; padding: 0; font-size: 13px; color: #f5f5f7; line-height: 1.6; }
+  .callout { border-radius: var(--radius); padding: 14px 18px; margin: 20px 0; display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.6; }
   .callout-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
   .callout.info { background: #f0f7ff; border: 1px solid #c9e2ff; color: #444; }
   .callout.tip { background: #f2faf5; border: 1px solid #c3e6cb; color: #444; }
   .callout.warning { background: #fffbf0; border: 1px solid #ffe08a; color: #444; }
   .callout.danger { background: #fff5f5; border: 1px solid #ffc9c9; color: #444; }
-
-  /* Image containers */
-  .img-wrap {
-    margin: 24px 0; border-radius: var(--radius);
-    border: 1px solid var(--border); overflow: hidden;
-    background: var(--bg-3);
-    box-shadow: 0 2px 12px rgba(0,0,0,.06);
-  }
+  .img-wrap { margin: 24px 0; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; background: var(--bg-3); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
   .img-wrap img { width: 100%; display: block; }
-  .img-caption {
-    padding: 8px 14px; font-size: 12px; color: var(--text-3);
-    border-top: 1px solid var(--border-2);
-    font-family: var(--mono);
-  }
-
-  /* Step list */
+  .img-caption { padding: 8px 14px; font-size: 12px; color: var(--text-3); border-top: 1px solid var(--border-2); font-family: var(--mono); }
   .steps { margin: 20px 0; counter-reset: step; }
-  .step {
-    display: flex; gap: 16px; margin-bottom: 20px;
-    counter-increment: step;
-  }
-  .step-num {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: var(--text); color: #fff;
-    font-size: 11px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 3px;
-  }
+  .step { display: flex; gap: 16px; margin-bottom: 20px; counter-increment: step; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: var(--text); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; }
   .step-body h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
   .step-body p { font-size: 13.5px; color: var(--text-2); margin: 0; }
-
-  /* Article nav */
-  .article-nav {
-    display: flex; gap: 12px; margin-top: 48px; padding-top: 24px;
-    border-top: 1px solid var(--border-2);
-  }
-  .article-nav-btn {
-    flex: 1; padding: 14px 18px;
-    background: var(--bg-2); border: 1px solid var(--border-2);
-    border-radius: var(--radius); cursor: pointer;
-    transition: border-color .2s, box-shadow .2s;
-    display: flex; flex-direction: column; gap: 3px;
-  }
-  .article-nav-btn:hover {
-    border-color: var(--border);
-    box-shadow: 0 2px 12px rgba(0,0,0,.07);
-  }
+  .article-nav { display: flex; gap: 12px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-2); }
+  .article-nav-btn { flex: 1; padding: 14px 18px; background: var(--bg-2); border: 1px solid var(--border-2); border-radius: var(--radius); cursor: pointer; transition: border-color .2s, box-shadow .2s; display: flex; flex-direction: column; gap: 3px; }
+  .article-nav-btn:hover { border-color: var(--border); box-shadow: 0 2px 12px rgba(0,0,0,.07); }
   .article-nav-btn.next { text-align: right; }
   .article-nav-label { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: .7px; }
   .article-nav-title { font-size: 13.5px; font-weight: 500; color: var(--text); }
 
-  /* ── AI CHAT ────────────────────────────────────────────── */
-  #chat-fab {
-    position: fixed; bottom: 24px; right: 24px; z-index: 500;
-    width: 50px; height: 50px; border-radius: 50%;
-    background: var(--text);
-    box-shadow: 0 4px 20px rgba(0,0,0,.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; color: #fff;
-    transition: transform .2s, box-shadow .2s;
-  }
-  #chat-fab:hover {
-    transform: scale(1.06);
-    box-shadow: 0 6px 28px rgba(0,0,0,.28);
-  }
-  #chat-fab .pulse {
-    position: absolute; inset: 0; border-radius: 50%;
-    background: var(--text); opacity: .15;
-    animation: pulse 2.5s ease-out infinite;
-  }
-  @keyframes pulse {
-    0% { transform: scale(1); opacity: .15; }
-    70% { transform: scale(1.6); opacity: 0; }
-    100% { opacity: 0; }
-  }
-
-  #chat-panel {
-    position: fixed; bottom: 84px; right: 24px; z-index: 499;
-    width: 348px; max-height: 500px;
-    background: var(--bg-2); border: 1px solid var(--border);
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0,0,0,.15), 0 2px 8px rgba(0,0,0,.06);
-    display: none; flex-direction: column; overflow: hidden;
-    animation: slideUp .2s ease;
-  }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  /* AI CHAT */
+  #chat-fab { position: fixed; bottom: 24px; right: 24px; z-index: 500; width: 50px; height: 50px; border-radius: 50%; background: var(--text); box-shadow: 0 4px 20px rgba(0,0,0,.2); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; transition: transform .2s, box-shadow .2s; }
+  #chat-fab:hover { transform: scale(1.06); box-shadow: 0 6px 28px rgba(0,0,0,.28); }
+  #chat-fab .pulse { position: absolute; inset: 0; border-radius: 50%; background: var(--text); opacity: .15; animation: pulse 2.5s ease-out infinite; }
+  @keyframes pulse { 0% { transform: scale(1); opacity: .15; } 70% { transform: scale(1.6); opacity: 0; } 100% { opacity: 0; } }
+  #chat-panel { position: fixed; bottom: 84px; right: 24px; z-index: 499; width: 348px; max-height: 500px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,.15), 0 2px 8px rgba(0,0,0,.06); display: none; flex-direction: column; overflow: hidden; animation: slideUp .2s ease; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   #chat-panel.open { display: flex; }
-  .chat-header {
-    padding: 14px 16px; border-bottom: 1px solid var(--border-2);
-    display: flex; align-items: center; gap: 10px;
-    background: var(--bg-3);
-  }
-  .chat-header-icon {
-    width: 30px; height: 30px; border-radius: 8px;
-    background: var(--text);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; color: #fff;
-  }
+  .chat-header { padding: 14px 16px; border-bottom: 1px solid var(--border-2); display: flex; align-items: center; gap: 10px; background: var(--bg-3); }
+  .chat-header-icon { width: 30px; height: 30px; border-radius: 8px; background: var(--text); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; }
   .chat-header-info { flex: 1; }
   .chat-header-title { font-size: 13px; font-weight: 600; color: var(--text); }
   .chat-header-sub { font-size: 11px; color: var(--text-3); }
   #chat-close { color: var(--text-3); font-size: 16px; padding: 4px; border-radius: 6px; }
   #chat-close:hover { color: var(--text); background: var(--border-2); }
-  #chat-messages {
-    flex: 1; overflow-y: auto; padding: 16px;
-    display: flex; flex-direction: column; gap: 10px;
-    scrollbar-width: thin; scrollbar-color: var(--border-2) transparent;
-    background: var(--bg-2);
-  }
-  .msg {
-    max-width: 88%; padding: 10px 13px;
-    border-radius: 14px; font-size: 13.5px; line-height: 1.55;
-  }
-  .msg.bot {
-    background: var(--bg-3); color: var(--text-2);
-    border-bottom-left-radius: 4px; align-self: flex-start;
-    border: 1px solid var(--border-2);
-  }
-  .msg.user {
-    background: var(--text); color: #fff;
-    border-bottom-right-radius: 4px; align-self: flex-end;
-    font-weight: 500;
-  }
-  .msg.typing { opacity: .6; }
+  #chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; scrollbar-color: var(--border-2) transparent; background: var(--bg-2); }
+  .msg { max-width: 88%; padding: 10px 13px; border-radius: 14px; font-size: 13.5px; line-height: 1.55; }
+  .msg.bot { background: var(--bg-3); color: var(--text-2); border-bottom-left-radius: 4px; align-self: flex-start; border: 1px solid var(--border-2); }
+  .msg.user { background: var(--text); color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; font-weight: 500; }
   .typing-dots { display: flex; gap: 4px; align-items: center; }
-  .typing-dots span {
-    width: 6px; height: 6px; background: var(--text-3);
-    border-radius: 50%; animation: dot .8s ease-in-out infinite;
-  }
+  .typing-dots span { width: 6px; height: 6px; background: var(--text-3); border-radius: 50%; animation: dot .8s ease-in-out infinite; }
   .typing-dots span:nth-child(2) { animation-delay: .15s; }
   .typing-dots span:nth-child(3) { animation-delay: .3s; }
   @keyframes dot { 0%,80%,100%{transform:scale(.7)} 40%{transform:scale(1)} }
-
-  .chat-input-row {
-    padding: 10px 12px; border-top: 1px solid var(--border-2);
-    display: flex; gap: 8px; align-items: center;
-    background: var(--bg-3);
-  }
-  #chat-input {
-    flex: 1; background: var(--bg-2); border: 1px solid var(--border);
-    border-radius: 10px; color: var(--text); padding: 8px 12px;
-    font-size: 13.5px; outline: none; resize: none;
-    transition: border-color .2s, box-shadow .2s;
-    height: 36px; line-height: 20px;
-  }
+  .chat-input-row { padding: 10px 12px; border-top: 1px solid var(--border-2); display: flex; gap: 8px; align-items: center; background: var(--bg-3); }
+  #chat-input { flex: 1; background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); padding: 8px 12px; font-size: 13.5px; outline: none; resize: none; transition: border-color .2s, box-shadow .2s; height: 36px; line-height: 20px; }
   #chat-input::placeholder { color: var(--text-3); }
-  #chat-input:focus {
-    border-color: var(--text-3);
-    box-shadow: 0 0 0 3px var(--accent-dim);
-  }
-  #chat-send {
-    width: 34px; height: 34px; border-radius: 8px;
-    background: var(--text); color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; flex-shrink: 0;
-    transition: transform .15s, opacity .15s;
-  }
+  #chat-input:focus { border-color: var(--text-3); box-shadow: 0 0 0 3px var(--accent-dim); }
+  #chat-send { width: 34px; height: 34px; border-radius: 8px; background: var(--text); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; transition: transform .15s, opacity .15s; }
   #chat-send:hover { opacity: .8; transform: scale(1.05); }
   #chat-send:disabled { opacity: .3; cursor: not-allowed; transform: none; }
-
-  /* ── EMPTY STATE / PLACEHOLDER ──────────────────────────── */
-  .placeholder-article {
-    background: var(--bg-3); border: 1px dashed var(--border);
-    border-radius: var(--radius); padding: 36px;
-    text-align: center; color: var(--text-3);
-    margin: 24px 0;
-  }
+  .placeholder-article { background: var(--bg-3); border: 1px dashed var(--border); border-radius: var(--radius); padding: 36px; text-align: center; color: var(--text-3); margin: 24px 0; }
   .placeholder-article .ph-icon { font-size: 28px; margin-bottom: 12px; opacity: .5; }
   .placeholder-article p { font-size: 13.5px; line-height: 1.65; color: var(--text-2); }
   .placeholder-article strong { color: var(--text); }
 
-  /* ── RESPONSIVE ─────────────────────────────────────────── */
+  /* RESPONSIVE */
   @media (max-width: 860px) {
     #menu-toggle { display: flex; }
-    #sidebar {
-      transform: translateX(-100%);
-      z-index: 150;
-    }
+    #sidebar { transform: translateX(-100%); z-index: 150; }
     #sidebar.open { transform: translateX(0); }
     #main { margin-left: 0; }
     #content-area { padding: 32px 24px; }
-    #sidebar-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,.25);
-      z-index: 140; display: none;
-      backdrop-filter: blur(4px);
-    }
+    #sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.25); z-index: 140; display: none; backdrop-filter: blur(4px); }
     #sidebar-overlay.visible { display: block; }
     .welcome-title { font-size: 28px; }
     #chat-panel { right: 12px; left: 12px; width: auto; }
@@ -595,11 +234,8 @@
 </head>
 <body>
 
-
-<!-- Overlay for mobile sidebar -->
 <div id="sidebar-overlay"></div>
 
-<!-- ── TOPBAR ─────────────────────────────────────────── -->
 <header id="topbar">
   <button id="menu-toggle" aria-label="Abrir menú">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -608,7 +244,6 @@
       <rect y="14" width="18" height="2" rx="1" fill="currentColor"/>
     </svg>
   </button>
-
   <a href="#" class="logo" onclick="showWelcome()">
     <div class="logo-icon">
       <img src="https://qservus.s3.amazonaws.com/aut/sin fondo.png" alt="QServus" style="width:22px;height:22px;max-width:22px;max-height:22px;object-fit:contain;display:block;">
@@ -616,7 +251,6 @@
     QServus <span>Docs</span>
   </a>
   <div class="topbar-divider"></div>
-
   <div id="search-wrap">
     <svg id="search-icon" width="14" height="14" viewBox="0 0 20 20" fill="none">
       <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="2"/>
@@ -626,42 +260,28 @@
     <button id="search-clear" aria-label="Limpiar búsqueda">✕</button>
     <div id="search-results" role="listbox"></div>
   </div>
-
   <div class="topbar-right">
     <span class="version-badge">v2.0</span>
   </div>
 </header>
 
-<!-- ── SIDEBAR ────────────────────────────────────────── -->
 <nav id="sidebar" aria-label="Navegación principal">
   <div class="sidebar-inner" id="nav-root"></div>
-  <div class="sidebar-footer">
-    <span>📄</span> QServus Docs · 2026
-  </div>
+  <div class="sidebar-footer"><span>📄</span> QServus Docs · 2026</div>
 </nav>
 
-<!-- ── MAIN ───────────────────────────────────────────── -->
 <div id="layout">
   <main id="main">
     <div id="content-area">
-
-      <!-- Welcome -->
       <div id="welcome">
         <div class="welcome-eyebrow">Centro de Ayuda</div>
         <h1 class="welcome-title">¿En qué te podemos<br><em>ayudar hoy?</em></h1>
-        <p class="welcome-desc">
-          Explora el manual de QServus, busca por tema o pregúntale directamente
-          a nuestro asistente IA. Todo lo que necesitas para sacar el máximo de la plataforma.
-        </p>
-
+        <p class="welcome-desc">Explora el manual de QServus, busca por tema o pregúntale directamente a nuestro asistente IA. Todo lo que necesitas para sacar el máximo de la plataforma.</p>
         <div class="section-label">Acceso rápido</div>
         <div class="qs-grid" id="qs-grid"></div>
-
         <div class="section-label">Explorar secciones</div>
         <div class="qs-grid" id="sections-grid"></div>
       </div>
-
-      <!-- Article -->
       <div id="article">
         <nav class="article-breadcrumb" id="breadcrumb"></nav>
         <div class="article-meta" id="article-meta"></div>
@@ -670,15 +290,12 @@
         <div class="article-body" id="article-body"></div>
         <nav class="article-nav" id="article-nav"></nav>
       </div>
-
     </div>
   </main>
 </div>
 
-<!-- ── AI CHAT FAB ────────────────────────────────────── -->
 <button id="chat-fab" aria-label="Asistente IA">
-  <div class="pulse"></div>
-  🤖
+  <div class="pulse"></div>🤖
 </button>
 
 <div id="chat-panel" role="dialog" aria-label="Asistente IA QServus">
@@ -691,803 +308,415 @@
     <button id="chat-close" aria-label="Cerrar chat">✕</button>
   </div>
   <div id="chat-messages">
-    <div class="msg bot">
-      👋 ¡Hola! Soy el asistente de QServus. Puedo ayudarte a encontrar información
-      sobre la plataforma, resolver dudas o guiarte paso a paso.
-      <br><br>¿En qué te puedo ayudar?
-    </div>
+    <div class="msg bot">👋 ¡Hola! Soy el asistente de QServus. Puedo ayudarte a encontrar información sobre la plataforma, resolver dudas o guiarte paso a paso.<br><br>¿En qué te puedo ayudar?</div>
   </div>
   <div class="chat-input-row">
     <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." aria-label="Mensaje al asistente">
     <button id="chat-send" aria-label="Enviar">
-      <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
-        <path d="M2 10L18 2L10 18L8.5 11.5L2 10Z" fill="currentColor"/>
-      </svg>
+      <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M2 10L18 2L10 18L8.5 11.5L2 10Z" fill="currentColor"/></svg>
     </button>
   </div>
 </div>
 
-<!-- ── DATA ──────────────────────────────────────────── -->
 <script>
-// ═══════════════════════════════════════════════════════════
-//  NAVIGATION STRUCTURE — IDs alineados con nombres de archivo
-// ═══════════════════════════════════════════════════════════
 const NAV = [
-  {
-    id: 'plataforma',
-    label: 'Conociendo QServus',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/sin fondo.png" class="nav-svg-icon" alt="">',
-    desc: 'Acceso, navegación y configuración inicial',
-    items: [
-      { id: 'que-es-qservus',           title: '¿Qué es QServus?',                      badge: null },
-      { id: 'como-acceder',             title: 'Cómo acceder',                           badge: null },
-      { id: 'recuperar-contrasena',     title: 'Recuperar contraseña',                   badge: null },
-      { id: 'navegacion',               title: 'Navegación general',                     badge: null },
-      { id: 'accesibilidad',            title: 'Múltiples plataformas',                  badge: null },
+  { id:'plataforma', label:'Conociendo QServus', icon:'<img src="https://qservus.s3.amazonaws.com/aut/sin fondo.png" class="nav-svg-icon" alt="">', desc:'Acceso, navegación y configuración inicial',
+    items:[
+      {id:'que-es-qservus',title:'¿Qué es QServus?',badge:null},
+      {id:'como-acceder',title:'Cómo acceder',badge:null},
+      {id:'recuperar-contrasena',title:'Recuperar contraseña',badge:null},
+      {id:'navegacion',title:'Navegación general',badge:null},
+      {id:'accesibilidad',title:'Múltiples plataformas',badge:null},
     ]
   },
-  {
-    id: 'que-esta-pasando',
-    label: '¿Qué está pasando?',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/¿Qué está pasando.svg" class="nav-svg-icon" alt="">',
-    desc: 'Monitorea respuestas en tiempo real',
-    items: [
-      { id: 'listado-respuestas',       title: 'Listado de respuestas',                  badge: null },
-      { id: 'detalle-respuesta',        title: 'Detalle de una respuesta',               badge: null },
-      { id: 'descarga-respuesta',       title: 'Descarga del detalle',                   badge: null },
+  { id:'que-esta-pasando', label:'¿Qué está pasando?', icon:'<img src="https://qservus.s3.amazonaws.com/aut/¿Qué está pasando.svg" class="nav-svg-icon" alt="">', desc:'Monitorea respuestas en tiempo real',
+    items:[
+      {id:'listado-respuestas',title:'Listado de respuestas',badge:null},
+      {id:'detalle-respuesta',title:'Detalle de una respuesta',badge:null},
+      {id:'descarga-respuesta',title:'Descarga del detalle',badge:null},
     ]
   },
-  {
-    id: 'encuestas',
-    label: 'Encuestas',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Encuestas.svg" class="nav-svg-icon" alt="">',
-    desc: 'Crea y gestiona tus encuestas',
-    items: [
-      { id: 'listado-encuestas',        title: 'Listado de encuestas',                   badge: null },
-      { id: 'encuestas-carpetas',       title: 'Ordenar en carpetas',                    badge: null },
-      { id: 'crear-encuesta',           title: 'Crear una encuesta',                     badge: null },
-      { id: 'formulario-config',        title: 'Formulario de configuración',            badge: null },
-      { id: 'opciones-avanzadas',       title: 'Opciones avanzadas',                     badge: null },
-      { id: 'mensaje-fin',              title: 'Mensaje de fin',                         badge: null },
-      { id: 'plataforma-contestar',     title: 'Plataforma para contestar',              badge: null },
-      { id: 'cuestionario-preguntas',   title: 'Cuestionario de preguntas',              badge: null },
-      { id: 'opciones-paginas',         title: 'Opciones de páginas',                    badge: null },
-      { id: 'opciones-preguntas',       title: 'Opciones de preguntas',                  badge: null },
-      { id: 'publicar-encuesta',        title: 'Publicar encuesta',                      badge: null },
-      { id: 'tipos-texto',              title: 'Preguntas de texto',                     badge: null },
-      { id: 'tipos-seleccion',          title: 'Preguntas de selección',                 badge: null },
-      { id: 'tipos-escalas',            title: 'Preguntas de escalas',                   badge: null },
-      { id: 'tipos-matrices',           title: 'Preguntas de matrices',                  badge: null },
-      { id: 'derivaciones',             title: 'Derivaciones',                           badge: null },
-      { id: 'preguntas-condicionales',  title: 'Preguntas condicionales',                badge: null },
-      { id: 'detalle-encuesta',         title: 'Detalle de una encuesta',                badge: null },
-      { id: 'eliminar-encuesta',        title: 'Eliminar encuesta',                      badge: null },
-      { id: 'vista-previa',             title: 'Vista previa',                           badge: null },
-      { id: 'vista-previa-publica',     title: 'Vista previa pública',                   badge: null },
-      { id: 'exportar-xlsx',            title: 'Exportar a XLSX',                        badge: null },
-      { id: 'traducciones',             title: 'Traducciones',                           badge: null },
-      { id: 'reporte-pdf',              title: 'Reporte PDF',                            badge: null },
-      { id: 'reporte-web',              title: 'Reporte Web',                            badge: null },
+  { id:'encuestas', label:'Encuestas', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Encuestas.svg" class="nav-svg-icon" alt="">', desc:'Crea y gestiona tus encuestas',
+    groups:[
+      {label:'Gestión',items:[{id:'listado-encuestas',title:'Listado de encuestas',badge:null},{id:'encuestas-carpetas',title:'Ordenar en carpetas',badge:null},{id:'crear-encuesta',title:'Crear una encuesta',badge:null},{id:'formulario-config',title:'Formulario de configuración',badge:null},{id:'opciones-avanzadas',title:'Opciones avanzadas',badge:null},{id:'mensaje-fin',title:'Mensaje de fin',badge:null}]},
+      {label:'Cuestionario',items:[{id:'plataforma-contestar',title:'Plataforma para contestar',badge:null},{id:'cuestionario-preguntas',title:'Cuestionario de preguntas',badge:null},{id:'opciones-paginas',title:'Opciones de páginas',badge:null},{id:'opciones-preguntas',title:'Opciones de preguntas',badge:null},{id:'publicar-encuesta',title:'Publicar encuesta',badge:null}]},
+      {label:'Tipos de pregunta',items:[{id:'tipos-texto',title:'Preguntas de texto',badge:null},{id:'tipos-seleccion',title:'Preguntas de selección',badge:null},{id:'tipos-escalas',title:'Preguntas de escalas',badge:null},{id:'tipos-matrices',title:'Preguntas de matrices',badge:null},{id:'derivaciones',title:'Derivaciones',badge:null},{id:'preguntas-condicionales',title:'Preguntas condicionales',badge:null}]},
+      {label:'Detalle y exportar',items:[{id:'detalle-encuesta',title:'Detalle de una encuesta',badge:null},{id:'eliminar-encuesta',title:'Eliminar encuesta',badge:null},{id:'vista-previa',title:'Vista previa',badge:null},{id:'vista-previa-publica',title:'Vista previa pública',badge:null},{id:'exportar-xlsx',title:'Exportar a XLSX',badge:null},{id:'traducciones',title:'Traducciones',badge:null},{id:'reporte-pdf',title:'Reporte PDF',badge:null},{id:'reporte-web',title:'Reporte Web',badge:null}]},
     ]
   },
-  {
-    id: 'sensores',
-    label: 'Sensores',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Sensores.svg" class="nav-svg-icon" alt="">',
-    desc: 'Canales para recopilar feedback',
-    items: [
-      { id: 'que-es-sensor',             title: '¿Qué es un sensor?',                   badge: null },
-      { id: 'crear-sensor',              title: 'Crear un sensor',                       badge: null },
-      { id: 'opciones-avanzadas-sensor', title: 'Opciones avanzadas',                    badge: null },
-      { id: 'diseno-sensor',             title: 'Diseño del sensor',                     badge: null },
-      { id: 'detalle-sensor',            title: 'Detalle del sensor',                    badge: null },
-      { id: 'indicadores-sensor',        title: 'Indicadores',                           badge: null },
-      { id: 'acceso-sensor',             title: 'Acceso al sensor',                      badge: null },
-      { id: 'reportes-sensor',           title: 'Reportes',                              badge: null },
-      { id: 'editar-sensor',             title: 'Editar sensor',                         badge: null },
-      { id: 'datos-solicitados',         title: 'Datos solicitados',                     badge: null },
-      { id: 'datos-adicionales',         title: 'Datos adicionales',                     badge: null },
-      { id: 'frecuencia-contacto',       title: 'Frecuencia de contacto',                badge: null },
-      { id: 'finalizar-sensor',          title: 'Finalizar sensor',                      badge: null },
+  { id:'sensores', label:'Sensores', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Sensores.svg" class="nav-svg-icon" alt="">', desc:'Canales para recopilar feedback',
+    groups:[
+      {label:'Configuración',items:[{id:'que-es-sensor',title:'¿Qué es un sensor?',badge:null},{id:'crear-sensor',title:'Crear un sensor',badge:null},{id:'opciones-avanzadas-sensor',title:'Opciones avanzadas',badge:null},{id:'diseno-sensor',title:'Diseño del sensor',badge:null},{id:'datos-solicitados',title:'Datos solicitados',badge:null},{id:'datos-adicionales',title:'Datos adicionales',badge:null},{id:'frecuencia-contacto',title:'Frecuencia de contacto',badge:null}]},
+      {label:'Gestión',items:[{id:'detalle-sensor',title:'Detalle del sensor',badge:null},{id:'indicadores-sensor',title:'Indicadores',badge:null},{id:'acceso-sensor',title:'Acceso al sensor',badge:null},{id:'reportes-sensor',title:'Reportes',badge:null},{id:'editar-sensor',title:'Editar sensor',badge:null},{id:'finalizar-sensor',title:'Finalizar sensor',badge:null}]},
     ]
   },
-  {
-    id: 'campanas',
-    label: 'Campañas',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Campañas.svg" class="nav-svg-icon" alt="">',
-    desc: 'Envía encuestas a tus contactos',
-    items: [
-      { id: 'que-es-campana',              title: '¿Qué es una campaña?',               badge: null },
-      { id: 'crear-campana',               title: 'Crear una campaña',                   badge: null },
-      { id: 'opciones-avanzadas-campana',  title: 'Opciones avanzadas',                  badge: null },
-      { id: 'detalle-campana',             title: 'Detalle de la campaña',               badge: null },
-      { id: 'indicadores-campana',         title: 'Indicadores',                         badge: null },
-      { id: 'resultados-campana',          title: 'Resultados',                          badge: null },
-      { id: 'reportes-campana',            title: 'Reportes',                            badge: null },
-      { id: 'destinatarios-campana',       title: 'Destinatarios',                       badge: null },
-      { id: 'exportar-destinatarios',      title: 'Exportar destinatarios',              badge: null },
-      { id: 'editar-campana',              title: 'Editar campaña en ejecución',         badge: null },
-      { id: 'acciones-campana',            title: 'Acciones de campaña',                 badge: null },
+  { id:'campanas', label:'Campañas', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Campañas.svg" class="nav-svg-icon" alt="">', desc:'Envía encuestas a tus contactos',
+    groups:[
+      {label:'Configuración',items:[{id:'que-es-campana',title:'¿Qué es una campaña?',badge:null},{id:'crear-campana',title:'Crear una campaña',badge:null},{id:'opciones-avanzadas-campana',title:'Opciones avanzadas',badge:null},{id:'editar-campana',title:'Editar campaña en ejecución',badge:null}]},
+      {label:'Gestión',items:[{id:'detalle-campana',title:'Detalle de la campaña',badge:null},{id:'indicadores-campana',title:'Indicadores',badge:null},{id:'resultados-campana',title:'Resultados',badge:null},{id:'reportes-campana',title:'Reportes',badge:null},{id:'destinatarios-campana',title:'Destinatarios',badge:null},{id:'exportar-destinatarios',title:'Exportar destinatarios',badge:null},{id:'acciones-campana',title:'Acciones de campaña',badge:null}]},
     ]
   },
-  {
-    id: 'whatsapp',
-    label: 'Campañas de WhatsApp',
-    icon: '💬',
-    desc: 'Encuestas directamente por WhatsApp',
-    items: [
-      { id: 'whatsapp-como-funcionan',   title: '¿Cómo funcionan?',                     badge: 'new' },
-      { id: 'whatsapp-requisitos',       title: 'Requisitos para empezar',               badge: 'new' },
-      { id: 'whatsapp-preguntas',        title: 'Tipos de preguntas disponibles',        badge: 'new' },
-      { id: 'whatsapp-nps',              title: 'NPS en WhatsApp',                       badge: 'new' },
-      { id: 'whatsapp-resultados',       title: 'Ver resultados',                        badge: 'new' },
-      { id: 'whatsapp-efectividad',      title: 'Medir efectividad',                     badge: 'new' },
+  { id:'whatsapp', label:'Campañas de WhatsApp', icon:'💬', desc:'Encuestas directamente por WhatsApp',
+    items:[
+      {id:'whatsapp-como-funcionan',title:'¿Cómo funcionan?',badge:'new'},
+      {id:'whatsapp-requisitos',title:'Requisitos para empezar',badge:'new'},
+      {id:'whatsapp-preguntas',title:'Tipos de preguntas disponibles',badge:'new'},
+      {id:'whatsapp-nps',title:'NPS en WhatsApp',badge:'new'},
+      {id:'whatsapp-resultados',title:'Ver resultados',badge:'new'},
+      {id:'whatsapp-efectividad',title:'Medir efectividad',badge:'new'},
     ]
   },
-  {
-    id: 'indicadores',
-    label: 'Indicadores',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Indicadores.svg" class="nav-svg-icon" alt="">',
-    desc: 'Tableros y visualización de resultados',
-    items: [
-      { id: 'tableros',                    title: 'Tableros',                            badge: null },
-      { id: 'tablero-automatico',          title: 'Tablero automático',                  badge: null },
-      { id: 'tablero-personalizado',       title: 'Tablero personalizado',               badge: null },
-      { id: 'crear-tablero',               title: 'Crear un tablero',                    badge: null },
-      { id: 'tipos-indicadores',           title: 'Tipos de indicadores',                badge: null },
-      { id: 'crear-indicador',             title: 'Crear un indicador',                  badge: null },
-      { id: 'indicador-escala',            title: 'Indicador de escala',                 badge: null },
-      { id: 'indicador-alternativas',      title: 'Indicador de alternativas',           badge: null },
-      { id: 'indicador-texto',             title: 'Indicador de texto',                  badge: null },
-      { id: 'indicador-sino',              title: 'Indicador de Sí/No',                  badge: null },
-      { id: 'indicador-matriz',            title: 'Indicador de matriz',                 badge: null },
-      { id: 'indicador-tabla',             title: 'Indicador de tabla',                  badge: null },
-      { id: 'indicador-analitica-avanzada',title: 'Indicador de analítica avanzada',     badge: null },
-      { id: 'indicador-api',               title: 'Indicador de API',                    badge: null },
-      { id: 'indicador-metricas',          title: 'Indicador de métricas',               badge: null },
-      { id: 'configurar-filtros',          title: 'Configurar filtros',                  badge: null },
-      { id: 'configurar-tablero',          title: 'Configurar tablero',                  badge: null },
-      { id: 'detalle-indicador',           title: 'Detalle del indicador',               badge: null },
-      { id: 'analitica-avanzada-ia',       title: 'Analítica avanzada e IA',             badge: null },
-      { id: 'text-analytics',              title: 'Text Analytics',                      badge: null },
+  { id:'indicadores', label:'Indicadores', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Indicadores.svg" class="nav-svg-icon" alt="">', desc:'Tableros y visualización de resultados',
+    groups:[
+      {label:'Tableros',items:[{id:'tableros',title:'Tableros',badge:null},{id:'tablero-automatico',title:'Tablero automático',badge:null},{id:'tablero-personalizado',title:'Tablero personalizado',badge:null},{id:'crear-tablero',title:'Crear un tablero',badge:null},{id:'configurar-filtros',title:'Configurar filtros',badge:null},{id:'configurar-tablero',title:'Configurar tablero',badge:null},{id:'detalle-indicador',title:'Detalle del indicador',badge:null}]},
+      {label:'Tipos de indicador',items:[{id:'tipos-indicadores',title:'Tipos de indicadores',badge:null},{id:'crear-indicador',title:'Crear un indicador',badge:null},{id:'indicador-escala',title:'Indicador de escala',badge:null},{id:'indicador-alternativas',title:'Indicador de alternativas',badge:null},{id:'indicador-texto',title:'Indicador de texto',badge:null},{id:'indicador-sino',title:'Indicador de Sí/No',badge:null},{id:'indicador-matriz',title:'Indicador de matriz',badge:null},{id:'indicador-tabla',title:'Indicador de tabla',badge:null},{id:'indicador-api',title:'Indicador de API',badge:null},{id:'indicador-metricas',title:'Indicador de métricas',badge:null}]},
+      {label:'Análisis e IA',items:[{id:'indicador-analitica-avanzada',title:'Indicador de analítica avanzada',badge:null},{id:'analitica-avanzada-ia',title:'Analítica avanzada e IA',badge:null},{id:'text-analytics',title:'Text Analytics',badge:null}]},
     ]
   },
-  {
-    id: 'tendencias',
-    label: 'Panel de Tendencias',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Panel de Tendencias.svg" class="nav-svg-icon" alt="">',
-    desc: 'Análisis de tendencias y predicciones',
-    items: [
-      { id: 'que-es-tendencias',         title: '¿Qué es el panel de tendencias?',      badge: 'new' },
+  { id:'tendencias', label:'Panel de Tendencias', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Panel de Tendencias.svg" class="nav-svg-icon" alt="">', desc:'Análisis de tendencias y predicciones',
+    items:[{id:'que-es-tendencias',title:'¿Qué es el panel de tendencias?',badge:'new'}]
+  },
+  { id:'reportes', label:'Reportes', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Reportes.svg" class="nav-svg-icon" alt="">', desc:'Exporta y analiza tus datos',
+    items:[
+      {id:'reportes-campanas',title:'Reportes de campañas',badge:null},
+      {id:'reportes-sensores',title:'Reportes de sensores',badge:null},
+      {id:'reporte-encuesta-pdf',title:'Reporte de encuesta en PDF',badge:null},
+      {id:'reporte-encuesta-web',title:'Reporte de encuesta web',badge:null},
+      {id:'reportes-avanzados',title:'Reportes avanzados',badge:null},
+      {id:'consolidado-segmento',title:'Consolidado por segmento',badge:null},
+      {id:'consolidado-dinamicas',title:'Consolidado para tablas dinámicas',badge:null},
+      {id:'reporte-seguimiento',title:'Reporte de seguimiento',badge:null},
+      {id:'historial-cliente',title:'Historial de cliente',badge:null},
     ]
   },
-  {
-    id: 'reportes',
-    label: 'Reportes',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Reportes.svg" class="nav-svg-icon" alt="">',
-    desc: 'Exporta y analiza tus datos',
-    items: [
-      { id: 'reportes-campanas',         title: 'Reportes de campañas',                 badge: null },
-      { id: 'reportes-sensores',         title: 'Reportes de sensores',                 badge: null },
-      { id: 'reporte-encuesta-pdf',      title: 'Reporte de encuesta en PDF',           badge: null },
-      { id: 'reporte-encuesta-web',      title: 'Reporte de encuesta web',              badge: null },
-      { id: 'reportes-avanzados',        title: 'Reportes avanzados',                   badge: null },
-      { id: 'consolidado-segmento',      title: 'Consolidado por segmento',             badge: null },
-      { id: 'consolidado-dinamicas',     title: 'Consolidado para tablas dinámicas',    badge: null },
-      { id: 'reporte-seguimiento',       title: 'Reporte de seguimiento',               badge: null },
-      { id: 'historial-cliente',         title: 'Historial de cliente',                 badge: null },
+  { id:'acciones', label:'Acciones Automatizadas', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Acciones Automatizadas.svg" class="nav-svg-icon" alt="">', desc:'Automatiza notificaciones y flujos',
+    groups:[
+      {label:'Obtener opinión',items:[{id:'que-son-acciones',title:'¿Qué son las acciones?',badge:null},{id:'obtener-opinion',title:'Obtener opinión',badge:null}]},
+      {label:'Notificaciones',items:[{id:'enviar-notificacion',title:'Enviar notificación',badge:null},{id:'alerta-satisfaccion',title:'Alerta satisfacción/insatisfacción',badge:null},{id:'alertas-personalizadas',title:'Alertas personalizadas',badge:null}]},
+      {label:'Enviar información',items:[{id:'enviar-informacion',title:'Enviar información',badge:null},{id:'envio-resumen-diario',title:'Envío resumen diario',badge:null},{id:'envio-informacion-accion',title:'Envío de información',badge:null},{id:'envio-respuestas',title:'Envío respuestas a usuarios',badge:null}]},
+      {label:'Ejecutar proceso',items:[{id:'ejecutar-proceso',title:'Ejecutar proceso',badge:null},{id:'redirigir-finalizar',title:'Redirigir al finalizar',badge:null},{id:'carga-sftp',title:'Carga de respuestas a SFTP',badge:null},{id:'enviar-otp',title:'Enviar OTP',badge:null}]},
     ]
   },
-  {
-    id: 'acciones',
-    label: 'Acciones Automatizadas',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Acciones Automatizadas.svg" class="nav-svg-icon" alt="">',
-    desc: 'Automatiza notificaciones y flujos',
-    items: [
-      { id: 'que-son-acciones',          title: '¿Qué son las acciones automatizadas?', badge: null },
-      { id: 'obtener-opinion',           title: 'Obtener opinión',                       badge: null },
-      { id: 'enviar-notificacion',       title: 'Enviar notificación',                   badge: null },
-      { id: 'alerta-satisfaccion',       title: 'Alerta de satisfacción/insatisfacción', badge: null },
-      { id: 'alertas-personalizadas',    title: 'Alertas personalizadas',                badge: null },
-      { id: 'enviar-informacion',        title: 'Enviar información',                    badge: null },
-      { id: 'envio-resumen-diario',      title: 'Envío resumen diario',                  badge: null },
-      { id: 'envio-informacion-accion',  title: 'Envío de información',                  badge: null },
-      { id: 'envio-respuestas',          title: 'Envío respuestas a usuarios',           badge: null },
-      { id: 'ejecutar-proceso',          title: 'Ejecutar proceso',                      badge: null },
-      { id: 'redirigir-finalizar',       title: 'Redirigir al finalizar',                badge: null },
-      { id: 'carga-sftp',                title: 'Carga de respuestas a SFTP',            badge: null },
-      { id: 'enviar-otp',                title: 'Enviar OTP',                            badge: null },
+  { id:'tickets', label:'Tickets', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Tickets.svg" class="nav-svg-icon" alt="">', desc:'Gestión y seguimiento de casos',
+    items:[
+      {id:'que-es-tickets',title:'¿Qué son los tickets?',badge:null},
+      {id:'listado-tickets',title:'Listado y filtros',badge:null},
+      {id:'detalle-tickets',title:'Detalle del ticket',badge:null},
+      {id:'resolver-tickets',title:'Resolver un ticket',badge:null},
+      {id:'indicadores-tickets',title:'Indicadores',badge:null},
+      {id:'reportes-tickets',title:'Reportes de tickets',badge:null},
+      {id:'notificaciones-tickets',title:'Notificaciones',badge:null},
     ]
   },
-  {
-    id: 'tickets',
-    label: 'Tickets',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Tickets.svg" class="nav-svg-icon" alt="">',
-    desc: 'Gestión y seguimiento de casos',
-    items: [
-      { id: 'que-es-tickets',            title: '¿Qué son los tickets?',                badge: null },
-      { id: 'listado-tickets',           title: 'Listado y filtros',                     badge: null },
-      { id: 'detalle-tickets',           title: 'Detalle del ticket',                    badge: null },
-      { id: 'resolver-tickets',          title: 'Resolver un ticket',                    badge: null },
-      { id: 'indicadores-tickets',       title: 'Indicadores',                           badge: null },
-      { id: 'reportes-tickets',          title: 'Reportes de tickets',                   badge: null },
-      { id: 'notificaciones-tickets',    title: 'Notificaciones',                        badge: null },
+  { id:'planes-accion', label:'Planes de Acción', icon:'🎯', desc:'Convierte feedback en acciones concretas',
+    items:[
+      {id:'que-son-planes',title:'¿Qué son los planes de acción?',badge:'new'},
+      {id:'crear-plan',title:'Crear un plan de acción',badge:'new'},
+      {id:'automatizar-plan',title:'Automatizar un plan de acción',badge:'new'},
+      {id:'seguimiento-plan',title:'Seguimiento del plan',badge:'new'},
     ]
   },
-  {
-    id: 'planes-accion',
-    label: 'Planes de Acción',
-    icon: '🎯',
-    desc: 'Convierte feedback en acciones concretas',
-    items: [
-      { id: 'que-son-planes',            title: '¿Qué son los planes de acción?',       badge: 'new' },
-      { id: 'crear-plan',                title: 'Crear un plan de acción',               badge: 'new' },
-      { id: 'automatizar-plan',          title: 'Automatizar un plan de acción',         badge: 'new' },
-      { id: 'seguimiento-plan',          title: 'Seguimiento del plan',                  badge: 'new' },
+  { id:'agentes-ia', label:'Agentes de IA', icon:'🤖', desc:'Asistentes virtuales con inteligencia artificial',
+    items:[
+      {id:'que-son-agentes',title:'¿Qué son los agentes de IA?',badge:'new'},
+      {id:'como-funcionan-agentes',title:'Cómo funcionan',badge:'new'},
+      {id:'requisitos-agentes',title:'Requisitos para implementar',badge:'new'},
+      {id:'integracion-agentes',title:'Integración con otros sistemas',badge:'new'},
+      {id:'idiomas-agentes',title:'Soporte multiidioma',badge:'new'},
+      {id:'consultas-complejas',title:'Manejo de consultas complejas',badge:'new'},
     ]
   },
-  {
-    id: 'agentes-ia',
-    label: 'Agentes de IA',
-    icon: '🤖',
-    desc: 'Asistentes virtuales con inteligencia artificial',
-    items: [
-      { id: 'que-son-agentes',           title: '¿Qué son los agentes de IA?',          badge: 'new' },
-      { id: 'como-funcionan-agentes',    title: 'Cómo funcionan',                        badge: 'new' },
-      { id: 'requisitos-agentes',        title: 'Requisitos para implementar',           badge: 'new' },
-      { id: 'integracion-agentes',       title: 'Integración con otros sistemas',        badge: 'new' },
-      { id: 'idiomas-agentes',           title: 'Soporte multiidioma',                   badge: 'new' },
-      { id: 'consultas-complejas',       title: 'Manejo de consultas complejas',         badge: 'new' },
+  { id:'redes-sociales', label:'Redes Sociales', icon:'🌐', desc:'Social listening e integración con RRSS',
+    items:[
+      {id:'rrss-conexion',title:'¿Cómo se conecta QServus?',badge:'new'},
+      {id:'social-listening',title:'Social listening',badge:'new'},
+      {id:'sentimiento-tiempo-real',title:'Análisis de sentimiento en tiempo real',badge:'new'},
+      {id:'analisis-predictivo',title:'Análisis predictivo adaptativo',badge:'new'},
     ]
   },
-  {
-    id: 'redes-sociales',
-    label: 'Redes Sociales',
-    icon: '🌐',
-    desc: 'Social listening e integración con RRSS',
-    items: [
-      { id: 'rrss-conexion',             title: '¿Cómo se conecta QServus?',            badge: 'new' },
-      { id: 'social-listening',          title: 'Social listening',                      badge: 'new' },
-      { id: 'sentimiento-tiempo-real',   title: 'Análisis de sentimiento en tiempo real',badge: 'new' },
-      { id: 'analisis-predictivo',       title: 'Análisis predictivo adaptativo',        badge: 'new' },
+  { id:'configuracion', label:'Configuración', icon:'<img src="https://qservus.s3.amazonaws.com/aut/Configuración.svg" class="nav-svg-icon" alt="">', desc:'Administra tu organización',
+    items:[
+      {id:'informacion-empresa',title:'Información de la empresa',badge:null},
+      {id:'grupos',title:'Grupos',badge:null},
+      {id:'lista-destinatarios',title:'Lista de destinatarios',badge:null},
+      {id:'lista-negra',title:'Destinatarios en lista negra',badge:null},
+      {id:'facturacion',title:'Facturación de su plan',badge:null},
+      {id:'seguimiento-config',title:'Seguimiento',badge:null},
+      {id:'seguridad',title:'Seguridad',badge:null},
+      {id:'segmentos',title:'Segmentos',badge:null},
+      {id:'usuarios',title:'Usuarios',badge:null},
+      {id:'perfiles',title:'Perfiles',badge:null},
+      {id:'dominio-personalizado',title:'Dominio personalizado',badge:null},
     ]
   },
-  {
-    id: 'configuracion',
-    label: 'Configuración',
-    icon: '<img src="https://qservus.s3.amazonaws.com/aut/Configuración.svg" class="nav-svg-icon" alt="">',
-    desc: 'Administra tu organización',
-    items: [
-      { id: 'informacion-empresa',       title: 'Información de la empresa',             badge: null },
-      { id: 'grupos',                    title: 'Grupos',                                badge: null },
-      { id: 'lista-destinatarios',       title: 'Lista de destinatarios',                badge: null },
-      { id: 'lista-negra',               title: 'Destinatarios en lista negra',          badge: null },
-      { id: 'facturacion',               title: 'Facturación de su plan',                badge: null },
-      { id: 'seguimiento-config',        title: 'Seguimiento',                           badge: null },
-      { id: 'seguridad',                 title: 'Seguridad',                             badge: null },
-      { id: 'segmentos',                 title: 'Segmentos',                             badge: null },
-      { id: 'usuarios',                  title: 'Usuarios',                              badge: null },
-      { id: 'perfiles',                  title: 'Perfiles',                              badge: null },
-      { id: 'dominio-personalizado',     title: 'Dominio personalizado',                 badge: null },
+  { id:'api', label:'API & Desarrolladores', icon:'🔌', desc:'Integra QServus con tus sistemas',
+    items:[
+      {id:'api-intro',title:'Introducción a la API',badge:null},
+      {id:'autenticacion',title:'Autenticación',badge:null},
+      {id:'endpoints',title:'Endpoints principales',badge:null},
+      {id:'codigos-estado',title:'Códigos de estado HTTP',badge:null},
     ]
   },
-  {
-    id: 'api',
-    label: 'API & Desarrolladores',
-    icon: '🔌',
-    desc: 'Integra QServus con tus sistemas',
-    items: [
-      { id: 'api-intro',                 title: 'Introducción a la API',                 badge: null },
-      { id: 'autenticacion',             title: 'Autenticación',                         badge: null },
-      { id: 'endpoints',                 title: 'Endpoints principales',                 badge: null },
-      { id: 'codigos-estado',            title: 'Códigos de estado HTTP',                badge: null },
-    ]
-  },
-  {
-    id: 'anexos',
-    label: 'Anexos',
-    icon: '📚',
-    desc: 'Glosario y términos clave',
-    items: [
-      { id: 'terminos-conceptos',        title: 'Términos y conceptos clave',            badge: null },
-    ]
+  { id:'anexos', label:'Anexos', icon:'📚', desc:'Glosario y términos clave',
+    items:[{id:'terminos-conceptos',title:'Términos y conceptos clave',badge:null}]
   },
 ];
-// ═══════════════════════════════════════════════════════════
-//  ARTICLE CACHE — artículos cargados se guardan aquí
-// ═══════════════════════════════════════════════════════════
-const ARTICLE_CACHE = {};
 
-// ═══════════════════════════════════════════════════════════
-//  SEARCH INDEX — se construye desde los títulos del NAV
-//  (se enriquece con el texto cuando se carga cada artículo)
-// ═══════════════════════════════════════════════════════════
-let searchIndex = [];
-NAV.forEach(sec => {
-  sec.items.forEach(item => {
-    searchIndex.push({
-      id: item.id,
-      title: item.title,
-      section: sec.label,
-      sectionId: sec.id,
-      sectionIcon: sec.icon,
-      text: item.title + ' ' + sec.label,
-    });
+// ── Helpers ─────────────────────────────────────────────
+function getAllItems() {
+  const all = [];
+  NAV.forEach(sec => {
+    if (sec.groups) {
+      sec.groups.forEach(g => g.items.forEach(i => all.push({...i, secId:sec.id, secLabel:sec.label, secIcon:sec.icon})));
+    } else {
+      (sec.items||[]).forEach(i => all.push({...i, secId:sec.id, secLabel:sec.label, secIcon:sec.icon}));
+    }
   });
-});
-
-// ═══════════════════════════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════════════════════════
-let currentArticleId = null;
-let chatOpen = false;
-let chatHistory = []; // solo para mostrar el historial en pantalla
-let chatLoading = false; // guard: evita llamadas múltiples simultáneas
-const sessionId = 'qs_' + Date.now(); // ID único por sesión — n8n Simple Memory lo usa para mantener historial
-
-// ── Rate limiter del chat ──────────────────────────────────
-const CHAT_RATE_LIMIT  = 2;      // máximo de llamadas permitidas...
-const CHAT_RATE_WINDOW = 10000;  // ...dentro de esta ventana (ms)
-const chatTimestamps   = [];     // registro de las últimas llamadas
-
-function chatRateCheck() {
-  const now = Date.now();
-  // Eliminar timestamps fuera de la ventana
-  while (chatTimestamps.length && now - chatTimestamps[0] > CHAT_RATE_WINDOW) {
-    chatTimestamps.shift();
-  }
-  if (chatTimestamps.length >= CHAT_RATE_LIMIT) {
-    const waitSec = Math.ceil((CHAT_RATE_WINDOW - (now - chatTimestamps[0])) / 1000);
-    return waitSec; // devuelve segundos de espera
-  }
-  chatTimestamps.push(now);
-  return 0; // ok, puede continuar
+  return all;
 }
 
-// ═══════════════════════════════════════════════════════════
-//  RENDER SIDEBAR
-// ═══════════════════════════════════════════════════════════
+// ── Cache & Search ───────────────────────────────────────
+const ARTICLE_CACHE = {};
+let searchIndex = [];
+getAllItems().forEach(item => {
+  searchIndex.push({ id:item.id, title:item.title, section:item.secLabel, sectionId:item.secId, sectionIcon:item.secIcon, text:item.title+' '+item.secLabel });
+});
+
+// ── State ────────────────────────────────────────────────
+let currentArticleId = null;
+let chatOpen = false;
+let chatLoading = false;
+const sessionId = 'qs_' + Date.now();
+const CHAT_RATE_LIMIT = 2, CHAT_RATE_WINDOW = 10000;
+const chatTimestamps = [];
+function chatRateCheck() {
+  const now = Date.now();
+  while (chatTimestamps.length && now - chatTimestamps[0] > CHAT_RATE_WINDOW) chatTimestamps.shift();
+  if (chatTimestamps.length >= CHAT_RATE_LIMIT) return Math.ceil((CHAT_RATE_WINDOW-(now-chatTimestamps[0]))/1000);
+  chatTimestamps.push(now); return 0;
+}
+
+// ── Render Nav ───────────────────────────────────────────
 function renderNav() {
   const root = document.getElementById('nav-root');
-  root.innerHTML = NAV.map(sec => `
-    <div class="nav-group" id="group-${sec.id}">
+  root.innerHTML = NAV.map(sec => {
+    const hasGroups = !!sec.groups;
+    const itemsHtml = hasGroups
+      ? sec.groups.map((g,gi) => `
+          <div class="nav-subgroup" id="subgroup-${sec.id}-${gi}">
+            <button class="nav-subgroup-btn" onclick="toggleSubgroup('${sec.id}',${gi})">
+              ${g.label}<span class="nav-subgroup-chevron">›</span>
+            </button>
+            <div class="nav-subitems">${g.items.map(item => navItemHtml(item,true)).join('')}</div>
+          </div>`).join('')
+      : (sec.items||[]).map(item => navItemHtml(item,false)).join('');
+    return `<div class="nav-group" id="group-${sec.id}">
       <button class="nav-group-btn" onclick="toggleGroup('${sec.id}')">
         <span class="nav-group-icon">${sec.icon}</span>
         <span class="nav-group-label">${sec.label}</span>
         <span class="nav-group-chevron">›</span>
       </button>
-      <div class="nav-items">
-        ${sec.items.map(item => `
-          <div class="nav-item" id="nav-${item.id}" onclick="loadArticle('${item.id}')">
-            <span class="nav-item-dot"></span>
-            ${item.title}
-            ${item.badge ? `<span class="nav-badge ${item.badge}">${item.badge}</span>` : ''}
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
+      <div class="nav-items">${itemsHtml}</div>
+    </div>`;
+  }).join('');
 }
 
-function toggleGroup(id) {
-  const g = document.getElementById('group-' + id);
-  g.classList.toggle('open');
+function navItemHtml(item, isSub) {
+  return `<div class="nav-item${isSub?' sub':''}" id="nav-${item.id}" onclick="loadArticle('${item.id}')">
+    <span class="nav-item-dot"></span>${item.title}
+    ${item.badge?`<span class="nav-badge ${item.badge}">${item.badge==='new'?'Nuevo':item.badge==='updated'?'Actualizado':'En progreso'}</span>`:''}
+  </div>`;
 }
 
-function openGroup(sectionId) {
-  const g = document.getElementById('group-' + sectionId);
-  if (g && !g.classList.contains('open')) g.classList.add('open');
+function toggleGroup(id) { document.getElementById('group-'+id).classList.toggle('open'); }
+function toggleSubgroup(secId,gi) { document.getElementById(`subgroup-${secId}-${gi}`).classList.toggle('open'); }
+function openGroup(sectionId) { const g=document.getElementById('group-'+sectionId); if(g&&!g.classList.contains('open'))g.classList.add('open'); }
+function openSubgroupFor(articleId) {
+  NAV.forEach(sec => {
+    if (!sec.groups) return;
+    sec.groups.forEach((g,gi) => {
+      if (g.items.find(i=>i.id===articleId)) {
+        const sg=document.getElementById(`subgroup-${sec.id}-${gi}`);
+        if(sg&&!sg.classList.contains('open'))sg.classList.add('open');
+      }
+    });
+  });
 }
 
-// ═══════════════════════════════════════════════════════════
-//  RENDER WELCOME
-// ═══════════════════════════════════════════════════════════
+// ── Render Welcome ───────────────────────────────────────
 function renderWelcome() {
-  // Quick access (first item of first 4 sections)
-  const qsGrid = document.getElementById('qs-grid');
-  qsGrid.innerHTML = NAV.slice(0,4).map(sec => `
-    <div class="qs-card" onclick="loadArticle('${sec.items[0].id}')">
+  document.getElementById('qs-grid').innerHTML = NAV.slice(0,4).map(sec=>`
+    <div class="qs-card" onclick="loadArticle('${(sec.groups?sec.groups[0].items[0]:sec.items[0]).id}')">
       <div class="qs-icon">${sec.icon}</div>
       <div class="qs-card-title">${sec.label}</div>
       <div class="qs-card-desc">${sec.desc}</div>
-    </div>
-  `).join('');
-
-  // All sections
-  const sectionsGrid = document.getElementById('sections-grid');
-  sectionsGrid.innerHTML = NAV.map(sec => `
-    <div class="qs-card" onclick="loadArticle('${sec.items[0].id}')">
+    </div>`).join('');
+  document.getElementById('sections-grid').innerHTML = NAV.map(sec=>`
+    <div class="qs-card" onclick="loadArticle('${(sec.groups?sec.groups[0].items[0]:sec.items[0]).id}')">
       <div class="qs-icon">${sec.icon}</div>
       <div class="qs-card-title">${sec.label}</div>
-      <div class="qs-card-desc">${sec.items.length} artículos</div>
-    </div>
-  `).join('');
+      <div class="qs-card-desc">${sec.groups?sec.groups.reduce((a,g)=>a+g.items.length,0):sec.items.length} artículos</div>
+    </div>`).join('');
 }
 
-// ═══════════════════════════════════════════════════════════
-//  LOAD ARTICLE — fetch desde /articulos/seccion/id.html
-// ═══════════════════════════════════════════════════════════
+// ── Load Article ─────────────────────────────────────────
 async function loadArticle(id) {
   currentArticleId = id;
-
-  // Find section
-  let sec = null, itemIdx = -1;
+  let sec = null, item = null;
   NAV.forEach(s => {
-    const idx = s.items.findIndex(i => i.id === id);
-    if (idx !== -1) { sec = s; itemIdx = idx; }
+    const allItems = s.groups ? s.groups.flatMap(g=>g.items) : (s.items||[]);
+    const found = allItems.find(i=>i.id===id);
+    if (found) { sec=s; item=found; }
   });
   if (!sec) return;
 
-  const item = sec.items[itemIdx];
-
-  // Toggle views
   document.getElementById('welcome').style.display = 'none';
   const articleEl = document.getElementById('article');
   articleEl.style.display = 'block';
 
-  // Breadcrumb
   document.getElementById('breadcrumb').innerHTML = `
     <span onclick="showWelcome()">Inicio</span>
     <span class="sep">›</span>
     <span onclick="openGroup('${sec.id}')">${sec.label}</span>
     <span class="sep">›</span>
-    <span style="color:var(--text)">${item.title}</span>
-  `;
+    <span style="color:var(--text)">${item.title}</span>`;
 
-  // Badge meta
   const meta = document.getElementById('article-meta');
-  meta.innerHTML = item.badge
-    ? `<span class="article-tag ${item.badge}">${item.badge === 'new' ? 'Nuevo' : item.badge === 'updated' ? 'Actualizado' : 'En progreso'}</span>`
-    : '';
+  meta.innerHTML = item.badge ? `<span class="article-tag ${item.badge}">${item.badge==='new'?'Nuevo':item.badge==='updated'?'Actualizado':'En progreso'}</span>` : '';
 
-  // Article nav (prev / next) — se arma siempre
-  const allItems = NAV.flatMap(s => s.items.map(i => ({...i, secId: s.id})));
-  const pos = allItems.findIndex(i => i.id === id);
-  const prev = allItems[pos - 1];
-  const next = allItems[pos + 1];
+  const allItems = getAllItems();
+  const pos = allItems.findIndex(i=>i.id===id);
+  const prev = allItems[pos-1], next = allItems[pos+1];
   document.getElementById('article-nav').innerHTML = `
-    ${prev ? `<button class="article-nav-btn prev" onclick="loadArticle('${prev.id}')">
-      <span class="article-nav-label">← Anterior</span>
-      <span class="article-nav-title">${prev.title}</span>
-    </button>` : '<div></div>'}
-    ${next ? `<button class="article-nav-btn next" onclick="loadArticle('${next.id}')">
-      <span class="article-nav-label">Siguiente →</span>
-      <span class="article-nav-title">${next.title}</span>
-    </button>` : ''}
-  `;
+    ${prev?`<button class="article-nav-btn prev" onclick="loadArticle('${prev.id}')"><span class="article-nav-label">← Anterior</span><span class="article-nav-title">${prev.title}</span></button>`:'<div></div>'}
+    ${next?`<button class="article-nav-btn next" onclick="loadArticle('${next.id}')"><span class="article-nav-label">Siguiente →</span><span class="article-nav-title">${next.title}</span></button>`:''}`;
 
-  // Sidebar highlight
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  const navItem = document.getElementById('nav-' + id);
-  if (navItem) { navItem.classList.add('active'); openGroup(sec.id); }
-  document.getElementById('content-area').scrollIntoView({behavior:'smooth', block:'start'});
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  const navItem = document.getElementById('nav-'+id);
+  if (navItem) { navItem.classList.add('active'); openGroup(sec.id); openSubgroupFor(id); }
+  document.getElementById('content-area').scrollIntoView({behavior:'smooth',block:'start'});
   closeSidebar();
 
-  // Si ya está en caché, renderizar directo
-  if (ARTICLE_CACHE[id]) {
-    renderArticleData(ARTICLE_CACHE[id], item);
-    return;
-  }
+  if (ARTICLE_CACHE[id]) { renderArticleData(ARTICLE_CACHE[id], item); return; }
 
-  // Mostrar loading
   document.getElementById('article-title').textContent = item.title;
   document.getElementById('article-lead').textContent = '';
-  document.getElementById('article-body').innerHTML = `
-    <div class="placeholder-article">
-      <div class="ph-icon" style="animation:spin 1s linear infinite;display:inline-block">⏳</div>
-      <p>Cargando artículo…</p>
-    </div>
-  `;
+  document.getElementById('article-body').innerHTML = `<div class="placeholder-article"><div class="ph-icon" style="animation:spin 1s linear infinite;display:inline-block">⏳</div><p>Cargando artículo…</p></div>`;
 
-  // Fetch del archivo
-  const path = `articulos/${sec.id}/${id}.html`;
   try {
-    const res = await fetch(path);
+    const res = await fetch(`articulos/${sec.id}/${id}.html`);
     if (!res.ok) throw new Error('not found');
     const html = await res.text();
-
-    // Parsear: el archivo tiene formato JSON-like en comentario inicial
-    // Formato: <!-- {"title":"...","lead":"...","updated":"..."} -->
-    // seguido del HTML del body
-    let title = item.title, lead = '', updated = '', body = html;
+    let title=item.title, lead='', updated='', body=html;
     const metaMatch = html.match(/^<!--\s*(\{[\s\S]*?\})\s*-->/);
     if (metaMatch) {
-      try {
-        const m = JSON.parse(metaMatch[1]);
-        title = m.title || title;
-        lead = m.lead || '';
-        updated = m.updated || '';
-        body = html.slice(metaMatch[0].length).trim();
-      } catch(e) {}
+      try { const m=JSON.parse(metaMatch[1]); title=m.title||title; lead=m.lead||''; updated=m.updated||''; body=html.slice(metaMatch[0].length).trim(); } catch(e){}
     }
-
-    const artData = { title, lead, updated, body };
+    const artData = {title,lead,updated,body};
     ARTICLE_CACHE[id] = artData;
-
-    // Enriquecer search index con texto real
-    const si = searchIndex.find(x => x.id === id);
-    if (si) si.text = title + ' ' + lead + ' ' + body.replace(/<[^>]+>/g, ' ');
-
+    const si = searchIndex.find(x=>x.id===id);
+    if (si) si.text = title+' '+lead+' '+body.replace(/<[^>]+>/g,' ');
     renderArticleData(artData, item);
-
   } catch(e) {
-    // Placeholder si no existe todavía
     ARTICLE_CACHE[id] = null;
     document.getElementById('article-title').textContent = item.title;
     document.getElementById('article-lead').textContent = '';
-    document.getElementById('article-body').innerHTML = `
-      <div class="placeholder-article">
-        <div class="ph-icon">🚧</div>
-        <p>
-          <strong>Artículo pendiente de redacción.</strong><br>
-          Este contenido se está trabajando y estará disponible próximamente.
-          Usa el asistente IA para resolver dudas sobre este tema.
-        </p>
-      </div>
-    `;
+    document.getElementById('article-body').innerHTML = `<div class="placeholder-article"><div class="ph-icon">🚧</div><p><strong>Artículo pendiente de redacción.</strong><br>Este contenido estará disponible próximamente. Usa el asistente IA para resolver dudas sobre este tema.</p></div>`;
   }
 }
 
 function renderArticleData(art, item) {
   document.getElementById('article-title').textContent = art.title;
-  document.getElementById('article-lead').textContent = art.lead || '';
-  document.getElementById('article-body').innerHTML = art.body || '';
+  document.getElementById('article-lead').textContent = art.lead||'';
+  document.getElementById('article-body').innerHTML = art.body||'';
   const meta = document.getElementById('article-meta');
-  if (art.updated && !meta.querySelector('.article-updated')) {
-    meta.innerHTML += `<span class="article-updated">Actualizado: ${art.updated}</span>`;
-  }
+  if (art.updated && !meta.querySelector('.article-updated')) meta.innerHTML += `<span class="article-updated">Actualizado: ${art.updated}</span>`;
 }
 
 function showWelcome() {
   currentArticleId = null;
   document.getElementById('welcome').style.display = 'flex';
   document.getElementById('article').style.display = 'none';
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  window.scrollTo({top:0, behavior:'smooth'});
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  window.scrollTo({top:0,behavior:'smooth'});
   closeSidebar();
 }
 
-// ═══════════════════════════════════════════════════════════
-//  MOBILE SIDEBAR
-// ═══════════════════════════════════════════════════════════
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebar-overlay').classList.remove('visible');
-}
+// ── Mobile Sidebar ───────────────────────────────────────
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebar-overlay').classList.remove('visible'); }
+document.getElementById('menu-toggle').addEventListener('click',()=>{ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('sidebar-overlay').classList.toggle('visible'); });
+document.getElementById('sidebar-overlay').addEventListener('click',closeSidebar);
 
-document.getElementById('menu-toggle').addEventListener('click', () => {
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('sidebar-overlay').classList.toggle('visible');
-});
-document.getElementById('sidebar-overlay').addEventListener('click', closeSidebar);
-
-// ═══════════════════════════════════════════════════════════
-//  SEARCH
-// ═══════════════════════════════════════════════════════════
+// ── Search ───────────────────────────────────────────────
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 const searchClear = document.getElementById('search-clear');
-
-function highlight(text, query) {
-  if (!query) return text;
-  const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
-  return text.replace(re, '<mark class="sr-item-mark">$1</mark>');
-}
-
+function highlight(text,query) { if(!query)return text; const re=new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'); return text.replace(re,'<mark class="sr-item-mark">$1</mark>'); }
 function doSearch(q) {
   if (!q.trim()) { searchResults.classList.remove('visible'); return; }
   const lower = q.toLowerCase();
-  const hits = searchIndex.filter(a =>
-    a.title.toLowerCase().includes(lower) ||
-    a.section.toLowerCase().includes(lower) ||
-    a.text.toLowerCase().includes(lower)
-  ).slice(0, 8);
-
-  if (!hits.length) {
-    searchResults.innerHTML = `<div class="sr-empty">No se encontraron resultados para "<strong>${q}</strong>"</div>`;
-  } else {
-    // Group by section
-    const grouped = {};
-    hits.forEach(h => {
-      if (!grouped[h.section]) grouped[h.section] = [];
-      grouped[h.section].push(h);
-    });
-    searchResults.innerHTML = Object.entries(grouped).map(([sec, items]) => `
-      <div class="sr-section">
-        <div class="sr-label">${sec}</div>
-        ${items.map(item => `
-          <div class="sr-item" onclick="loadArticle('${item.id}'); clearSearch();" role="option">
-            <span class="sr-item-icon">${item.sectionIcon}</span>
-            <div>
-              <div class="sr-item-title">${highlight(item.title, q)}</div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    `).join('');
+  const hits = searchIndex.filter(a=>a.title.toLowerCase().includes(lower)||a.section.toLowerCase().includes(lower)||a.text.toLowerCase().includes(lower)).slice(0,8);
+  if (!hits.length) { searchResults.innerHTML=`<div class="sr-empty">No se encontraron resultados para "<strong>${q}</strong>"</div>`; }
+  else {
+    const grouped={};
+    hits.forEach(h=>{ if(!grouped[h.section])grouped[h.section]=[]; grouped[h.section].push(h); });
+    searchResults.innerHTML = Object.entries(grouped).map(([sec,items])=>`
+      <div class="sr-section"><div class="sr-label">${sec}</div>
+        ${items.map(item=>`<div class="sr-item" onclick="loadArticle('${item.id}');clearSearch();" role="option">
+          <span class="sr-item-icon">${item.sectionIcon}</span>
+          <div><div class="sr-item-title">${highlight(item.title,q)}</div></div>
+        </div>`).join('')}
+      </div>`).join('');
   }
   searchResults.classList.add('visible');
 }
+searchInput.addEventListener('input',e=>{ doSearch(e.target.value); searchClear.style.display=e.target.value?'block':'none'; });
+searchInput.addEventListener('keydown',e=>{ if(e.key==='Escape')clearSearch(); });
+document.addEventListener('keydown',e=>{ if(e.key==='/'&&document.activeElement!==searchInput){e.preventDefault();searchInput.focus();} });
+function clearSearch() { searchInput.value=''; searchResults.classList.remove('visible'); searchClear.style.display='none'; searchInput.blur(); }
+searchClear.addEventListener('click',clearSearch);
+document.addEventListener('click',e=>{ if(!e.target.closest('#search-wrap'))searchResults.classList.remove('visible'); });
 
-searchInput.addEventListener('input', e => {
-  doSearch(e.target.value);
-  searchClear.style.display = e.target.value ? 'block' : 'none';
-});
-
-searchInput.addEventListener('keydown', e => {
-  if (e.key === 'Escape') clearSearch();
-});
-
-// Shortcut: "/" focuses search
-document.addEventListener('keydown', e => {
-  if (e.key === '/' && document.activeElement !== searchInput) {
-    e.preventDefault();
-    searchInput.focus();
-  }
-});
-
-function clearSearch() {
-  searchInput.value = '';
-  searchResults.classList.remove('visible');
-  searchClear.style.display = 'none';
-  searchInput.blur();
-}
-
-searchClear.addEventListener('click', clearSearch);
-document.addEventListener('click', e => {
-  if (!e.target.closest('#search-wrap')) searchResults.classList.remove('visible');
-});
-
-// ═══════════════════════════════════════════════════════════
-//  AI CHAT
-// ═══════════════════════════════════════════════════════════
-document.getElementById('chat-fab').addEventListener('click', () => {
-  chatOpen = !chatOpen;
-  document.getElementById('chat-panel').classList.toggle('open', chatOpen);
-  if (chatOpen) document.getElementById('chat-input').focus();
-});
-document.getElementById('chat-close').addEventListener('click', () => {
-  chatOpen = false;
-  document.getElementById('chat-panel').classList.remove('open');
-});
+// ── AI Chat ──────────────────────────────────────────────
+document.getElementById('chat-fab').addEventListener('click',()=>{ chatOpen=!chatOpen; document.getElementById('chat-panel').classList.toggle('open',chatOpen); if(chatOpen)document.getElementById('chat-input').focus(); });
+document.getElementById('chat-close').addEventListener('click',()=>{ chatOpen=false; document.getElementById('chat-panel').classList.remove('open'); });
 
 async function sendChat() {
-  if (chatLoading) return; // bloquea si ya hay una petición en curso
+  if (chatLoading) return;
   const input = document.getElementById('chat-input');
   const msg = input.value.trim();
   if (!msg) return;
-
-  // Rate limit: máximo 2 llamadas cada 10 segundos
   const waitSec = chatRateCheck();
-  if (waitSec > 0) {
-    appendMsg(`⏳ Demasiadas preguntas seguidas. Espera ${waitSec} segundo${waitSec !== 1 ? 's' : ''} e intenta de nuevo.`, 'bot');
-    return;
-  }
-
-  chatLoading = true;
-  input.value = '';
-  document.getElementById('chat-send').disabled = true;
-
-  appendMsg(msg, 'user');
-  chatHistory.push({ role: 'user', content: msg });
-
-  const typing = appendMsg('<div class="typing-dots"><span></span><span></span><span></span></div>', 'bot typing');
-
-  // ── Contexto del manual ────────────────────────────────
-  const strip = html => html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-
-  // 1. Artículo abierto ahora (máxima prioridad)
-  let currentCtx = '';
-  if (currentArticleId && ARTICLE_CACHE[currentArticleId]) {
-    const art = ARTICLE_CACHE[currentArticleId];
-    currentCtx = `\n\n---\nARTÍCULO QUE EL USUARIO ESTÁ LEYENDO AHORA — "${art.title}":\n${strip(art.body)}`;
-  }
-
-  // 2. Todos los artículos del caché (precargados o visitados)
-  const loadedArticles = Object.entries(ARTICLE_CACHE)
-    .filter(([id, art]) => art && id !== currentArticleId)
-    .map(([, art]) => `### ${art.title}\n${strip(art.body)}`)
-    .join('\n\n');
-  const cachedCtx = loadedArticles
-    ? `\n\n---\nCONTENIDO DEL MANUAL:\n${loadedArticles}`
-    : '';
-
-  // 3. Índice completo con descripciones de sección
-  const navIndex = NAV.map(s =>
-    `## ${s.label} — ${s.desc}\n${s.items.map(i => `- ${i.title}`).join('\n')}`
-  ).join('\n\n');
-
-  const systemPrompt = `Eres el asistente de ayuda EXCLUSIVO de QServus. Tu única función es resolver dudas sobre esta plataforma.
-
-## ¿Qué es QServus?
-QServus es una plataforma SaaS de gestión de experiencia del cliente (VoC/CX) que permite a las empresas medir, analizar y actuar sobre el feedback de sus clientes en tiempo real.
-
-## Módulos principales de QServus
-- **Encuestas:** creación y publicación de encuestas con múltiples tipos de preguntas (NPS, CSAT, escalas, texto libre, matrices). Se distribuyen a través de Campañas (email/SMS) o Sensores (web, QR, kiosco).
-- **¿Qué está pasando?:** monitoreo en tiempo real de respuestas entrantes con detalle individual de cada respuesta.
-- **Indicadores:** tableros personalizables con gráficos de satisfacción, NPS, barras, torta, nube de palabras, text analytics e IA.
-- **Reportes:** exportación en Excel y PDF de resultados por campaña, sensor o segmento.
-- **Acciones automatizadas:** alertas por email según respuestas (satisfacción, insatisfacción o condiciones personalizadas), envío de información condicional al cliente, ejecución de procesos (SFTP, OTP, redirección).
-- **Tickets:** módulo de gestión de casos generados por alertas personalizadas. Incluye asignación, seguimiento, derivación y cierre con indicadores de resolución.
-- **Configuración:** gestión de usuarios, perfiles, segmentos, grupos, dominios, seguridad y formulario de cierre de tickets.
-- **API:** integración con sistemas externos mediante API REST con autenticación por token.
-
-## Reglas de respuesta
-- Responde SOLO sobre QServus. Si la pregunta no tiene relación con la plataforma, responde exactamente: "Solo puedo ayudarte con dudas sobre QServus. ¿Tienes alguna pregunta sobre la plataforma?"
-- Nunca menciones otras plataformas ni herramientas externas.
-- Basa las respuestas en el manual. No inventes funcionalidades.
-- Si no encuentras la respuesta, di: "No tengo esa información en el manual. Te recomiendo contactar al soporte de QServus."
-- Responde en español, de forma clara y concisa.
-- Usa los nombres exactos de las secciones del manual.
-
-## Contenido del manual
-${navIndex}${currentCtx}${cachedCtx}`;
-
+  if (waitSec>0) { appendMsg(`⏳ Espera ${waitSec} segundo${waitSec!==1?'s':''} e intenta de nuevo.`,'bot'); return; }
+  chatLoading=true; input.value=''; document.getElementById('chat-send').disabled=true;
+  appendMsg(msg,'user');
+  const typing = appendMsg('<div class="typing-dots"><span></span><span></span><span></span></div>','bot typing');
+  const strip = html=>html.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+  let currentCtx='';
+  if (currentArticleId&&ARTICLE_CACHE[currentArticleId]) { const art=ARTICLE_CACHE[currentArticleId]; currentCtx=`\n\n---\nARTÍCULO ABIERTO — "${art.title}":\n${strip(art.body)}`; }
+  const loadedArticles = Object.entries(ARTICLE_CACHE).filter(([id,art])=>art&&id!==currentArticleId).map(([,art])=>`### ${art.title}\n${strip(art.body)}`).join('\n\n');
+  const cachedCtx = loadedArticles?`\n\n---\nCONTENIDO DEL MANUAL:\n${loadedArticles}`:'';
+  const navIndex = NAV.map(s=>`## ${s.label} — ${s.desc}\n${(s.groups?s.groups.flatMap(g=>g.items):s.items||[]).map(i=>`- ${i.title}`).join('\n')}`).join('\n\n');
+  const systemPrompt = `Eres el asistente de ayuda EXCLUSIVO de QServus. Tu única función es resolver dudas sobre esta plataforma SaaS de gestión de experiencia del cliente.\n\nReglas:\n- Responde SOLO sobre QServus. Si no tiene relación, responde: "Solo puedo ayudarte con dudas sobre QServus."\n- Basa las respuestas en el manual. No inventes funcionalidades.\n- Si no encuentras la respuesta: "No tengo esa información en el manual. Contacta al soporte de QServus."\n- Responde en español, claro y conciso.\n\n## Índice del manual\n${navIndex}${currentCtx}${cachedCtx}`;
   try {
-    const res = await fetch('https://qsn8n.qservus.com/webhook/qservus-chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        sessionId,                                    // n8n Simple Memory usa esto para recordar la conversación
-        system:   systemPrompt,                       // contexto del manual (artículo abierto incluido)
-        messages: [{ role: 'user', content: msg }],  // solo el mensaje actual — el historial lo maneja n8n
-      })
-    });
-
+    const res = await fetch('https://qsn8n.qservus.com/webhook/qservus-chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId,system:systemPrompt,messages:[{role:'user',content:msg}]})});
     const data = await res.json();
     typing.remove();
-
-    // Compatible con AI Agent (output), HTTP Request (content/choices) y array
-    const d = Array.isArray(data) ? data[0] : data;
-    const reply = d?.output
-      || d?.content?.[0]?.text
-      || d?.choices?.[0]?.message?.content
-      || 'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
-    appendMsg(mdToHtml(reply), 'bot');
-    chatHistory.push({ role: 'assistant', content: reply }); // solo para mostrar en pantalla
-  } catch(e) {
-    typing.remove();
-    appendMsg('Ocurrió un error de conexión. Verifica tu internet e intenta de nuevo.', 'bot');
-  } finally {
-    chatLoading = false;
-    document.getElementById('chat-send').disabled = false;
-    input.focus();
-  }
+    const d=Array.isArray(data)?data[0]:data;
+    const reply=d?.output||d?.content?.[0]?.text||d?.choices?.[0]?.message?.content||'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
+    appendMsg(mdToHtml(reply),'bot');
+  } catch(e) { typing.remove(); appendMsg('Ocurrió un error de conexión. Verifica tu internet e intenta de nuevo.','bot'); }
+  finally { chatLoading=false; document.getElementById('chat-send').disabled=false; input.focus(); }
 }
 
 function mdToHtml(md) {
-  return md
-    .replace(/\*\*(.*?)\*\*/gs, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/gs, '<em>$1</em>')
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/^#{1,3} (.+)$/gm, '<strong>$1</strong>')
-    .replace(/^---+$/gm, '<hr style="border:none;border-top:1px solid var(--border-2);margin:6px 0">')
-    .replace(/^\- (.+)$/gm, '&bull; $1')
-    .replace(/^\d+\. (.+)$/gm, '$1')
-    .replace(/\n\n/g, '<br><br>')
-    .replace(/\n/g, '<br>');
+  return md.replace(/\*\*(.*?)\*\*/gs,'<strong>$1</strong>').replace(/\*(.*?)\*/gs,'<em>$1</em>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/^#{1,3} (.+)$/gm,'<strong>$1</strong>').replace(/^---+$/gm,'<hr style="border:none;border-top:1px solid var(--border-2);margin:6px 0">').replace(/^\- (.+)$/gm,'&bull; $1').replace(/^\d+\. (.+)$/gm,'$1').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
 }
+function appendMsg(html,cls) { const msgs=document.getElementById('chat-messages'); const div=document.createElement('div'); div.className='msg '+cls; div.innerHTML=html; msgs.appendChild(div); msgs.scrollTop=msgs.scrollHeight; return div; }
+document.getElementById('chat-send').addEventListener('click',sendChat);
+document.getElementById('chat-input').addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();} });
 
-function appendMsg(html, cls) {
-  const msgs = document.getElementById('chat-messages');
-  const div = document.createElement('div');
-  div.className = 'msg ' + cls;
-  div.innerHTML = html;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  return div;
-}
-
-document.getElementById('chat-send').addEventListener('click', sendChat);
-document.getElementById('chat-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
-});
-
-
-
-// ═══════════════════════════════════════════════════════════
-//  INIT
-// ═══════════════════════════════════════════════════════════
+// ── Init ─────────────────────────────────────────────────
 renderNav();
 renderWelcome();
 </script>
