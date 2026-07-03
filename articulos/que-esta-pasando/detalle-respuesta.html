@@ -1,28 +1,26 @@
-<!-- {"title":"Detalle de una respuesta","lead":"Accede a toda la información de una respuesta individual: datos del cliente, fecha, respuestas al cuestionario y estado de seguimiento.","updated":"2026"} -->
+<!-- {"title":"Detalle de una respuesta","lead":"Al hacer clic sobre una respuesta se abre un modal con la información completa del cliente, la fecha de respuesta y las respuestas del cuestionario.","updated":"2026"} -->
 
 <h2>Cómo acceder al detalle</h2>
-<p>Haz clic sobre cualquier elemento del <a href="#" onclick="loadArticle('listado-respuestas');return false;">listado de respuestas</a>. Se abrirá un panel con el detalle completo de esa respuesta.</p>
+<p>Haz clic sobre cualquier respuesta en el listado de <strong>¿Qué está pasando?</strong> para abrir el modal de detalle.</p>
 
-<h2>Información que muestra el detalle</h2>
-<p>El panel de detalle incluye:</p>
+<h2>Información disponible</h2>
+<p>El modal muestra:</p>
 <ul>
-  <li><strong>Datos del cliente</strong>: nombre, correo u otros datos solicitados en la encuesta.</li>
-  <li><strong>Fecha de respuesta</strong>: fecha y hora exacta en que se registró la respuesta.</li>
-  <li><strong>Respuestas al cuestionario</strong>: muestra cada pregunta con su enunciado y la respuesta seleccionada o ingresada por el cliente.</li>
+  <li><strong>Información del cliente</strong> — nombre, correo, teléfono u otros datos solicitados</li>
+  <li><strong>Fecha de respuesta</strong></li>
+  <li><strong>Respuestas del cuestionario</strong> — el enunciado de cada pregunta junto con la respuesta seleccionada</li>
+  <li>Si alguna pregunta solicita justificación, se mostrará el texto ingresado por el cliente</li>
 </ul>
 
 <div class="img-wrap">
-  <img src="URL_CDN_FIGURA_2_4" alt="Detalle de respuesta">
-  <div class="img-caption">Figura 2.4 — Panel de detalle de respuesta</div>
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage14.png" alt="Modal de detalle de respuesta">
+  <div class="img-caption">Figura 2.4 — Detalle de respuesta</div>
 </div>
 
-<h2>Respuestas con justificación</h2>
-<p>Si alguna pregunta tenía activada la opción de justificación, el panel mostrará el texto ingresado por el cliente debajo de la respuesta seleccionada.</p>
-
-<h2>Estado de seguimiento</h2>
-<p>Si la respuesta generó un seguimiento (por haber cumplido las condiciones de una acción automatizada), aparecerá un botón de acceso al ticket de seguimiento dentro del detalle. Haz clic en ese botón para ver o gestionar el seguimiento.</p>
+<h2>Seguimiento desde el detalle</h2>
+<p>Si la respuesta ha generado un seguimiento, aparecerá un botón para ir directamente al detalle del ticket de seguimiento asociado.</p>
 
 <div class="callout tip">
   <span class="callout-icon">💡</span>
-  <div>Desde el detalle también puedes descargar la respuesta completa en formato PDF. Ver <a href="#" onclick="loadArticle('descarga-respuesta');return false;">Descarga del detalle</a>.</div>
+  <div>Para descargar el detalle completo en PDF consulta <a href="#" onclick="loadArticle('descarga-respuesta');return false;">Descarga del detalle</a>.</div>
 </div>
