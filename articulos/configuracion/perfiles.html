@@ -1,22 +1,35 @@
-<!-- {"title":"Perfiles","lead":"Gestiona los perfiles de permisos de tu organización en QServus. Los perfiles determinan a qué secciones y funciones puede acceder cada usuario del sistema.","updated":"2026"} -->
+<!-- {"title":"Perfiles","lead":"Define los niveles de acceso de los usuarios con perfiles preconfigurados o crea perfiles personalizados.","updated":"2026"} -->
 
 <h2>¿Qué son los perfiles?</h2>
-<p>QServus provee un conjunto de permisos organizados en perfiles para controlar el acceso de los usuarios al sistema. Al crear un usuario, se le asigna un perfil que define a qué módulos y funciones puede acceder.</p>
+<p>Los perfiles definen los permisos de acceso a las distintas secciones de QServus. QServus incluye perfiles iniciales listos para usar:</p>
+
+<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+  <tr style="background:var(--bg-2)">
+    <th style="padding:10px;text-align:left;border-bottom:1px solid var(--border)">Sección</th>
+    <th style="padding:10px;text-align:center;border-bottom:1px solid var(--border)">Customer service</th>
+    <th style="padding:10px;text-align:center;border-bottom:1px solid var(--border)">Ejecutivo</th>
+    <th style="padding:10px;text-align:center;border-bottom:1px solid var(--border)">Incógnito</th>
+    <th style="padding:10px;text-align:center;border-bottom:1px solid var(--border)">Supervisor</th>
+    <th style="padding:10px;text-align:center;border-bottom:1px solid var(--border)">Administrador</th>
+  </tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">¿Qué está pasando?</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">—</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Encuestas</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">—</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Sensores</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">—</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Campañas</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">—</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Indicadores</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">—</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td></tr>
+  <tr><td style="padding:10px;border-bottom:1px solid var(--border-2)">Reportes</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">—</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td><td style="padding:10px;text-align:center;border-bottom:1px solid var(--border-2)">Sí</td></tr>
+  <tr><td style="padding:10px">Configuración</td><td style="padding:10px;text-align:center">—</td><td style="padding:10px;text-align:center">—</td><td style="padding:10px;text-align:center">—</td><td style="padding:10px;text-align:center">—</td><td style="padding:10px;text-align:center">Sí</td></tr>
+</table>
 
 <div class="callout info">
   <span class="callout-icon">ℹ️</span>
-  <div>Los perfiles iniciales del sistema no tienen configuración por defecto para el acceso a los indicadores. Este acceso debe configurarse explícitamente al crear o editar el perfil.</div>
+  <div>Los perfiles iniciales no tienen una configuración por defecto para el acceso a los indicadores — ese permiso se configura manualmente.</div>
 </div>
 
-<h2>Crear un perfil</h2>
-<p>Para crear un nuevo perfil, haz clic en el ícono de creación en la lista de perfiles. Aparecerá el formulario de creación donde defines el nombre del perfil y los permisos que tendrá sobre cada módulo del sistema.</p>
+<h2>Crear un perfil personalizado</h2>
+<p>Para crear un perfil haz clic en el ícono de agregar en la lista de perfiles. El formulario de creación tiene dos pestañas: una para definir los permisos de sección y otra para configurar accesos más granulares.</p>
 
 <div class="img-wrap">
-  <img src="URL_CDN_FIGURA_10_25" alt="Formulario de creación de perfil">
-  <div class="img-caption">Figura 10.25 — Formulario de creación de perfil</div>
-</div>
-
-<div class="callout tip">
-  <span class="callout-icon">💡</span>
-  <div>Los perfiles también se utilizan en las <a href="#" onclick="loadArticle('alertas-personalizadas');return false;">alertas personalizadas</a> para definir qué rol tiene cada usuario en la gestión de casos de seguimiento (encargado, supervisor, administrador, notificado).</div>
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage159.png" alt="Formulario de creación de perfil">
+  <div class="img-caption">Figura 1 — Formulario de creación de perfil con pestañas de permisos.</div>
 </div>
