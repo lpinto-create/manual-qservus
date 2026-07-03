@@ -1,112 +1,205 @@
-<!-- {"title":"Preguntas de texto","lead":"Las preguntas de texto permiten que los encuestados proporcionen respuestas abiertas. Pueden ser de texto simple o multilínea, con validaciones opcionales.","updated":"2026"} -->
+<!-- {"title":"Preguntas de texto","lead":"Las preguntas de texto permiten respuestas abiertas. QServus ofrece 6 tipos: Texto, Fecha, Foto, Archivo, Audio y HTML.","updated":"2026"} -->
 
 <h2>¿Qué son las preguntas de texto?</h2>
-<p>Las preguntas de texto permiten que los encuestados proporcionen respuestas abiertas y no estructuradas para expresar sus ideas, opiniones y experiencias sin restricciones. Pueden ser de texto simple o multilínea.</p>
+<p>Las preguntas de texto permiten que los encuestados proporcionen respuestas abiertas y no estructuradas. QServus ofrece 6 tipos según el formato de respuesta que necesites recopilar.</p>
 
-<h2>Formulario de configuración</h2>
-<p>Al agregar una pregunta de tipo <strong>Texto</strong> el sistema solicitará completar el siguiente formulario:</p>
+<style>
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 24px 0; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-btn {
+  width: 100%; text-align: left; padding: 14px 18px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  background: var(--bg-2); cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font);
+}
+.accordion-btn:hover { background: var(--bg-3); }
+.accordion-btn .acc-arrow { transition: transform .2s; font-size: 12px; color: var(--text-3); }
+.accordion-btn.open .acc-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; padding: 20px 18px; background: var(--bg-2); border-top: 1px solid var(--border-2); }
+.accordion-body.open { display: block; }
+.accordion-body h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 16px 0 8px; }
+.accordion-body h4:first-child { margin-top: 0; }
+.accordion-body table { width:100%; border-collapse:collapse; font-size:13px; margin: 12px 0; }
+.accordion-body th { padding:8px 10px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-3); font-weight:600; }
+.accordion-body td { padding:8px 10px; border-bottom:1px solid var(--border-2); }
+.accordion-body tr:last-child td { border-bottom: none; }
+.accordion-body .img-wrap { margin: 12px 0; }
+</style>
 
-<div class="img-wrap" style="max-width:500px;">
-  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage290.png" alt="Formulario de configuración pregunta tipo texto">
-  <div class="img-caption">Figura 3.22 — Formulario de configuración de pregunta tipo texto</div>
-</div>
+<div class="accordion">
 
-<table style="width:100%; border-collapse:collapse; font-size:14px;">
-  <thead>
-    <tr style="background:var(--bg-3);">
-      <th style="padding:10px 12px; text-align:left; border-bottom:1px solid var(--border);">Opción</th>
-      <th style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border); width:100px;">Obligatorio</th>
-      <th style="padding:10px 12px; text-align:left; border-bottom:1px solid var(--border);">Descripción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Enunciado de la pregunta</strong></td>
-      <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">Sí</td>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Texto principal del enunciado.</td>
-    </tr>
-    <tr style="background:var(--bg-3);">
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Texto de ayuda</strong></td>
-      <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">No</td>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Texto opcional que sirve para explicar el enunciado al encuestado.</td>
-    </tr>
-    <tr>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Probabilidad de la pregunta</strong></td>
-      <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">No</td>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Probabilidad de aparición. Valores: 100%, 50% o 30%.</td>
-    </tr>
-    <tr style="background:var(--bg-3);">
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Tipo de texto</strong></td>
-      <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">Sí</td>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Texto simple o multilínea.</td>
-    </tr>
-    <tr>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Página</strong></td>
-      <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">Sí</td>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Página del cuestionario donde se agregará la pregunta.</td>
-    </tr>
-    <tr style="background:var(--bg-3);">
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Mínimo de caracteres</strong></td>
-      <td style="padding:10px 12px; text-align:center; border-bottom:1px solid var(--border-2);">No</td>
-      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Número mínimo aceptado de caracteres en la respuesta.</td>
-    </tr>
-    <tr>
-      <td style="padding:10px 12px;"><strong>Máximo de caracteres</strong></td>
-      <td style="padding:10px 12px; text-align:center;">No</td>
-      <td style="padding:10px 12px;">Número máximo aceptado de caracteres en la respuesta.</td>
-    </tr>
-  </tbody>
-</table>
+  <!-- TEXTO -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Texto <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite respuestas abiertas en formato de texto corto (simple) o largo (multilínea).</p>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage290.png" alt="Formulario tipo texto">
+        <div class="img-caption">Figura 3.22 — Formulario de configuración</div>
+      </div>
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Explica el enunciado al encuestado.</td></tr>
+          <tr><td><strong>Probabilidad</strong></td><td>No</td><td>100%, 50% o 30% de aparición.</td></tr>
+          <tr><td><strong>Tipo de texto</strong></td><td>Sí</td><td>Texto simple o multilínea.</td></tr>
+          <tr><td><strong>Tipo de validación</strong></td><td>No</td><td>Solo en texto simple. Delimita el formato aceptado.</td></tr>
+          <tr><td><strong>Página</strong></td><td>Sí</td><td>Página donde se agregará la pregunta.</td></tr>
+          <tr><td><strong>Mínimo de caracteres</strong></td><td>No</td><td>Número mínimo de caracteres aceptado.</td></tr>
+          <tr><td><strong>Máximo de caracteres</strong></td><td>No</td><td>Número máximo de caracteres aceptado.</td></tr>
+        </tbody>
+      </table>
+      <h4>Texto simple</h4>
+      <p>Para respuestas cortas y específicas. Permite configurar validación de formato.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage234.png" alt="Vista texto simple en encuesta">
+        <div class="img-caption">Figura 3.23 — Pregunta tipo texto simple en la encuesta</div>
+      </div>
+      <p>Validaciones disponibles: Número, Moneda, Rut, Correo electrónico, Fecha, Hora, Porcentaje, General, Teléfono.</p>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage293.png" alt="Tipos de validación">
+        <div class="img-caption">Figura 3.24 — Tipos de validación para texto simple</div>
+      </div>
+      <h4>Texto multilínea</h4>
+      <p>Para respuestas largas y detalladas. No tiene validación de formato disponible.</p>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage185.png" alt="Vista texto multilínea en encuesta">
+        <div class="img-caption">Figura 3.25 — Pregunta tipo texto multilínea en la encuesta</div>
+      </div>
+    </div>
+  </div>
 
-<h2>Probabilidad de aparición</h2>
-<p>Al seleccionar el campo <strong>Probabilidad</strong> se despliegan las opciones disponibles:</p>
+  <!-- FECHA -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Fecha <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite recopilar fechas específicas como fecha de nacimiento, inicio/fin de trabajo, compra de producto, etc.</p>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage295.png" alt="Formulario tipo fecha">
+        <div class="img-caption">Figura 3.26 — Formulario de configuración</div>
+      </div>
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Explica el enunciado al encuestado.</td></tr>
+          <tr><td><strong>Probabilidad</strong></td><td>No</td><td>100%, 50% o 30% de aparición.</td></tr>
+          <tr><td><strong>Página</strong></td><td>Sí</td><td>Página donde se agregará la pregunta.</td></tr>
+        </tbody>
+      </table>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage299.png" alt="Vista fecha en encuesta">
+        <div class="img-caption">Figura 3.27 — Pregunta tipo fecha en la encuesta</div>
+      </div>
+    </div>
+  </div>
 
-<div class="img-wrap" style="max-width:500px;">
-  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage291.png" alt="Opciones de probabilidad">
-  <div class="img-caption">Figura 3.23 — Opciones de probabilidad de aparición</div>
-</div>
+  <!-- FOTO -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Foto <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite al encuestado subir una imagen o tomar una fotografía como respuesta, según el dispositivo desde el cual responde.</p>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage296.png" alt="Formulario tipo foto">
+        <div class="img-caption">Figura 3.28 — Formulario de configuración</div>
+      </div>
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Explica el enunciado al encuestado.</td></tr>
+          <tr><td><strong>Probabilidad</strong></td><td>No</td><td>100%, 50% o 30% de aparición.</td></tr>
+          <tr><td><strong>Página</strong></td><td>Sí</td><td>Página donde se agregará la pregunta.</td></tr>
+        </tbody>
+      </table>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage300.png" alt="Vista foto en encuesta">
+        <div class="img-caption">Figura 3.29 — Pregunta tipo foto en la encuesta</div>
+      </div>
+    </div>
+  </div>
 
-<h2>Tipo de texto</h2>
-<p>Al seleccionar el campo <strong>Tipo de texto</strong> se despliegan las dos modalidades disponibles:</p>
+  <!-- ARCHIVO -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Archivo <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Permite a los encuestados adjuntar archivos directamente a sus respuestas: fotos, documentos o videos.</p>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage297.png" alt="Formulario tipo archivo">
+        <div class="img-caption">Figura 3.30 — Formulario de configuración</div>
+      </div>
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Explica el enunciado al encuestado.</td></tr>
+          <tr><td><strong>Probabilidad</strong></td><td>No</td><td>100%, 50% o 30% de aparición.</td></tr>
+          <tr><td><strong>Página</strong></td><td>Sí</td><td>Página donde se agregará la pregunta.</td></tr>
+        </tbody>
+      </table>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage302.png" alt="Vista archivo en encuesta">
+        <div class="img-caption">Figura 3.31 — Pregunta tipo archivo en la encuesta</div>
+      </div>
+    </div>
+  </div>
 
-<div class="img-wrap" style="max-width:500px;">
-  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage292.png" alt="Selector tipo de texto">
-  <div class="img-caption">Figura 3.24 — Opciones del campo Tipo de texto</div>
-</div>
+  <!-- AUDIO -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Audio <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Al responder este tipo de pregunta aparece un campo para subir un audio.</p>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage298.png" alt="Formulario tipo audio">
+        <div class="img-caption">Figura 3.32 — Formulario de configuración</div>
+      </div>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage301.png" alt="Vista audio en encuesta">
+        <div class="img-caption">Figura 3.33 — Pregunta tipo audio en la encuesta</div>
+      </div>
+    </div>
+  </div>
 
-<h3>Texto simple</h3>
-<p>Diseñado para obtener respuestas claras y específicas usando campos de texto cortos.</p>
+  <!-- HTML -->
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      HTML <span class="acc-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <p>Pregunta diseñada con HTML. Permite crear diferentes tipos de elementos: campos de texto, botones de opción, casillas de verificación y menús desplegables.</p>
+      <div class="img-wrap" style="max-width:500px;">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage248.png" alt="Formulario tipo HTML">
+        <div class="img-caption">Figura 3.34 — Formulario de configuración</div>
+      </div>
+      <table>
+        <thead><tr><th>Opción</th><th>Obligatorio</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Enunciado</strong></td><td>Sí</td><td>Texto principal del enunciado.</td></tr>
+          <tr><td><strong>Texto de ayuda</strong></td><td>No</td><td>Explica el enunciado al encuestado.</td></tr>
+          <tr><td><strong>Página</strong></td><td>Sí</td><td>Página donde se agregará la pregunta.</td></tr>
+          <tr><td><strong>Texto</strong></td><td>Sí</td><td>Contenido en formato HTML.</td></tr>
+        </tbody>
+      </table>
+      <div class="img-wrap">
+        <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage303.png" alt="Vista HTML en encuesta">
+        <div class="img-caption">Figura 3.35 — Pregunta tipo HTML en la encuesta</div>
+      </div>
+    </div>
+  </div>
 
-<div class="img-wrap">
-  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage234.png" alt="Vista de pregunta tipo texto simple en la encuesta">
-  <div class="img-caption">Figura 3.25 — Vista de pregunta tipo texto simple en la encuesta</div>
-</div>
-
-<p>El texto simple permite configurar un <strong>Tipo de validación</strong> para delimitar el formato de respuesta aceptado:</p>
-
-<div class="img-wrap" style="max-width:500px;">
-  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage293.png" alt="Tipos de validación disponibles">
-  <div class="img-caption">Figura 3.26 — Tipos de validación disponibles para texto simple</div>
-</div>
-
-<ul>
-  <li>Número</li>
-  <li>Moneda</li>
-  <li>Rut</li>
-  <li>Correo electrónico</li>
-  <li>Fecha</li>
-  <li>Hora</li>
-  <li>Porcentaje</li>
-  <li>General</li>
-  <li>Teléfono</li>
-</ul>
-
-<h3>Texto multilínea</h3>
-<p>Ideal para captar ideas, opiniones y experiencias en profundidad. No tiene validación de formato disponible.</p>
-
-<div class="img-wrap">
-  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage185.png" alt="Vista de pregunta tipo texto multilínea en la encuesta">
-  <div class="img-caption">Figura 3.27 — Vista de pregunta tipo texto multilínea en la encuesta</div>
 </div>
 
 <div class="callout tip">
