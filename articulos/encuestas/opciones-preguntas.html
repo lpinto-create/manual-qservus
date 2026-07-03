@@ -1,30 +1,65 @@
-<!-- {"title":"Opciones de preguntas","lead":"Cada pregunta del cuestionario tiene opciones comunes y opciones avanzadas que permiten personalizar su comportamiento.","updated":"2026"} -->
+<!-- {"title":"Opciones de preguntas","lead":"Cada pregunta del cuestionario tiene opciones disponibles para editar, ordenar, ocultar, agregar condiciones, derivaciones y más.","updated":"2026"} -->
 
-<h2>Opciones comunes a todas las preguntas</h2>
-<p>Independientemente del tipo, todas las preguntas comparten las siguientes opciones:</p>
-
-<ul>
-  <li><strong>Enunciado</strong>: texto de la pregunta que ve el cliente.</li>
-  <li><strong>Texto de ayuda</strong>: texto secundario opcional que aparece debajo del enunciado para orientar al cliente.</li>
-  <li><strong>Probabilidad de aparición</strong>: porcentaje de veces que la pregunta se mostrará. Útil para rotar preguntas en encuestas de largo plazo.</li>
-  <li><strong>Obligatoriedad</strong>: define si el cliente debe responder esta pregunta para poder avanzar.</li>
-</ul>
+<h2>Opciones disponibles</h2>
+<p>Cada página del cuestionario contiene una lista de preguntas. Cada elemento muestra el nombre, descripción, previsualización y las opciones disponibles para gestionarla.</p>
 
 <div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_52" alt="Opciones de preguntas">
-  <div class="img-caption">Figura 3.52 — Opciones de preguntas</div>
+  <img src="https://qservus.s3.amazonaws.com/aut/MANUALimage175.png" alt="Opciones de preguntas">
+  <div class="img-caption">Figura 3.19 — Opciones de preguntas</div>
 </div>
 
-<h2>Opciones avanzadas por tipo de pregunta</h2>
-<p>Algunos tipos de preguntas incluyen opciones adicionales específicas, como configuración de derivaciones o condiciones de visibilidad. Estas se acceden desde los íconos de acción de cada pregunta en el panel del cuestionario.</p>
+<table style="width:100%; border-collapse:collapse; font-size:14px;">
+  <thead>
+    <tr style="background:var(--bg-3);">
+      <th style="padding:10px 12px; text-align:left; border-bottom:1px solid var(--border);">Opción</th>
+      <th style="padding:10px 12px; text-align:left; border-bottom:1px solid var(--border);">Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Agregar alternativa</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Permite agregar alternativas a la pregunta creada.</td>
+    </tr>
+    <tr style="background:var(--bg-3);">
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Administrar alternativas</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Permite editar, ordenar y ocultar las distintas alternativas.</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Cambiar orden</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Permite arrastrar la pregunta para reorganizarla dentro de la página.</td>
+    </tr>
+    <tr style="background:var(--bg-3);">
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Editar</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Abre el formulario de edición de la pregunta.</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Lógica para mostrar la pregunta</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Permite mostrar la pregunta solo cuando se cumplen una o más condiciones. Ver <a href="#" onclick="loadArticle('preguntas-condicionales');return false;">Preguntas condicionales</a>.</td>
+    </tr>
+    <tr style="background:var(--bg-3);">
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Derivaciones</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Define cuál será la siguiente pregunta a mostrar según la respuesta. Ver <a href="#" onclick="loadArticle('derivaciones');return false;">Derivaciones</a>.</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Obligatoriedad</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Asegura que la pregunta siempre sea contestada al completar la encuesta.</td>
+    </tr>
+    <tr style="background:var(--bg-3);">
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Eliminar pregunta</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Elimina la pregunta seleccionada. Esta acción no se puede deshacer.</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);"><strong>Ocultar pregunta</strong></td>
+      <td style="padding:10px 12px; border-bottom:1px solid var(--border-2);">Oculta la pregunta. Si tiene condiciones asociadas puede afectar la visibilidad de otras preguntas.</td>
+    </tr>
+    <tr style="background:var(--bg-3);">
+      <td style="padding:10px 12px;"><strong>Ver histórico</strong></td>
+      <td style="padding:10px 12px;">Muestra todas las acciones realizadas en la pregunta: cambios, usuario, fecha de creación o modificación.</td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="img-wrap">
-  <img src="URL_CDN_FIGURA_3_19" alt="Íconos de opciones por pregunta">
-  <div class="img-caption">Figura 3.19 — Opciones disponibles por pregunta</div>
+<div class="callout info">
+  <span class="callout-icon">ℹ️</span>
+  <div>Una vez que la encuesta está activa y recibe respuestas, no se pueden eliminar preguntas — solo ocultarlas.</div>
 </div>
-
-<p>Las opciones avanzadas más relevantes son:</p>
-<ul>
-  <li><a href="#" onclick="loadArticle('derivaciones');return false;">Derivaciones</a>: saltos de página según la alternativa seleccionada.</li>
-  <li><a href="#" onclick="loadArticle('preguntas-condicionales');return false;">Preguntas condicionales</a>: mostrar u ocultar preguntas según la respuesta.</li>
-</ul>
